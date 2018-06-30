@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+}
+
+.head-nav {
+    width: 1178px;
+    height: 60px;
+    background-color: #ffffff;
+    border: solid 1px #666666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .date-text {
+    width: 162px;
+    height: 18px;
+    font-family: Offside;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #000000;
+    margin: 5px;
+  }

@@ -1,0 +1,56 @@
+.header-logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+
+  display: flex;
+
+  align-items: center;
+
+}
+
+.main-layout{
+    height:100vh-1;
+    background-color: white;
+    
+}
+
+.main-sider{
+  
+    background-color:#ffffff;
+
+}
+/*border: solid 1px #666666;*/
+.nav-text{
+    width: 83px;
+    height: 20px;
+    font-family: Offside;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #666666;
+    margin-left: 10px;
+}
+.main-layout img{
+    
+    width: 20px;
+    height: 20px;
+}
+
+.compname {
+    width: 133px;
+    height: 20px;
+    font-family: Offside;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+  }
