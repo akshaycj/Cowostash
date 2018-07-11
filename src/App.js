@@ -6,6 +6,8 @@ import { DatePicker } from "antd";
 import Graph from "./Components/Graph";
 import Calendar from "react-calendar";
 import Home from './Components/Home'
+import Vistor from './Components/VisitorDetailsForm'
+import Digitlogin from './Components/DigitLogin'
 
 export default class App extends Component {
   constructor(props) {
@@ -17,7 +19,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-       <Home />
+        <Vistor />
       </div>
     );
   }
