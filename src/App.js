@@ -8,6 +8,7 @@ import Calendar from "react-calendar";
 import Home from './Components/Home'
 import Vistor from './Components/VisitorDetailsForm'
 import Digitlogin from './Components/DigitLogin'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 export default class App extends Component {
   constructor(props) {
@@ -19,7 +20,12 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Vistor />
+        <BrowserRouter>
+          <Switch>
+            <Route path="/vistor" component = {Vistor} />
+            <Route path="/" component ={Digitlogin} />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
