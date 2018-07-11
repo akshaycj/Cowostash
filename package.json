@@ -12,6 +12,7 @@
     "react-easy-chart": "^1.0.0",
     "react-scripts": "^1.1.4"
   },
+  "homepage": "https://akshaycj.github.io/Cowostash",
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
