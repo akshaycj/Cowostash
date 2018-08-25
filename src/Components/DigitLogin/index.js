@@ -11,7 +11,7 @@ export default class extends Component {
       <div className="" >
         <div className="digit-main" >
           <div className="digit-top" >
-            <img src={logo} width="35px" height="35px" />
+            <img src={logo} width="75px" height="75px" />
             <div className="digit-top-text"><b>Cowostash</b></div>
           </div>
 

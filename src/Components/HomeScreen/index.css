@@ -1,0 +1,30 @@
+.homeS-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 95vh;
+}
+
+.homeS-inner{
+    border-radius: 200px;
+    width: 150px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    height: 150px;
+    background-color:white;
+    margin-top: 15px;
+    border: solid 1px #CCC;
+    box-shadow: 0 0 10px #CCC;
+    cursor: pointer;
+}
+
+.homeS-middle{
+    margin-top: -200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

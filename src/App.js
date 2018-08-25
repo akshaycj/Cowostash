@@ -9,6 +9,8 @@ import Home from './Components/Home'
 import Vistor from './Components/VisitorDetailsForm'
 import Digitlogin from './Components/DigitLogin'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import HomeScreen from './Components/HomeScreen'
+import Settings from './Components/Settings'
 
 export default class App extends Component {
   constructor(props) {
@@ -22,8 +24,9 @@ export default class App extends Component {
       <div>
         <BrowserRouter>
           <Switch>
+            <Route path="/home" component = {HomeScreen} />
             <Route path="/vistor" component = {Vistor} />
-            <Route path="/" component ={Digitlogin} />
+            <Route path="/" component ={Settings} />
           </Switch>
         </BrowserRouter>
       </div>

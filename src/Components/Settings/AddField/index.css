@@ -1,0 +1,30 @@
+.AddField-main {
+  display: flex;
+  margin: 15px;
+  padding: 10px;
+  height: inherit;
+}
+
+.form-preview {
+  width: 50%;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.form-preview-inner {
+  height: 100%;
+  text-align: center;
+  padding: 15px;
+  background-color: whitesmoke;
+
+  color: rgba(0, 0, 0, 0.7);
+  overflow-y: auto;
+}
+
+.form-gens {
+}
+.form-gen-font {
+  font-size: 18px;
+  font-weight: bold;
+}
