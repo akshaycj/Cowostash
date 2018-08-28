@@ -1,42 +1,39 @@
 @import url("https://fonts.googleapis.com/css?family=Offside");
 
-
 body {
   margin: 0;
   padding: 0;
   font-family: Offside;
 }
 
-div{
-
+div {
   font-family: Offside;
 }
 
-.theme-button{
-    min-width: 80px;
-    min-height: 30px;
-    border-radius: 300px;
-    background-color: #000000;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    font-size: 14px;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.theme-button {
+  min-width: 80px;
+  min-height: 30px;
+  border-radius: 300px;
+  background-color: #000000;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  font-size: 14px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.common-body{
-  border: 1px solid #CCC;
+.common-body {
   height: 80vh;
-  width:90%;
+  width: 90%;
   margin: auto;
 }
 
-.common-tab{
+.common-tab {
   width: 90%;
-  border: 1px solid #CCC;
-  box-shadow: 0 0px 10px #CCC;
+  border: 1px solid #ccc;
+  box-shadow: 0 0px 10px #ccc;
   height: 50px;
   padding: 15px;
   margin: auto;
@@ -44,6 +41,3 @@ div{
   align-items: center;
   justify-content: space-between;
 }
-
-
-
