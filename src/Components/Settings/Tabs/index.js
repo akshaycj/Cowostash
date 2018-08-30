@@ -7,6 +7,7 @@ import guest from "../../../Res/guest.png";
 import employee from "../../../Res/employee.png";
 import maintenance from "../../../Res/maintenance.png";
 import teamwork from "../../../Res/teamwork.png";
+import ThemeEdit from "./ThemeEdit"
 
 const TabPane = Tabs.TabPane;
 
@@ -23,6 +24,7 @@ export default class extends Component {
               >
                 Save
               </div>
+              <ThemeEdit/>
               <div />
             </div>
           </TabPane>
