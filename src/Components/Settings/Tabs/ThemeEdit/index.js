@@ -44,10 +44,22 @@ export default class extends Component {
 
         
         
-        <div className="Ipad-Container" ><div className="Ipad-Display"></div><div class="pa4">
+        <div className="Ipad-Container" ><div className="Ipad-Display"></div><div className="Ipad-Display-Items"><div class="pa4">
               <img
                 src="http://bldgwlf.com/wp-content/uploads/2012/01/danm4.jpg"
-                class="Ipad-Logo " alt="avatar" />
+                class="Ipad-Logo  " alt="avatar" />
+            </div>
+            <h2>Hello</h2>
+            <h5>Select Purpose of your visit</h5>
+            <div style={{display:"flex",marginTop:"-10px"}}><div class="pa4">
+              <img
+                src="http://bldgwlf.com/wp-content/uploads/2012/01/danm4.jpg"
+                class="Ipad-Logo  " alt="avatar" />
+            </div><div class="pa4">
+              <img
+                src="http://bldgwlf.com/wp-content/uploads/2012/01/danm4.jpg"
+                class="Ipad-Logo  " alt="avatar" />
+            </div></div>
             </div></div>
         
       

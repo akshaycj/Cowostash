@@ -68,11 +68,18 @@ margin: 12px;
 
 }
 .Ipad-Logo{
-    margin-top:-400px;
+
     border-radius: 100%;
-    display: inline-block;
     height: 3rem;
     width: 3rem;
     box-shadow: 0 0px 10px #ccc;
-    margin-left: 100px;
+}
+.Ipad-Display-Items{
+   margin-top:-230px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center; 
+
+
 }
