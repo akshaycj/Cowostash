@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from "react";
 import './index.css'
-import { Input, Icon } from "antd"
+import { Input, Icon,Modal,Switch } from "antd"
 import SquareCard from "../../SquareCard"
-import theme1 from "../../../../Res/theme1.jpg"
-import theme2 from "../../../../Res/theme2.jpeg"
+import theme1 from "../../../../Res/theme1.jpeg"
+import theme2 from "../../../../Res/theme2.jpg"
 import theme3 from "../../../../Res/theme3.jpeg"
 import logo from "../../../../Res/logo.svg"
+import qr from "../../../../Res/qr.png"
 
 const { TextArea } = Input;
 export default class extends Component {
@@ -16,9 +17,25 @@ export default class extends Component {
       MainText: "Hello",
       SubText: "Select Purpose of your visit",
       TextCol: "#000",
-      BackgroundCol: "#A9A9A9"
+      BackgroundCol: "#A9A9A9",
+      modal1Visible:false,
+      modal2Visible:false,
+      bgimage:null,
+      logo:logo,
+      displayquick:false,
+      Switch:false
+      
     }
   }
+
+  setModal1Visible(modal1Visible) {
+    this.setState({ modal1Visible });
+  }
+
+  setModal2Visible(modal2Visible) {
+    this.setState({ modal2Visible });
+  }
+  
   onMainText = (e) => {
     this.setState({ MainText: e.target.value })
   }
@@ -40,13 +57,39 @@ export default class extends Component {
   onLogo3 = () => {
     this.setState({ipadbackground:theme3})
   }
+
+  onfile1=(e)=>{
+    this.setState({logo:e.target.files})
+  }
+  onfile2=(e)=>{
+    this.setState({bgimage:e.target.files})
+    console.log("image",e.target.files)
+  }
+  onQuickLinkButton=()=>{
+    this.setState({displayquick:!this.state.displayquick})
+  }
+  onSwitch=()=>{
+    this.setState({Switch:!this.state.Switch})
+  }
+
+  
   render() {
 
     return (
-      <div className="Theme-Container" >
+      <div className="Theme-Container"  >
 
-        <div style={{ overlayY: "scroll" }}>
-          <div className="Theme-padding"><div>Upload Logo</div> <Icon style={{ fontSize: "20px" }} type="cloud-upload" /></div>
+        <div style={{height:"400px"}}  >
+          <div className="Theme-padding"><div>Upload Logo</div><div> <Icon style={{ fontSize: "20px" }} type="cloud-upload" onClick={() => this.setModal1Visible(true)} />
+          <Modal
+          title="Upload Logo"
+          visible={this.state.modal1Visible}
+          onOk={() => this.setModal1Visible(false)}
+          onCancel={() => this.setModal1Visible(false)}
+        >
+         <input type="file" onChange={this.file1}/>
+        </Modal>
+        </div>
+          </div>
           <div className="Theme-padding"><div>Logo Background Color</div><Input style={{ height: "20px", width: "80px" }} placeholder="#000" onChange={this.onBackgroundColor} /></div>
           <div className="Theme-padding">Upload Background/Select from Templates</div>
           <div style={{ display: "flex" }}>
@@ -63,40 +106,63 @@ export default class extends Component {
                 src={theme3}
                 class="br-100" alt="avatar" />
             </div>
-            <Icon style={{ fontSize: "30px", marginTop: "15px" }} type="cloud-upload" />
+           <div> <Icon style={{ fontSize: "30px", marginTop: "15px" }} onClick={() => this.setModal2Visible(true)} type="cloud-upload" />  <Modal
+          title="Upload Background"
+          visible={this.state.modal2Visible}
+          onOk={() => {this.setModal2Visible(false)
+                       
+          }
+        
+        }
+          onCancel={() => this.setModal2Visible(false)}
+        >
+          <input type="file" onChange={this.onfile2}/>
+        </Modal></div>
           </div>
           <Input className="Theme-padding" placeholder="Main Text" onChange={this.onMainText} />
           <TextArea className="Theme-padding" placeholder="Sub Text" onChange={this.onSubText} autosize={{ minRows: 2, maxRows: 6 }} />
           <div className="Theme-padding"><div>Text Color</div> <div><Input style={{ height: "20px", width: "80px" }} onChange={this.onTextColor} placeholder="#000" /></div></div>
-          <div className="Theme-padding "><div>Quick Links</div> <div className="Theme-button-quick">Quick Link +</div></div>
+          <div className="Theme-padding "><div>Quick Links</div> <div className="Theme-button-quick" onClick={this.onQuickLinkButton}>Quick Link +</div></div>
           <hr style={{ width: "320px" }} />
           <div className="Theme-padding" >
             <SquareCard title="Visitor" />
             <SquareCard title="Event" />
-
+          
           </div>
-
+          {this.state.displayquick?<div>
+            <Input className="Theme-padding "  placeholder="Walk in Interview"/>
+           <div className="Theme-padding QuickLinkPop "><Input style={{width:"200px"}}  placeholder="Interview"/><div className="theme-button">Add</div></div> 
+           <hr style={{ width: "320px" }} />
+           <div className="Theme-padding QuickLinkPop "><h3>Enable QR</h3><Switch checkedChildren={<Icon type="check" />}  onChange={this.onSwitch} unCheckedChildren={<Icon type="cross" />}  /></div>
+            </div>:null}
         </div>
 
 
 
         <div className="Ipad-Container"  ><div className="Ipad-Display" style={{ backgroundImage:"url(" + this.state.ipadbackground + ")" }}></div><div className="Ipad-Display-Items"><div class="pa4" >
           <img style={{ backgroundColor: this.state.BackgroundCol }}
-            src={logo}
+            src={this.state.logo}
             class="Ipad-Logo" alt="logo" />
         </div>
           <h2 style={{ color: this.state.TextCol }}>{this.state.MainText}</h2>
           <h5 style={{ color: this.state.TextCol }}>{this.state.SubText}</h5>
-          <div style={{ display: "flex", marginTop: "-10px" }}><div class="pa4">
-            <img
-              src={theme1}
-              class="Ipad-Logo  " alt="avatar" />
-          </div><div class="pa4">
-              <img
-                src={theme1}
-                class="Ipad-Logo  " alt="avatar" />
-            </div></div>
-        </div></div>
+          <div style={{ display: "flex", marginTop: "-10px" }}>
+          <div class="pa4">
+              <div
+                style={{backgroundColor:"#e6e6e6",opacity:"0.8",display:"flex",justifyContent:"center",alignItems:"center"}}
+                class="Ipad-Logo"><h6>Visitor</h6></div>
+            </div>
+            <div class="pa4">
+              <div
+                style={{backgroundColor:"#e6e6e6",opacity:"0.8",display:"flex",justifyContent:"center",alignItems:"center"}}
+                class="Ipad-Logo"><h6>Event</h6></div>
+            </div>
+            
+            </div>
+           {this.state.Switch?<div style={{marginTop:"-15px"}} className="QuickLinkPop" ><h5 style={{color:this.state.TextCol}}>Got a QR? Scan Now</h5><img style={{width:"20px",height:"20px"}} src={qr}/></div> :null}
+        </div>
+        </div>
+        
       </div>
     );
   }
