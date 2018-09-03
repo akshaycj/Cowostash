@@ -9,6 +9,7 @@ import maintenance from "../../../Res/maintenance.png";
 import teamwork from "../../../Res/teamwork.png";
 import ThemeEdit from "./ThemeEdit"
 import {Switch} from "antd"
+import NdaTab from "./NdaTab"
 
 const TabPane = Tabs.TabPane;
 
@@ -75,7 +76,7 @@ export default class extends Component {
           </TabPane>
 
           <TabPane tab="NDA" key="4">
-            <div />
+            <NdaTab/>
           </TabPane>
           <TabPane tab="Badge Settings" key="5">
             <div />

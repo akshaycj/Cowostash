@@ -59,6 +59,7 @@ export default class extends Component {
   }
 
   onfile1=(e)=>{
+  
     this.setState({logo:e.target.files})
   }
   onfile2=(e)=>{
