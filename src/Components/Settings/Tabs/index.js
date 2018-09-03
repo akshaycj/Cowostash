@@ -8,10 +8,21 @@ import employee from "../../../Res/employee.png";
 import maintenance from "../../../Res/maintenance.png";
 import teamwork from "../../../Res/teamwork.png";
 import ThemeEdit from "./ThemeEdit"
+import {Switch} from "antd"
 
 const TabPane = Tabs.TabPane;
 
+
 export default class extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+     
+    }
+  }
+  onPhotoCaptureTRiggered=(e)=>{
+    
+  }
   render() {
     return (
       <div className="card-container">
@@ -60,7 +71,7 @@ export default class extends Component {
             </div>
           </TabPane>
           <TabPane tab="Photo Capture" key="3">
-            <div />
+            <div style={{display:"flex"}}><h3>Enable Photo Capture</h3><Switch style={{backgroundColor:"black",marginLeft:"10%"}} onChange={this.onPhotoCaptureTRiggered}/></div>
           </TabPane>
 
           <TabPane tab="NDA" key="4">
