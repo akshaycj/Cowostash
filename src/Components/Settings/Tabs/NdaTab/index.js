@@ -9,7 +9,8 @@ export default class extends Component {
     this.state = {
       add: false,
       title:"",
-      nda:""
+      nda:"",
+      data:[]
     }
   }
   onAdd = () => {
@@ -22,15 +23,18 @@ export default class extends Component {
     this.setState({ nda: e.target.value })
   }
   onAddButton=()=>{
-    
+    const data=this.state.data
+    data.push({title:this.state.title,nda:this.state.nda})
+    this.setState({data})
+
   }
   render() {
 
     return (
-      <div>
+      <div style={{overflowY:"scroll",height:"95%"}}>
         <div className="NDA-main"  >
           <div style={{ display: "flex" }}><h2>Enable NDA</h2><Switch style={{ backgroundColor: "black", marginLeft: "10%" }} onChange={this.onPhotoCaptureTRiggered} /></div>
-          <div className="theme-button" onClick={this.onAdd} style={{ width: "200px", display: "flex", alignSelf: "flex-end", justifyContent: 'space-evenly' }}>Add NDA <Icon style={{ fontSize: '18px' }} type='plus' /></div>
+          <div className="theme-button" onClick={this.onAdd} style={{ width: "150px", display: "flex", alignSelf: "flex-end", justifyContent: 'space-evenly' }}>Add NDA <Icon style={{ fontSize: '18px' }} type='plus' /></div>
         </div>
         {this.state.add ? <div style={{ display: "flex", flexDirection: "column" }}>
           <hr style={{ width: "95%", marginTop: "2%" }} />
@@ -38,10 +42,11 @@ export default class extends Component {
           <div ><TextArea style={{ marginTop: "2%", width: "320px" }} onChange={this.onNDA} placeholder="NDA" autosize={{ minRows: "6" }} /><div style={{ width: "80px", height: "30px", marginTop: "1%" }} onClick={this.onAddButton} className="theme-button">Add</div></div>
         </div> : null}
         <hr style={{ width: "95%", marginTop: "3%" }} />
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex",flexWrap:"wrap" }}>
           <SquareCard title="Standard Template NDA1" />
-          <SquareCard title="Standard Template NDA2" />
-          <SquareCard title="Standard Template NDA3" />
+          {this.state.data.map(item =>{
+            return <div><SquareCard title={item.title}/></div>
+          })}
         </div>
       </div>
     );
