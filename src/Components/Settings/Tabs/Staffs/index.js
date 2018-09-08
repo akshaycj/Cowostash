@@ -9,8 +9,8 @@ constructor(props){
     staff:false,
     data:[],
     name:"",
-    email:""
-
+    email:"",
+    enable:false
   }
 }
 onAdd=()=>{
@@ -28,6 +28,12 @@ onName=(e)=>{
 onEmail=(e)=>{
   this.setState({email:e.target.value})
 }
+
+onEnable=(a)=>{
+  console.log("sss--",a);
+  
+  }
+
 
   render() {
     return (
@@ -47,7 +53,7 @@ onEmail=(e)=>{
          <hr className="Staffs-Line" />  
          </div> :null}
         <div style={{display:"flex",flexWrap:"wrap"}}> {this.state.data.map(item=>{
-          return<div style={{display:"flex"}}> <SquareCard title={item.name}/></div>
+          return<div style={{display:"flex"}}> <SquareCard title={item.name} onValue={this.onEnable.bind(this)} /></div>
          })}
          </div>
       </div>

@@ -11,6 +11,7 @@ import ThemeEdit from "./ThemeEdit"
 import {Switch} from "antd"
 import NdaTab from "./NdaTab"
 import Staffs from "./Staffs"
+import Ipad from "./IpadTheme"
 
 const TabPane = Tabs.TabPane;
 
@@ -84,6 +85,9 @@ export default class extends Component {
           </TabPane>
           <TabPane tab="Staffs" key="6">
                 <Staffs/>
+          </TabPane>
+          <TabPane tab="ipad" key="7">
+            <Ipad />
           </TabPane>
 
         </Tabs>
