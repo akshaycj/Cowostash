@@ -17,10 +17,15 @@ onAdd=()=>{
   this.setState({staff:!this.state.staff})
 }
 addCard(){
-const data= this.state.data
-data.push({name:this.state.name,email:this.state.email})
-this.setState({data})
-console.log("arr",this.state.data)
+  if(this.state.name!=="" && this.state.email!==""){
+    const data= this.state.data
+    data.push({name:this.state.name,email:this.state.email})
+    this.setState({data})
+    console.log("arr",this.state.data)
+  }
+
+
+
 }
 onName=(e)=>{
   this.setState({name:e.target.value})
@@ -53,7 +58,7 @@ onEnable=(a)=>{
          <hr className="Staffs-Line" />  
          </div> :null}
         <div style={{display:"flex",flexWrap:"wrap"}}> {this.state.data.map(item=>{
-          return<div style={{display:"flex"}}> <SquareCard title={item.name} onValue={this.onEnable.bind(this)} /></div>
+          return<div style={{display:"flex"}}> <SquareCard img={true} title={item.name} onValue={this.onEnable.bind(this)} /></div>
          })}
          </div>
       </div>

@@ -23,9 +23,10 @@ export default class extends Component {
     this.setState({ nda: e.target.value })
   }
   onAddButton=()=>{
+    if(this.state.title && this.state.nda!==""){
     const data=this.state.data
     data.push({title:this.state.title,nda:this.state.nda})
-    this.setState({data})
+    this.setState({data})}
 
   }
   render() {
