@@ -12,6 +12,7 @@ import {Switch} from "antd"
 import NdaTab from "./NdaTab"
 import Staffs from "./Staffs"
 import Ipad from "./IpadTheme"
+import {Link} from "react-router-dom"
 
 const TabPane = Tabs.TabPane;
 
@@ -44,12 +45,13 @@ export default class extends Component {
           </TabPane>
           <TabPane tab="Visitor Purpose" key="2">
             <div>
-              <div
+             <Link to="/form"> <div
                 className="theme-button"
                 style={{ width: 150, marginLeft: "auto" }}
-              >
+               >
                 Add Purpose +
               </div>
+              </Link>
               <br />
               <div
                 style={{
@@ -86,9 +88,7 @@ export default class extends Component {
           <TabPane tab="Staffs" key="6">
                 <Staffs/>
           </TabPane>
-          <TabPane tab="ipad" key="7">
-            <Ipad />
-          </TabPane>
+         
 
         </Tabs>
       </div>

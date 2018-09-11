@@ -126,8 +126,8 @@ export default class extends Component {
           <div className="Theme-padding "><div>Quick Links</div> <div className="Theme-button-quick" onClick={this.onQuickLinkButton}>Quick Link +</div></div>
           <hr style={{ width: "320px" }} />
           <div className="Theme-padding" >
-            <SquareCard title="Visitor" />
-            <SquareCard title="Event" />
+            <SquareCard img={true} title="Visitor" />
+            <SquareCard img={true} title="Event" />
           
           </div>
           {this.state.displayquick?<div>

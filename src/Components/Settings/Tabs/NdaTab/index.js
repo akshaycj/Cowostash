@@ -43,9 +43,9 @@ export default class extends Component {
         </div> : null}
         <hr style={{ width: "95%", marginTop: "3%" }} />
         <div style={{ display: "flex",flexWrap:"wrap" }}>
-          <SquareCard title="Standard Template NDA1" />
+          <SquareCard img={true} title="Standard Template NDA1" />
           {this.state.data.map(item =>{
-            return <div><SquareCard title={item.title}/></div>
+            return <div><SquareCard img={true} title={item.title}/></div>
           })}
         </div>
       </div>

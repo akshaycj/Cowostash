@@ -11,6 +11,7 @@ import Digitlogin from './Components/DigitLogin'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import HomeScreen from './Components/HomeScreen'
 import Settings from './Components/Settings'
+import AddField from "./Components/Settings/AddField"
 
 export default class App extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ export default class App extends Component {
       <div>
         <BrowserRouter>
           <Switch>
+            <Route path="/form" component ={AddField}/>
             <Route path="/home" component = {HomeScreen} />
             <Route path="/vistor" component = {Vistor} />
             <Route path="/" component ={Settings} />

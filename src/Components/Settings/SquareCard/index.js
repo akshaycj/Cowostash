@@ -7,7 +7,8 @@ export default class extends Component {
   constructor(props){
     super(props)
     this.state={
-      enable:true
+      enable:true,
+      image:true
     }
   }
 
@@ -24,12 +25,12 @@ export default class extends Component {
     return (
       <div className="square-card-container">
         <div className="square-card">
-          <img
+          {this.props.img?null:<img
             src={this.props.src}
             style={{ alignSelf: "center" }}
             width={50}
             height={50}
-          />
+          />}
           <div style={{ marginTop: 5 }}>{this.props.title}</div>
           {this.state.enable?<Icon
             type="check-circle"
