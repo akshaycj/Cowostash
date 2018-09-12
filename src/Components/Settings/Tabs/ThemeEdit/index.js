@@ -67,7 +67,10 @@ export default class extends Component {
 
   onfile1 = (e) => {
 
-    this.setState({ logo: e.target.files })
+    console.log(e)
+   const reader = new FileReader();
+   reader.addEventListener('load', () => this.setState({logo:reader.result}));
+   reader.readAsDataURL(e.file.originFileObj)
   }
   onfile2 = (e) => {
    console.log(e)
@@ -96,7 +99,12 @@ export default class extends Component {
               onOk={() => this.setModal1Visible(false)}
               onCancel={() => this.setModal1Visible(false)}
             >
-              <input type="file" onChange={this.file1} />
+              <Upload  onChange={this.onfile1}
+>
+                <Button>
+                  <Icon type="upload" /> Click to Upload
+                 </Button>
+              </Upload> 
             </Modal>
           </div>
           </div>
