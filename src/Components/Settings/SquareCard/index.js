@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./index.css";
-import { Icon } from "antd";
+import { Icon,Modal } from "antd";
 
 export default class extends Component {
 
@@ -8,7 +8,9 @@ export default class extends Component {
     super(props)
     this.state={
       enable:true,
-      image:true
+      image:true,
+      staff:false,
+      visible: false
     }
   }
 
@@ -19,6 +21,26 @@ export default class extends Component {
   onEn=()=>{
     this.setState({enable:!this.state.enable})
   }
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  }
+
+  handleOk = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  }
+
+  handleCancel = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  }
+
 
 
   render() {
@@ -31,7 +53,8 @@ export default class extends Component {
             width={50}
             height={50}
           />}
-          <div style={{ marginTop: 5 }}>{this.props.title}</div>
+          {this.props.staff ? <div style={{width:'50%',backgroundColor:'#d8d8d8',margin:'auto',height:'50%',borderRadius:'50%',fontSize:'30px',display:'flex',justifyContent:'center',alignItems:'center'}}>{this.props.title.charAt(0).toUpperCase()}</div>:null}
+          <div style={{ marginTop: 5,fontSize:'15px' }}>{this.props.title}</div>
           {this.state.enable?<Icon
             type="check-circle"
             style={{ alignSelf: "flex-end", marginRight: "auto" }}
@@ -54,7 +77,11 @@ onClick={this.onEn}
               <Icon
                 type="form"
                 style={{ alignSelf: "center", margin: "auto" }}
+                
               />
+              <Modal>
+               <div>sadas</div>
+              </Modal>
             </div>
           </div>
         </div>

@@ -73,6 +73,7 @@ export default class extends Component {
               <div style={{ display: "flex" }}>
                 {" "}
                 <SquareCard
+                  staff={true}
                   img={true}
                   title={item.name}
                   onValue={this.onEnable.bind(this)}
