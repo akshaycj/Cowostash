@@ -4,53 +4,60 @@
   margin: 16px;
 
   display: flex;
-
+  justify-content: center;
   align-items: center;
-
 }
 
-.main-layout{
-    height:100vh-1;
-    background-color: white;
-    
+.main-layout {
+  height: 100vh;
+  display: flex;
+}
+.child-layout {
+  height: 100%;
 }
 
-.main-sider{
-  
-    background-color:#ffffff;
-
+.main-sider {
+  color: white;
 }
 /*border: solid 1px #666666;*/
-.nav-text{
-    width: 83px;
-    height: 20px;
-    font-family: Offside;
-    font-size: 16px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: left;
-    color: #666666;
-    margin-left: 10px;
+.nav-text {
+  width: 83px;
+  height: 20px;
+  font-family: Offside;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  margin-left: 10px;
 }
-.main-layout img{
-    
-    width: 20px;
-    height: 20px;
+.main-layout img {
+  width: 20px;
+  height: 20px;
 }
 
 .compname {
-    width: 133px;
-    height: 20px;
-    font-family: Offside;
-    font-size: 16px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: left;
-    color: #000000;
-  }
+  width: 133px;
+  height: 20px;
+  font-family: Offside;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+}
+.trigger {
+  font-size: 20px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
