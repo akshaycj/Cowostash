@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "./index.css";
 import { Switch, Icon, Input } from "antd";
 import SquareCard from "../../SquareCard";
+
 const { TextArea } = Input;
+
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -29,6 +31,9 @@ export default class extends Component {
       this.setState({ data });
     }
   };
+  getdata(data){
+console.log(data,'sachin')
+  }
   render() {
     return (
       <div style={{ overflowY: "auto", height: "95%" }}>
@@ -84,7 +89,7 @@ export default class extends Component {
           {this.state.data.map(item => {
             return (
               <div>
-                <SquareCard img={true} title={item.title} />
+                <SquareCard img={true} getdata={this.getdata.bind(this)} title={item.title} edit={false} edit1={true} edit2={true} />
               </div>
             );
           })}

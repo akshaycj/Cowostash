@@ -77,6 +77,9 @@ export default class extends Component {
                   img={true}
                   title={item.name}
                   onValue={this.onEnable.bind(this)}
+                  edit={true}
+                  edit1={true}
+                  edit2={false}
                 />
               </div>
             );
