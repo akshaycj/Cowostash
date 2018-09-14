@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./index.css";
 import { Icon, Input } from "antd";
 import SquareCard from "../../SquareCard";
+const Search = Input.Search;
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +11,8 @@ export default class extends Component {
       data: [],
       name: "",
       email: "",
-      enable: false
+      enable: false,
+      searchValue: ""
     };
   }
   onAdd = () => {
@@ -35,13 +37,31 @@ export default class extends Component {
     console.log("sss--", a);
   };
 
+  onFilter = item => {
+    return (
+      item.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) > -1
+    );
+  };
+
   render() {
     return (
       <div className="Staffs-main">
-        <div className="theme-button Staffs-Add" onClick={this.onAdd}>
-          Add a Staff
-          <Icon style={{ fontSize: "18px" }} type="plus" />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div className="theme-button Staffs-Add" onClick={this.onAdd}>
+            Add a Staff
+            <Icon style={{ fontSize: "18px" }} type="plus" />
+          </div>
+          <div className="Staffs-Search">
+            <Input
+              placeholder="search"
+              onChange={q => {
+                this.setState({ searchValue: q.target.value });
+              }}
+              style={{ borderRadius: 300, margin: 4, height: 24 }}
+            />
+          </div>
         </div>
+
         {this.state.staff ? (
           <div style={{ display: "flex", flexDirection: "column" }}>
             <hr className="Staffs-Line" />
@@ -66,9 +86,9 @@ export default class extends Component {
             <hr className="Staffs-Line" />
           </div>
         ) : null}
-        <div style={{ display: "flex", flexWrap: "wrap", overflow: "auto" }}>
+        <div className="Staffs-Added-div">
           {" "}
-          {this.state.data.map(item => {
+          {this.state.data.filter(this.onFilter).map(item => {
             return (
               <div style={{ display: "flex" }}>
                 {" "}

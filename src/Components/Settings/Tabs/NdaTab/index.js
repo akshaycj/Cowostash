@@ -31,8 +31,8 @@ export default class extends Component {
       this.setState({ data });
     }
   };
-  getdata(data){
-console.log(data,'sachin')
+  getdata(data) {
+    console.log(data, 'sachin')
   }
   render() {
     return (

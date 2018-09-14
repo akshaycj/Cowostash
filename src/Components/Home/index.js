@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Layout, Menu, Icon } from "antd";
+import { Layout, Menu, Icon, Badge, Popover } from "antd";
 import logo from "../../Res/logo.svg";
 import "./index.css";
 import door from "../../Res/door.svg";
@@ -13,15 +13,28 @@ import MainContent from "../MainContent";
 const { Header, Content, Footer, Sider } = Layout;
 export default class App extends Component {
   state = {
-    collapsed: false
+    collapsed: false,
+    notifications: ["asdsad", "sadas", "dasd"]
   };
-
+  componentDidMount() {
+    console.log(new Date());
+  }
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed
     });
   };
+  onClickNotification() {
+    this.setState({ notifications: [] });
+  }
   render() {
+    const text = <span>Notifications</span>;
+    const content = (
+      <div>
+        <p>Content</p>
+        <p>Content</p>
+      </div>
+    );
     return (
       <div className="main-layout">
         <Layout className="child-layout">
@@ -83,12 +96,41 @@ export default class App extends Component {
             </Menu>
           </Sider>
           <Layout className="child-layout">
-            <Header style={{ background: "#fff", padding: 0 }}>
-              <Icon
-                className="trigger"
-                type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-                onClick={this.toggle}
-              />
+            <Header
+              style={{
+                background: "#fff",
+                padding: 0
+              }}
+            >
+              <div
+                style={{
+                  background: "#fff",
+                  padding: 0,
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "99%"
+                }}
+              >
+                <Icon
+                  className="trigger"
+                  type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
+                  onClick={this.toggle}
+                />
+                <div className="dateandtimenotification">
+                  {new Date().toString().slice(0, 24)}
+                  <Popover
+                    placement="bottom"
+                    title={text}
+                    content={content}
+                    trigger="click"
+                    onClick={this.onClickNotification.bind(this)}
+                  >
+                    <Badge count={this.state.notifications.length}>
+                      <Icon type="bell" style={{ padding: 5 }} />
+                    </Badge>
+                  </Popover>
+                </div>
+              </div>
             </Header>
             {this.props.children}
           </Layout>

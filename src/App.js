@@ -18,7 +18,7 @@ export default class App extends Component {
     super(props);
   }
 
-  componentDidMount() {}
+  componentDidMount() { }
 
   render() {
     return (
@@ -26,6 +26,7 @@ export default class App extends Component {
         <BrowserRouter>
           <Home>
             <Switch>
+              <Route path="/digit" component={Digitlogin} />
               <Route path="/form" component={AddField} />
               <Route path="/home" component={HomeScreen} />
               <Route path="/vistor" component={Vistor} />
