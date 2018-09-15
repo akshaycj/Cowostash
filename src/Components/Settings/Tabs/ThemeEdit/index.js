@@ -23,9 +23,39 @@ export default class extends Component {
       bgimage: null,
       logo: logo,
       displayquick: false,
-      Switch: false
+      Switch: false,
+      title1:"Visitor",
+      title2:"Event",
+      quicklinkenable:null,
+      quickLinks:[]
 
     }
+  }
+
+  componentDidMount(){
+    var d = {
+      img:true,
+      title:'Visitor',
+      enable:true,
+      edit:true,
+      edit2:true,
+    }
+    var e = {
+      img:true,
+      title:'Event',
+      enable:true,
+      edit:true,
+      edit2:true,
+    }
+    var data = []
+    data.push(d)
+    data.push(e)
+    this.setState({quickLinks:data})
+  }
+
+  onEnableCheck = (value) =>{
+    console.log("SachinKundan",value);
+    
   }
 
   setModal1Visible(modal1Visible) {
@@ -46,8 +76,16 @@ export default class extends Component {
     }
     
   }
+
   onSubText = (e) => {
-    this.setState({ SubText: e.target.value })
+    
+    if(e.target.value.length === 0 ){
+
+      this.setState({ SubText:"Select Purpose of your visit" })
+    }
+    else if(e.target.value.length <= 26 ){
+      this.setState({SubText:e.target.value})
+    }
   }
   onBackgroundColor = (e) => {
     this.setState({ BackgroundCol: e.target.value })
@@ -84,6 +122,9 @@ export default class extends Component {
   onSwitch = () => {
     this.setState({ Switch: !this.state.Switch })
   }
+getdata=(data1)=>{
+
+}
 
 
   render() {
@@ -114,15 +155,15 @@ export default class extends Component {
             <div class="pa4" onClick={this.onLogo1}>
               <img
                 src={theme1}
-                class="br-100" alt="avatar" />
-            </div><div class="pa4" onClick={this.onLogo2}>
+                class="br-100" style={{width:"30px",height:"30px"}} alt="avatar" />
+            </div><div class="pa4"  onClick={this.onLogo2}>
               <img
                 src={theme2}
-                class="br-100" alt="avatar" />
-            </div><div class="pa4" onClick={this.onLogo3}>
+                class="br-100"  style={{width:"30px",height:"30px"}} alt="avatar" />
+            </div><div class="pa4"  onClick={this.onLogo3}>
               <img
                 src={theme3}
-                class="br-100" alt="avatar"   />
+                class="br-100" style={{width:"30px",height:"30px"}}  alt="avatar"   />
             </div>
             <div> <Icon style={{ fontSize: "30px", marginTop: "15px" }} onClick={() => this.setModal2Visible(true)} type="cloud-upload" />  <Modal
               title="Upload Background"
@@ -150,8 +191,11 @@ export default class extends Component {
           <div className="Theme-padding "><div>Quick Links</div> <div className="Theme-button-quick" onClick={this.onQuickLinkButton}>Quick Link +</div></div>
           <hr style={{ width: "320px" }} />
           <div className="Theme-padding" >
-            <SquareCard img={true} title="Visitor" />
-            <SquareCard img={true} title="Event" />
+          {
+            this.state.quickLinks.map(item=>
+              <SquareCard img={item.img} enabledatacheck={this.onEnableCheck} edit={item.edit} edit2={item.edit2}  title={item.title} />
+            )
+          }
 
           </div>
           {this.state.displayquick ? <div>
@@ -168,21 +212,18 @@ export default class extends Component {
         <div className="Ipad-Display" style={{ backgroundImage: "url(" + this.state.ipadbackground + ")",backgroundSize:'100% 100%'}}></div><div className="Ipad-Display-Items"><div class="pa4" >
           <img style={{ backgroundColor: this.state.BackgroundCol }}
             src={this.state.logo}
-            class="Ipad-Logo" alt="logo" />
+            class="Ipad-Logo" style={{width:"30px",height:"30px"}} alt="logo" />
         </div>
           <h2 style={{ color: this.state.TextCol }} >{this.state.MainText}</h2>
           <h5 style={{ color: this.state.TextCol }}>{this.state.SubText}</h5>
           <div style={{ display: "flex", marginTop: "-10px" }}>
-            <div class="pa4">
-              <div
-                style={{ backgroundColor: "#e6e6e6", opacity: "0.8", display: "flex", justifyContent: "center", alignItems: "center" }}
-                class="Ipad-Logo"><h6>Visitor</h6></div>
-            </div>
-            <div class="pa4">
-              <div
-                style={{ backgroundColor: "#e6e6e6", opacity: "0.8", display: "flex", justifyContent: "center", alignItems: "center" }}
-                class="Ipad-Logo"><h6>Event</h6></div>
-            </div>
+          {
+            this.state.quickLinks.map(item=><div class="pa4">
+            <div
+              style={{ backgroundColor: "#e6e6e6", opacity: "0.8", display: "flex", justifyContent: "center", alignItems: "center" }}
+              class="Ipad-Logo"><h6>{item.title}</h6></div>
+          </div>)
+          }
 
           </div>
           {this.state.Switch ? <div style={{ marginTop: "-15px" }} className="QuickLinkPop" ><h5 style={{ color: this.state.TextCol }}>Got a QR? Scan Now</h5><img style={{ width: "20px", height: "20px" }} src={qr} /></div> : null}

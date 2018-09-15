@@ -32,7 +32,7 @@ export default class extends Component {
     }
   };
   getdata(data) {
-    console.log(data, 'sachin')
+   
   }
   render() {
     return (

@@ -3,6 +3,7 @@ import "./index.css";
 import { Icon, Modal, Input } from "antd";
 import NdaEdit from "./NdaEdit"
 import StaffEdit from "./StaffEdit"
+import QuickEdit from "./QuickEdit"
 
 
 
@@ -45,7 +46,9 @@ export default class extends Component {
     return (this.state.enable)
   }
   onEn = () => {
-    this.setState({ enable: !this.state.enable })
+    this.setState({ enable:!this.state.enable })
+    this.props.enabledatacheck(this.state.enable)
+    
   }
   showModal = () => {
     this.setState({
@@ -68,17 +71,21 @@ export default class extends Component {
   }
 
 
-
 getdata(data1,data2){
 this.setState({title:data1})
 this.setState({Nda:data2})
 }
 getdataforStaff=(data1,data2)=>{
-  console.log("get",data1,data2)
+  
   this.setState({title:data1})
   this.setState({email:data2})
 
   }
+  getdataintablet=(data)=>{
+    console.log("get",data)
+    
+  }
+ 
 
   render() {
     return (
@@ -108,9 +115,7 @@ getdataforStaff=(data1,data2)=>{
                 type="check-circle-o"
                 style={{ alignSelf: "center", margin: "auto" }}
               /> :
-                <Icon type="close-circle" onClick={this.on=(e)=>{
-                  console.log("value",e.target.value)
-                }} style={{ alignSelf: "center", margin: "auto" }} />}
+                <Icon type="close-circle" onClick={this.onEn} style={{ alignSelf: "center", margin: "auto" }} />}
             </div>
             <div className="square-card-menu-inner-circle">
               <Icon
@@ -120,12 +125,12 @@ getdataforStaff=(data1,data2)=>{
 
               />
               <Modal title="Edit"
-          visible={this.state.visible}J
+          visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}>
                 {this.props.edit1 && this.props.edit2?<NdaEdit data={this.getdata.bind(this)}/>:null}
                 {this.props.edit && this.props.edit1?<StaffEdit data={this.getdataforStaff}/> :null}
-                {this.props.edit && this.props.edit2?<Purpose/>:null}
+                {this.props.edit && this.props.edit2?<QuickEdit data={this.getdataintablet}/>:null}
               </Modal>
             </div>
           </div>
