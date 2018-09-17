@@ -48,5 +48,5 @@
   overflow: auto;
   position: relative;
   top: 5%;
-  height: 60%;
+  max-height: 60%;
 }
