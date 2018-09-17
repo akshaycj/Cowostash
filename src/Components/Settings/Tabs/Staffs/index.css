@@ -14,7 +14,7 @@
 }
 .Staffs-Search {
   margin-top: 40px;
-  width: 20%;
+  min-width: 20%;
   height: 30px;
   border-radius: 300px;
   background-color: #000;
