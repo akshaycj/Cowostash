@@ -53,7 +53,7 @@ export default class extends Component {
           </div>
           <div className="Staffs-Search">
             <Input
-              placeholder="search"
+              placeholder="Search"
               onChange={q => {
                 this.setState({ searchValue: q.target.value });
               }}
