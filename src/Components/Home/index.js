@@ -14,7 +14,8 @@ const { Header, Content, Footer, Sider } = Layout;
 export default class App extends Component {
   state = {
     collapsed: false,
-    notifications: ["asdsad", "sadas", "dasd"]
+    notifications: ["asdsad", "sadas", "dasd"],
+    date: new Date().toString().slice(0, 24)
   };
   componentDidMount() {
     console.log(new Date());
@@ -117,7 +118,7 @@ export default class App extends Component {
                   onClick={this.toggle}
                 />
                 <div className="dateandtimenotification">
-                  {new Date().toString().slice(0, 24)}
+                  {this.state.date}
                   <Popover
                     placement="bottom"
                     title={text}
@@ -126,7 +127,7 @@ export default class App extends Component {
                     onClick={this.onClickNotification.bind(this)}
                   >
                     <Badge count={this.state.notifications.length}>
-                      <Icon type="bell" style={{ padding: 5 }} />
+                      <Icon type="bell" style={{ padding: 5, fontSize: 20 }} />
                     </Badge>
                   </Popover>
                 </div>

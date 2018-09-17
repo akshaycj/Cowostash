@@ -62,5 +62,5 @@
   color: #1890ff;
 }
 .dateandtimenotification {
-  width: 18%;
+  min-width: 18%;
 }
