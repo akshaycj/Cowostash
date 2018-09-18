@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css?family=Offside");
+.login__form {
+  font-family: Offside;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal; }
+
+.login__container {
+  margin-top: 164px;
+  margin-bottom: 114px; }
+
+.login__block {
+  padding: 40px;
+  border: #000000 1px solid;
+  margin: 0 auto; }
+  .login__block--logo {
+    width: 230px;
+    height: 47px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 80px; }
+
+.login__form--textbox {
+  border: none;
+  border-bottom: solid 1px grey;
+  border-radius: 0px;
+  margin-bottom: 37px;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  text-align: center;
+  color: #000000;
+  padding: 17px 0; }
+
+.login__form--checkbox {
+  width: 100%;
+  font-size: 13px;
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.6); }
+
+.login__form--forgotpass {
+  width: 100%;
+  display: inline-block;
+  right: 0;
+  font-size: 13px;
+  color: #000000; }
+
+.login__form--button {
+  height: 50px;
+  width: 210px;
+  font-size: 16px;
+  margin-bottom: 65px; }
+
+.login__form--signuptext {
+  font-size: 14px;
+  margin-top: 65px;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: center; }
+
+.container__flex {
+  text-align: center;
+  margin-bottom: 60px; }
+
+.login__form .login__form--button {
+  display: block;
+  margin: 0 auto;
+  border-radius: 60px;
+  background-color: #000000;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  color: #ffffff; }
+
+.mb-60 {
+  margin-bottom: 60px; }
+
+@media (min-width: 768px) {
+  .container__flex {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px; } }
+
+@media (min-width: 768px) {
+  .login__form--checkbox {
+    text-align: left; }
+  .login__form--forgotpass {
+    text-align: right; } }

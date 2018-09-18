@@ -9,6 +9,7 @@ import events from "../../Res/ticket.svg";
 import allpep from "../../Res/users.svg";
 import email from "../../Res/email.svg";
 import MainContent from "../MainContent";
+import { Link } from "react-router-dom";
 
 const { Header, Content, Footer, Sider } = Layout;
 export default class App extends Component {
@@ -59,40 +60,36 @@ export default class App extends Component {
                 <span className="nav-text">Dashboard</span>
               </Menu.Item>
               <Menu.Item key="2">
-                <Icon style={{ color: "white" }}>
-                  <img src={door} />
-                </Icon>
+                <Icon type="export" />
                 <span className="nav-text">Check-ins</span>
               </Menu.Item>
               <Menu.Item key="3">
-                <Icon style={{ color: "white" }}>
-                  <img src={roc} />
-                </Icon>
-                <span className="nav-text">Accelerator</span>
+                <Icon type="tablet" />
+                <span className="nav-text">Devices</span>
               </Menu.Item>
               <Menu.Item key="4">
-                <Icon style={{ color: "white" }}>
-                  <img src={staff} />
-                </Icon>
-                <span className="nav-text">Staff</span>
+                <Link to="/staffs">
+                  <Icon type="user" />
+                  <span className="nav-text"> Staff</span>
+                </Link>
               </Menu.Item>
               <Menu.Item key="5">
-                <Icon style={{ color: "white" }}>
-                  <img src={events} />
-                </Icon>
+                <Icon type="flag" />
                 <span className="nav-text">Events</span>
               </Menu.Item>
               <Menu.Item key="6">
-                <Icon style={{ color: "white" }}>
-                  <img src={allpep} />
-                </Icon>
+                <Icon type="team" />
                 <span className="nav-text">All Users</span>
               </Menu.Item>
               <Menu.Item key="7">
-                <Icon style={{ color: "white" }}>
-                  <img src={email} />
-                </Icon>
+                <Icon type="mail" />
                 <span className="nav-text">Emails</span>
+              </Menu.Item>
+              <Menu.Item key="8">
+                <Link to="/settings">
+                  <Icon type="setting" />
+                  <span className="nav-text">Settings</span>
+                </Link>
               </Menu.Item>
             </Menu>
           </Sider>
@@ -102,6 +99,7 @@ export default class App extends Component {
                 background: "#fff",
                 padding: 0
               }}
+              className="header-shadow"
             >
               <div
                 style={{
@@ -120,7 +118,7 @@ export default class App extends Component {
                 <div className="dateandtimenotification">
                   {this.state.date}
                   <Popover
-                    placement="bottom"
+                    placement="bottomRight"
                     title={text}
                     content={content}
                     trigger="click"

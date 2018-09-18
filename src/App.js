@@ -12,27 +12,36 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomeScreen from "./Components/HomeScreen";
 import Settings from "./Components/Settings";
 import AddField from "./Components/Settings/AddField";
+import Login from "./Components/Login";
+import Staffs from "./Components/Staffs";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
   }
 
-  componentDidMount() { }
+  componentDidMount() {}
 
   render() {
     return (
       <div>
         <BrowserRouter>
-          <Home>
+          <div>
             <Switch>
-              <Route path="/digit" component={Digitlogin} />
-              <Route path="/form" component={AddField} />
-              <Route path="/home" component={HomeScreen} />
-              <Route path="/vistor" component={Vistor} />
-              <Route path="/" component={Settings} />
+              <Route path="/" exact component={Login} />
+              <Home>
+                <Switch>
+                  <Route path="/settings" component={Settings} />
+                  <Route path="/staffs" component={Staffs} />
+                  <Route path="/digit" component={Digitlogin} />
+                  <Route path="/form" component={AddField} />
+                  <Route path="/home" component={HomeScreen} />
+                  <Route path="/vistor" component={Vistor} />
+                  <Route path="/dashboard" component={Settings} />
+                </Switch>
+              </Home>
             </Switch>
-          </Home>
+          </div>
         </BrowserRouter>
       </div>
     );
