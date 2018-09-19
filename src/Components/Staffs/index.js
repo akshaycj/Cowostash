@@ -1,114 +1,36 @@
 import React, { Component } from "react";
 import "./index.css";
-import { Icon, Input } from "antd";
-import SquareCard from "../SquareCard";
-const Search = Input.Search;
+
+import { Tabs } from "antd";
+import AddStaff from "./AddStaff";
+
+const TabPane = Tabs.TabPane;
+
 export default class extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      staff: false,
-      data: [],
-      name: "",
-      email: "",
-      enable: false,
-      searchValue: ""
+    this.state = {};
+    this.style = {
+      pane: { overflow: "auto", height: "100%" }
     };
   }
-  onAdd = () => {
-    this.setState({ staff: !this.state.staff });
-  };
-  addCard() {
-    if (this.state.name !== "" && this.state.email !== "") {
-      const data = this.state.data;
-      data.push({ name: this.state.name, email: this.state.email });
-      this.setState({ data });
-      console.log("arr", this.state.data);
-    }
-  }
-  onName = e => {
-    this.setState({ name: e.target.value });
-  };
-  onEmail = e => {
-    this.setState({ email: e.target.value });
-  };
-
-  onEnable = a => {
-    console.log("sss--", a);
-  };
-
-  onFilter = item => {
-    return (
-      item.name.toLowerCase().indexOf(this.state.searchValue.toLowerCase()) > -1
-    );
-  };
-
   render() {
     return (
-      <div className="Staffs-main">
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div className="theme-button Staffs-Add" onClick={this.onAdd}>
-            Add a Staff
-            <Icon style={{ fontSize: "18px" }} type="plus" />
+      <div>
+        <br />
+        <div className="common-body">
+          <div className="card-container">
+            <Tabs type="card" defaultActiveKey="1">
+              <TabPane tab="Add Staff" key="1">
+                <div style={this.style.pane}>
+                  <AddStaff />
+                </div>
+              </TabPane>
+              <TabPane tab="Staff Settings" key="2">
+                <div />
+              </TabPane>
+            </Tabs>
           </div>
-          <div className="Staffs-Search">
-            <Input
-              placeholder="Search"
-              onChange={q => {
-                this.setState({ searchValue: q.target.value });
-              }}
-              style={{
-                borderRadius: 300,
-                margin: 4,
-                height: 24,
-                maxWidth: "100%"
-              }}
-            />
-          </div>
-        </div>
-
-        {this.state.staff ? (
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <hr className="Staffs-Line" />
-            <Input
-              className="Staffs-Input"
-              onChange={this.onName}
-              placeholder="Name"
-            />
-            <div>
-              <Input
-                className="Staffs-Input"
-                onChange={this.onEmail}
-                placeholder="Email"
-              />
-              <div
-                onClick={this.addCard.bind(this)}
-                className="theme-button Staffs-Add-Button"
-              >
-                Add
-              </div>
-            </div>
-            <hr className="Staffs-Line" />
-          </div>
-        ) : null}
-        <div className="Staffs-Added-div">
-          {" "}
-          {this.state.data.filter(this.onFilter).map(item => {
-            return (
-              <div style={{ display: "flex" }}>
-                {" "}
-                <SquareCard
-                  staff={true}
-                  img={true}
-                  title={item.name}
-                  onValue={this.onEnable.bind(this)}
-                  edit={true}
-                  edit1={true}
-                  edit2={false}
-                />
-              </div>
-            );
-          })}
         </div>
       </div>
     );

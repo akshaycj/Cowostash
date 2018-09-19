@@ -52,7 +52,7 @@ export default class App extends Component {
               {/*<img src={logo} style={{ marginRight: 5 }} />*/}
               <div className="compname" />
             </div>
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
+            <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
               <Menu.Item key="1">
                 <Icon style={{ color: "white" }}>
                   <img src={logo} />

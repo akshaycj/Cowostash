@@ -27,7 +27,7 @@ export default class extends Component {
   render() {
     return (
       <div className="card-container">
-        <Tabs type="card" defaultActiveKey="2">
+        <Tabs type="card" defaultActiveKey="1">
           <TabPane tab="Tablet Theme" key="1">
             <div style={this.style.pane}>
               <div
