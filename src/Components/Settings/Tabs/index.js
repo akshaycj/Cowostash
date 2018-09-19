@@ -90,11 +90,6 @@ export default class extends Component {
           <TabPane tab="Badge Settings" key="5">
             <div />
           </TabPane>
-          <TabPane tab="Staffs" key="6">
-            <div style={this.style.pane}>
-              <Staffs />
-            </div>
-          </TabPane>
         </Tabs>
       </div>
     );
