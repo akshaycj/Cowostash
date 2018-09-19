@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./index.css";
 import { Switch, Icon, Input } from "antd";
-import SquareCard from "../../SquareCard";
+import SquareCard from "../../../SquareCard";
 
 const { TextArea } = Input;
 
@@ -31,9 +31,7 @@ export default class extends Component {
       this.setState({ data });
     }
   };
-  getdata(data) {
-   
-  }
+  getdata(data) {}
   render() {
     return (
       <div style={{ overflowY: "auto", height: "95%" }}>
@@ -89,7 +87,14 @@ export default class extends Component {
           {this.state.data.map(item => {
             return (
               <div>
-                <SquareCard img={true} getdata={this.getdata.bind(this)} title={item.title} edit={false} edit1={true} edit2={true} />
+                <SquareCard
+                  img={true}
+                  getdata={this.getdata.bind(this)}
+                  title={item.title}
+                  edit={false}
+                  edit1={true}
+                  edit2={true}
+                />
               </div>
             );
           })}

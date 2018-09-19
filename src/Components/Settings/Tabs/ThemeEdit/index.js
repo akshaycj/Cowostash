@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import "./index.css";
 import { Input, Icon, Upload, Button, Modal, Switch } from "antd";
-import SquareCard from "../../SquareCard";
+import SquareCard from "../../../SquareCard";
 import theme1 from "../../../../Res/theme1.jpeg";
 import theme2 from "../../../../Res/theme2.jpg";
 import theme3 from "../../../../Res/theme3.jpeg";

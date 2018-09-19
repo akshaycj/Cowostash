@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./index.css";
 import { Tabs } from "antd";
-import SquareCard from "../SquareCard";
+import SquareCard from "../../SquareCard";
 import box from "../../../Res/box.png";
 import guest from "../../../Res/guest.png";
 import employee from "../../../Res/employee.png";

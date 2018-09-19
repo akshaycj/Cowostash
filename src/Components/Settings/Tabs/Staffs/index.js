@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./index.css";
 import { Icon, Input } from "antd";
-import SquareCard from "../../SquareCard";
+import SquareCard from "../../../SquareCard";
 const Search = Input.Search;
 export default class extends Component {
   constructor(props) {
