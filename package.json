@@ -13,6 +13,7 @@
     "react-calendar": "^2.16.0",
     "react-cookies": "^0.1.0",
     "react-dom": "^16.4.0",
+    "react-dragula": "^1.1.17",
     "react-easy-chart": "^1.0.0",
     "react-layer-stack": "^4.2.1",
     "react-router-dom": "^4.3.1",
