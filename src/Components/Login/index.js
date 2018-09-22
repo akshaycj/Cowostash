@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import "./index.css";
 import { Input, Checkbox } from "antd";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import logo from "../../Res/textlogo.png";
-
+import Util from "../../Utils";
 import axios from "axios";
+
+const Utils = new Util();
 
 export default class extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      pass: ""
+      pass: "",
+      checkboxValue: false,
+      redirect: false
     };
   }
 
@@ -27,25 +31,93 @@ export default class extends Component {
     });
   }
 
+  onCheck = e => {
+    this.setState({ checkboxValue: e.target.checked });
+  };
+
   onLogin = () => {
-    let auth;
-    auth = {
-      email: this.state.email,
-      password: this.state.pass
-    };
+    var that = this;
 
-    fetch("https://cowostash-staging-app.herokuapp.com/dashboard/user_token", {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      params: { auth: auth }
-    }).then(response => {
-      console.log("res", response);
-    });
+    if (this.state.email && Utils.emailValidation(this.state.email)) {
+      if (this.state.pass) {
+        let auth;
+        auth = {
+          auth: {
+            email: this.state.email,
+            password: this.state.pass
+          }
+        };
+        fetch(
+          "https://cowostash-staging-app.herokuapp.com/dashboard/user_token",
+          {
+            method: "post",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(auth)
+          }
+        )
+          .then(data => {
+            Utils.setSessionToken("JWTToken", data.jwt);
+            Utils.setSessionToken("comapnyId", data.company_id);
+            Utils.setSessionToken("userId", data.user_id);
+            if (this.state.checkboxValue) {
+              Utils.setCookie("JWTToken", data.jwt);
+              Utils.setCookie("comapanyId", data.company_id);
+              Utils.setCookie("userId", data.user_id);
+            }
+            that.setState({ redirect: true });
+            console.log("done");
+          })
+          .catch(error => {
+            Utils.displayNotification(
+              error.response.data.error,
+              "Error",
+              "error"
+            );
+          });
+      } else {
+        Utils.displayNotification(
+          "Please enter your password",
+          "Error",
+          "error"
+        );
+      }
+    } else {
+      Utils.displayNotification(
+        "Please enter valid email id",
+        "Error",
+        "error"
+      );
+    }
+    // let auth;
+    // auth = {
+    //   auth: {
+    //     email: this.state.email,
+    //     password: this.state.pass
+    //   }
+    // };
 
-    //axios.post
+    // fetch("https://cowostash-staging-app.herokuapp.com/dashboard/user_token", {
+    //   method: "post",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(auth)
+    // }).then(response => {
+    //   console.log("res", response);
+    // });
+
+    // axios
+    //   .post(
+    //     "https://cowostash-staging-app.herokuapp.com/dashboard/user_token/",
+    //     auth
+    //   )
+    //   .then(response => {
+    //     console.log("res", response);
+    //   });
   };
   render() {
     return (
@@ -70,7 +142,9 @@ export default class extends Component {
               marginTop: 30
             }}
           >
-            <Checkbox style={{ width: "50%" }}>Remember me</Checkbox>
+            <Checkbox onChange={this.onCheck} style={{ width: "50%" }}>
+              Remember me
+            </Checkbox>
             <a>Forgot Password?</a>
           </div>
 
@@ -83,6 +157,7 @@ export default class extends Component {
           </div>
           {/* <Link to="/dashboard">
           </Link> */}
+          {this.state.redirect ? <Redirect to="/dashboard" /> : null}
           <div style={{ marginTop: 30 }}>
             Don't have an account? <a>Sign up</a> now
           </div>

@@ -6,7 +6,8 @@
 }
 
 .form-preview {
-  width: 50%;
+  max-width: 500px;
+  width: 60%;
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
@@ -27,4 +28,16 @@
 .form-gen-font {
   font-size: 18px;
   font-weight: bold;
+}
+
+.dragable-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.dragable-item {
+  width: 200px;
+  height: 100px;
+  background: white;
+  margin: 15px;
 }
