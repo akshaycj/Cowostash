@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import "./index.css";
-import { Input, Checkbox, Select, Upload, Button, Icon } from "antd";
+import { Input, Checkbox, Select, Upload, Button, Icon, Rate } from "antd";
 import WrappedDynamicFieldSet from "./test";
 
 const Option = Select.Option;
+const CheckboxGroup = Checkbox.Group;
 
 const options = [
   {
@@ -48,7 +49,9 @@ const initialState = {
   show: false,
   label: "",
   req: false,
-  labelAP: false
+  labelAP: false,
+  rating: "",
+  options: []
 };
 
 let uuid = 0;
@@ -152,9 +155,45 @@ export default class extends Component {
                   <br />
                   <Checkbox onChange={this.onReq}>Required</Checkbox>
                   <br />
-                  <Checkbox onChange={this.onLabelAP}>
-                    Label as placeholder
-                  </Checkbox>
+                  <div>
+                    {this.state.val === "text" ? (
+                      <Checkbox onChange={this.onLabelAP}>
+                        Label as placeholder
+                      </Checkbox>
+                    ) : null}
+                    {this.state.val === "email" ? (
+                      <Checkbox onChange={this.onLabelAP}>
+                        Label as placeholder
+                      </Checkbox>
+                    ) : null}
+                    {this.state.val === "number" ? (
+                      <Checkbox onChange={this.onLabelAP}>
+                        Label as placeholder
+                      </Checkbox>
+                    ) : null}
+                    {this.state.val === "rating" ? (
+                      <CheckboxGroup>
+                        <Checkbox>
+                          <Rate defaultValue={3} />
+                        </Checkbox>
+                      </CheckboxGroup>
+                    ) : null}
+                  </div>
+
+                  <br />
+                  <br />
+                  <div
+                    className="theme-button"
+                    style={{
+                      height: 40,
+                      marginTop: 30,
+                      width: 80,
+                      margin: "auto"
+                    }}
+                    onClick={this.onNext}
+                  >
+                    Next >
+                  </div>
                 </div>
               ) : null}
             </div>
@@ -162,31 +201,25 @@ export default class extends Component {
             <div className="form-gen-font" />
           </div>
         </div>
-        <div
-          className="theme-button"
-          style={{
-            height: 40,
-            marginTop: "auto",
-            marginBottom: 30,
-            marginRight: 25
-          }}
-          onClick={this.onNext}
-        >
-          Next >
-        </div>
+
         <div className="form-preview">
           <div className="form-preview-inner">
             <h2>Form Preview :</h2>
-            <div style={{ padding: 10 }}>
-              <WrappedDynamicFieldSet data={this.state.data} />
+            <h3>Click & drag to reorder</h3>
+            <div
+              style={{
+                padding: 10,
+                margin: 18,
+                background: "white",
+                minHeight: "80%"
+              }}
+            >
+              {this.state.data ? (
+                <WrappedDynamicFieldSet data={this.state.data} />
+              ) : (
+                <div>No Content Added!</div>
+              )}
             </div>
-          </div>
-          <div
-            style={{ height: 45, width: 50, marginTop: 5, alignSelf: "center" }}
-            className="theme-button"
-            onClick={this.onClear}
-          >
-            Clear ^
           </div>
         </div>
       </div>

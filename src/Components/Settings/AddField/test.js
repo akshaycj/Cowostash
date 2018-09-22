@@ -48,13 +48,10 @@ class DynamicFieldSet extends React.Component {
     this.setState({
       data
     });
+    console.log("neww--", data);
   };
-  componentDidMount() {
-    console.log("-----", this.props.data);
-  }
 
   componentWillReceiveProps(props) {
-    console.log("====", props.data);
     const data = props.data;
     this.setState({ data: props.data });
   }
@@ -120,12 +117,58 @@ class DynamicFieldSet extends React.Component {
                   alignItems: "center"
                 }}
               >
-                <Input
-                  addonBefore={k.label}
-                  size="small"
-                  placeholder={k.placeholder ? k.label : ""}
-                  style={{ margin: 5 }}
-                />
+                {k.type === "text" ? (
+                  <Input
+                    addonBefore={k.label}
+                    size="default"
+                    placeholder={k.placeholder ? k.label : ""}
+                    style={{ margin: 5 }}
+                  />
+                ) : k.type === "email" ? (
+                  <Input
+                    addonBefore={
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center",
+                          justifyContent: "space-between"
+                        }}
+                      >
+                        <Icon
+                          style={{ fontSize: 20, marginRight: 2 }}
+                          type="mail"
+                        />
+                        {k.label}
+                      </div>
+                    }
+                    size="default"
+                    placeholder={k.placeholder ? k.label : ""}
+                    style={{ margin: 5 }}
+                  />
+                ) : k.type === "number" ? (
+                  <Input
+                    addonBefore={
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center",
+                          justifyContent: "space-between"
+                        }}
+                      >
+                        <Icon
+                          style={{ fontSize: 20, marginRight: 2 }}
+                          type="mobile"
+                        />
+                        {k.label}
+                      </div>
+                    }
+                    size="default"
+                    placeholder={k.placeholder ? k.label : ""}
+                    style={{ margin: 5 }}
+                  />
+                ) : null}
                 <Icon
                   type="minus-circle-o"
                   disabled={keys.length === 1}
