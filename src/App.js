@@ -14,6 +14,7 @@ import Settings from "./Components/Settings";
 import AddField from "./Components/Settings/AddField/add";
 import Login from "./Components/Login";
 import Staffs from "./Components/Staffs";
+import Devices from "./Components/Devices";
 
 export default class App extends Component {
   constructor(props) {
@@ -37,7 +38,8 @@ export default class App extends Component {
                   <Route path="/form" component={AddField} />
                   <Route path="/home" component={HomeScreen} />
                   <Route path="/vistor" component={Vistor} />
-                  <Route path="/dashboard" exact component={Settings} />
+                  <Route path="/dashboard" component={Settings} />
+                  <Route path="/devices" component={Devices} />
                 </Switch>
               </Home>
             </Switch>

@@ -11,6 +11,10 @@ import email from "../../Res/email.svg";
 import MainContent from "../MainContent";
 import { Link } from "react-router-dom";
 
+
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
+
 const { Header, Content, Footer, Sider } = Layout;
 export default class App extends Component {
   state = {
@@ -64,8 +68,9 @@ export default class App extends Component {
                 <span className="nav-text">Check-ins</span>
               </Menu.Item>
               <Menu.Item key="3">
-                <Icon type="tablet" />
-                <span className="nav-text">Devices</span>
+                
+                <Link to="/devices"><Icon type="tablet" /><span className="nav-text">Devices</span></Link>
+                
               </Menu.Item>
               <Menu.Item key="4">
                 <Link to="/staffs">
@@ -85,12 +90,15 @@ export default class App extends Component {
                 <Icon type="mail" />
                 <span className="nav-text">Emails</span>
               </Menu.Item>
-              <Menu.Item key="8">
-                <Link to="/settings">
-                  <Icon type="setting" />
-                  <span className="nav-text">Settings</span>
-                </Link>
-              </Menu.Item>
+              <SubMenu key="8" title={<span><Icon type="setting" /><span>Settings</span></span>}>
+          <Menu.Item key="9"> <Link to="/settings">
+                  
+                  <span className="nav-text-sub"> Desk Settings</span>
+                </Link></Menu.Item>
+          <Menu.Item key="10"><span className="nav-text-sub"> Messages</span></Menu.Item>
+          <Menu.Item key="11"><span className="nav-text-sub"> Integrations</span></Menu.Item>
+          
+        </SubMenu>
             </Menu>
           </Sider>
           <Layout className="child-layout">
