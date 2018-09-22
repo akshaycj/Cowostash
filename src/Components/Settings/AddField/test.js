@@ -1,14 +1,54 @@
 import React, { Component } from "react";
 import { Form, Input, Icon, Button } from "antd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const FormItem = Form.Item;
 
 let uuid = 0;
+
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
+
+const grid = 8;
+
+const getItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: "none",
+
+  // change background colour if dragging
+
+  // styles we need to apply on draggables
+  ...draggableStyle
+});
+
+const getListStyle = isDraggingOver => ({});
+
 class DynamicFieldSet extends React.Component {
   state = {
     data: []
   };
 
+  onDragEnd = result => {
+    // dropped outside the list
+    if (!result.destination) {
+      return;
+    }
+
+    const data = reorder(
+      this.state.data,
+      result.source.index,
+      result.destination.index
+    );
+
+    this.setState({
+      data
+    });
+  };
   componentDidMount() {
     console.log("-----", this.props.data);
   }
@@ -61,30 +101,57 @@ class DynamicFieldSet extends React.Component {
     const keys = this.state.data;
     const formItems = keys.map((k, index) => {
       return (
-        <FormItem required={k.required} key={k.key}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center"
-            }}
-          >
-            <Input
-              addonBefore={k.label}
-              size="small"
-              placeholder={k.placeholder ? k.label : ""}
-              style={{ margin: 5 }}
-            />
-            <Icon
-              type="minus-circle-o"
-              disabled={keys.length === 1}
-              onClick={() => this.remove(k.key)}
-            />
-          </div>
-        </FormItem>
+        <Draggable key={k.key} draggableId={k.key} index={index}>
+          {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              style={getItemStyle(
+                snapshot.isDragging,
+                provided.draggableProps.style
+              )}
+            >
+              <div
+                key={k.key}
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center"
+                }}
+              >
+                <Input
+                  addonBefore={k.label}
+                  size="small"
+                  placeholder={k.placeholder ? k.label : ""}
+                  style={{ margin: 5 }}
+                />
+                <Icon
+                  type="minus-circle-o"
+                  disabled={keys.length === 1}
+                  onClick={() => this.remove(k.key)}
+                />
+              </div>
+            </div>
+          )}
+        </Draggable>
       );
     });
-    return <Form onSubmit={this.handleSubmit}>{formItems}</Form>;
+    return (
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <Droppable droppableId="droppable">
+          {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+              style={getListStyle(snapshot.isDraggingOver)}
+            >
+              {formItems}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+    );
   }
 }
 
