@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Icon, Button, Rate, Select } from "antd";
+import { Form, Input, Icon, Button, Rate, Select, Checkbox } from "antd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const FormItem = Form.Item;
@@ -191,6 +191,25 @@ class DynamicFieldSet extends React.Component {
                       <Option value={item}>{item}</Option>
                     ))}
                   </Select>
+                ) : null}
+                {k.type === "checkbox" ? (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      marginTop: 5,
+                      marginLeft: 10,
+                      textAlign: "left",
+                      width: "100%"
+                    }}
+                  >
+                    {k.label}
+                    <div>
+                      {k.options.map(item => (
+                        <Checkbox>{item}</Checkbox>
+                      ))}
+                    </div>
+                  </div>
                 ) : null}
                 <Icon
                   style={{ marginLeft: 2 }}

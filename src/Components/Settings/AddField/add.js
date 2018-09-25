@@ -185,7 +185,8 @@ export default class extends Component {
                         </Checkbox>
                       </CheckboxGroup>
                     ) : null}
-                    {this.state.val === "select" ? (
+                    {this.state.val === "select" ||
+                    this.state.val === "checkbox" ? (
                       <div
                         style={{
                           display: "flex",
