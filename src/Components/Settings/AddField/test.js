@@ -65,7 +65,7 @@ class DynamicFieldSet extends React.Component {
       data: d
     });
 
-    //this.props.onDataChange(d);
+    this.props.getdata(d);
   };
 
   handleSubmit = e => {

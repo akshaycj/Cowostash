@@ -119,7 +119,10 @@ export default class extends Component {
   onClear = () => {
     this.setState(initialState);
   };
-
+  ongetdata(data) {
+    console.log(data);
+    // this.setState({ data });
+  }
   render() {
     return (
       <div className="AddField-main">
@@ -236,7 +239,10 @@ export default class extends Component {
               }}
             >
               {this.state.data ? (
-                <WrappedDynamicFieldSet data={this.state.data} />
+                <WrappedDynamicFieldSet
+                  data={this.state.data}
+                  getdata={this.ongetdata.bind(this)}
+                />
               ) : (
                 <div>No Content Added!</div>
               )}
