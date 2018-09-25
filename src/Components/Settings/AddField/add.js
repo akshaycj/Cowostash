@@ -88,6 +88,7 @@ export default class extends Component {
       console.log("init", data);
 
       this.setState({ data });
+      this.onClear();
     }
   };
 
@@ -116,12 +117,7 @@ export default class extends Component {
     this.setState({ req: e.target.checked });
   };
   onClear = () => {
-    const formData = {
-      formTitle: "",
-      inputTypes: [],
-      uploadTypes: []
-    };
-    this.setState({ formData });
+    this.setState(initialState);
   };
 
   render() {

@@ -49,6 +49,7 @@ class DynamicFieldSet extends React.Component {
     this.setState({
       data
     });
+    //this.props.onDataChange(data);
     console.log("neww--", data);
   };
 
@@ -58,28 +59,13 @@ class DynamicFieldSet extends React.Component {
   }
 
   remove = k => {
-    const { form } = this.props;
-    // can use data-binding to get
     const data = this.state.data;
-    // We need at least one passenger
-
-    // can use data-binding to set
+    const d = data.filter(item => item.key !== k);
     this.setState({
-      data: data.filter(item => item.key !== k)
+      data: d
     });
-  };
 
-  add = () => {
-    const { form } = this.props;
-    // can use data-binding to get
-    const keys = form.getFieldValue("data");
-    const nextKeys = keys.concat(uuid);
-    uuid++;
-    // can use data-binding to set
-    // important! notify form to detect changes
-    form.setFieldsValue({
-      data: this.state.data
-    });
+    //this.props.onDataChange(d);
   };
 
   handleSubmit = e => {
@@ -92,10 +78,6 @@ class DynamicFieldSet extends React.Component {
   };
 
   render() {
-    const { getFieldDecorator, getFieldValue } = this.props.form;
-    const { form } = this.props;
-
-    getFieldDecorator("data", { initialValue: [] });
     const keys = this.state.data;
     const formItems = keys.map((k, index) => {
       return (
@@ -241,6 +223,6 @@ class DynamicFieldSet extends React.Component {
   }
 }
 
-const WrappedDynamicFieldSet = Form.create()(DynamicFieldSet);
+const WrappedDynamicFieldSet = DynamicFieldSet;
 
 export default WrappedDynamicFieldSet;
