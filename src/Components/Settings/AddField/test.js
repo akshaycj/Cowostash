@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Form, Input, Icon, Button, Rate } from "antd";
+import { Form, Input, Icon, Button, Rate, Select } from "antd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const FormItem = Form.Item;
+const Option = Select.Option;
 
 let uuid = 0;
 
@@ -183,7 +184,16 @@ class DynamicFieldSet extends React.Component {
                     <Rate style={{ marginTop: 3 }} />
                   </div>
                 ) : null}
+
+                {k.type === "select" ? (
+                  <Select placeholder={k.label} style={{ width: "100%" }}>
+                    {k.options.map(item => (
+                      <Option value={item}>{item}</Option>
+                    ))}
+                  </Select>
+                ) : null}
                 <Icon
+                  style={{ marginLeft: 2 }}
                   type="minus-circle-o"
                   disabled={keys.length === 1}
                   onClick={() => this.remove(k.key)}

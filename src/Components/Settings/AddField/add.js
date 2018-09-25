@@ -81,13 +81,20 @@ export default class extends Component {
         label: this.state.label,
         placeholder: this.state.labelAP,
         required: this.state.req,
-        key: uuid++
+        key: uuid++,
+        options: this.state.options
       };
       data.push(d);
       console.log("init", data);
 
       this.setState({ data });
     }
+  };
+
+  onOptions = e => {
+    const options = e.target.value.split(",");
+    this.setState({ options });
+    //console.log("options", options);
   };
 
   onLabel = e => {
@@ -177,6 +184,23 @@ export default class extends Component {
                           <Rate defaultValue={3} />
                         </Checkbox>
                       </CheckboxGroup>
+                    ) : null}
+                    {this.state.val === "select" ? (
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          marginTop: 10
+                        }}
+                      >
+                        <Input
+                          placeholder="Options"
+                          onChange={this.onOptions}
+                        />
+                        <div style={{ fontSize: 10, marginTop: 3 }}>
+                          Enter select option seperated by comma(,){" "}
+                        </div>
+                      </div>
                     ) : null}
                   </div>
 
