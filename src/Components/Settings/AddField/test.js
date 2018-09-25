@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Icon, Button } from "antd";
+import { Form, Input, Icon, Button, Rate } from "antd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const FormItem = Form.Item;
@@ -114,7 +114,9 @@ class DynamicFieldSet extends React.Component {
                 style={{
                   display: "flex",
                   flexDirection: "row",
-                  alignItems: "center"
+                  alignItems: "center",
+                  margin: 5,
+                  padding: 2
                 }}
               >
                 {k.type === "text" ? (
@@ -122,7 +124,6 @@ class DynamicFieldSet extends React.Component {
                     addonBefore={k.label}
                     size="default"
                     placeholder={k.placeholder ? k.label : ""}
-                    style={{ margin: 5 }}
                   />
                 ) : k.type === "email" ? (
                   <Input
@@ -144,7 +145,6 @@ class DynamicFieldSet extends React.Component {
                     }
                     size="default"
                     placeholder={k.placeholder ? k.label : ""}
-                    style={{ margin: 5 }}
                   />
                 ) : k.type === "number" ? (
                   <Input
@@ -166,8 +166,22 @@ class DynamicFieldSet extends React.Component {
                     }
                     size="default"
                     placeholder={k.placeholder ? k.label : ""}
-                    style={{ margin: 5 }}
                   />
+                ) : null}
+                {k.type === "rating" ? (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      marginTop: 5,
+                      marginLeft: 10,
+                      textAlign: "left",
+                      width: "100%"
+                    }}
+                  >
+                    {k.label}
+                    <Rate style={{ marginTop: 3 }} />
+                  </div>
                 ) : null}
                 <Icon
                   type="minus-circle-o"
