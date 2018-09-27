@@ -107,7 +107,9 @@ export default class App extends Component {
                   </Link>
                 </Menu.Item>
                 <Menu.Item key="10">
-                  <span className="nav-text-sub"> Messages</span>
+                  <Link to="/messages">
+                    <span className="nav-text-sub"> Messages</span>
+                  </Link>
                 </Menu.Item>
                 <Menu.Item key="11">
                   <span className="nav-text-sub"> Integrations</span>
