@@ -15,6 +15,7 @@ import AddField from "./Components/Settings/AddField/add";
 import Login from "./Components/Login";
 import Staffs from "./Components/Staffs";
 import Devices from "./Components/Devices";
+import Messages from "./Components/Settings/Messages";
 
 export default class App extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ export default class App extends Component {
                   <Route path="/vistor" component={Vistor} />
                   <Route path="/dashboard" component={Settings} />
                   <Route path="/devices" component={Devices} />
+                  <Route path="/messages" component={Messages} />
                 </Switch>
               </Home>
             </Switch>

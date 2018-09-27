@@ -67,7 +67,10 @@ export default class extends Component {
               Utils.setCookie("comapanyId", data.company_id);
               Utils.setCookie("userId", data.user_id);
             }
-            that.setState({ redirect: true });
+            if (data.jwt) {
+              that.setState({ redirect: true });
+            }
+            //that.setState({ redirect: true });
             console.log("done");
           })
           .catch(error => {
