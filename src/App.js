@@ -16,6 +16,7 @@ import Login from "./Components/Login";
 import Staffs from "./Components/Staffs";
 import Devices from "./Components/Devices";
 import Messages from "./Components/Settings/Messages";
+import Checkins from "./Components/Checkins";
 
 export default class App extends Component {
   constructor(props) {
@@ -33,6 +34,7 @@ export default class App extends Component {
               <Route path="/" exact component={Login} />
               <Home>
                 <Switch>
+                  <Route path="/checkins" component={Checkins} />
                   <Route path="/settings" component={Settings} />
                   <Route path="/staffs" component={Staffs} />
                   <Route path="/digit" component={Digitlogin} />
