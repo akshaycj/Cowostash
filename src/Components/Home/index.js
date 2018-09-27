@@ -64,8 +64,10 @@ export default class App extends Component {
                 <span className="nav-text">Dashboard</span>
               </Menu.Item>
               <Menu.Item key="2">
+              <Link to="/checkins">
                 <Icon type="export" />
                 <span className="nav-text">Check-ins</span>
+                </Link>
               </Menu.Item>
               <Menu.Item key="3">
                 <Link to="/devices">

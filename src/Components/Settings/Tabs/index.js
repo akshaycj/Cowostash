@@ -12,6 +12,7 @@ import { Switch } from "antd";
 import NdaTab from "./NdaTab";
 import Staffs from "./Staffs";
 import { Link } from "react-router-dom";
+import Badge from "./BadgeTab"
 
 const TabPane = Tabs.TabPane;
 
@@ -88,7 +89,7 @@ export default class extends Component {
             <NdaTab />
           </TabPane>
           <TabPane tab="Badge Settings" key="5">
-            <div />
+            <Badge/>
           </TabPane>
         </Tabs>
       </div>

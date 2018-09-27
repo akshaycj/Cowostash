@@ -1,0 +1,13 @@
+.checkin-header{
+    margin:"auto";
+    width:"80%";
+    height:"30px";
+    -moz-box-shadow:    3px 3px 5px  #ccc;
+  -webkit-box-shadow: 3px 3px 5px  #ccc;
+  box-shadow:         3px 3px 5px  #ccc;
+display:"flex"
+}
+.Checkin-header-sub{
+    display:"flex";
+    flex-direction: column;
+}
