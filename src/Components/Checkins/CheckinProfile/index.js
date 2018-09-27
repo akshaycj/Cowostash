@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import './index.css'
 import {Link} from "react-router-dom"
-import {Icon } from "antd"
+import {Icon,Select,Input } from "antd"
+const Option = Select.Option;
+const selectBefore = (
+  <Select defaultValue="Http://" style={{ width: 90 }}>
+    <div>
+    <Icon style={{fontSize:"23px",marginTop:"-10px"}} type="user" theme="outlined" />
+
+    </div>
+  </Select>
+)
 export default class  extends Component {
   constructor(props) {
     super(props)
@@ -41,29 +50,11 @@ export default class  extends Component {
           </div>  
               </div>
               <hr style={{backgroundColor:"#e6e6e6",marginTop:"20px"}}/>
-              <div className="checkin-profile-display">
-              <Icon style={{fontSize:"23px",marginTop:"-10px"}} type="user" theme="outlined" />
-              <h3 style={{marginTop:"-10px",marginLeft:"10px"}}>Name</h3>
-              <vl/>
-              <h3 style={{marginTop:"-10px",marginLeft:"10px"}}>{this.state.name}</h3>
-              </div>
-              <div className="checkin-profile-display">
-              <Icon style={{fontSize:"23px",marginTop:"-10px"}} type="mail" theme="outlined" />
-              <h3 style={{marginTop:"-10px",marginLeft:"10px"}}>Email</h3>
-              <vl/>
-              <h3 style={{marginTop:"-10px",marginLeft:"10px"}}>{this.state.email}</h3>
-              </div>
-              <div className="checkin-profile-display">
-              <Icon style={{fontSize:"23px",marginTop:"-10px"}} type="mobile" theme="outlined" />
-              <h3 style={{marginTop:"-10px",marginLeft:"10px"}}>Phone</h3>
-              <vl/>
-              <h3 style={{marginTop:"-10px",marginLeft:"10px"}}>{this.state.phone}</h3>
-              </div>
-              <div className="checkin-profile-display">
-              <Icon style={{fontSize:"23px",marginTop:"-10px"}} type="team" theme="outlined" />
-              <h3 style={{marginTop:"-10px",marginLeft:"10px"}}>Company</h3>
-              <vl/>
-              <h3 style={{marginTop:"-10px",marginLeft:"10px"}}>{this.state.company}</h3>
+              <div style={{padding:"20px",display:"flex",flexDirection:"column"}}>
+              <Input style={{width:"360px",margin:"10px"}} addonBefore={<div><Icon style={{fontSize:"23px"}} type="user" theme="outlined" />Name</div>} defaultValue={this.state.name} />
+              <Input style={{width:"360px",margin:"10px"}} addonBefore={<div><Icon style={{fontSize:"23px"}} type="mail" theme="outlined" />Email</div>} defaultValue={this.state.email} />
+              <Input style={{width:"360px",margin:"10px"}} addonBefore={<div><Icon style={{fontSize:"23px"}} type="mobile" theme="outlined" />Phone</div>} defaultValue={this.state.phone} />
+              <Input style={{width:"360px",margin:"10px"}} addonBefore={<div><Icon style={{fontSize:"23px"}} type="team" theme="outlined" />Company</div>} defaultValue={this.state.company} />
               </div>
         </div>
       </div>
