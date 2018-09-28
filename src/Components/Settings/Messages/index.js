@@ -20,7 +20,10 @@ export default class extends Component {
                 <div style={this.style.pane}>sd</div>
               </TabPane>
               <TabPane tab="Visitor SMS" key="2">
-                <div />
+                <div style={this.style.pane}>sd</div>
+              </TabPane>
+              <TabPane tab="Configuration" key="3">
+                <div style={this.style.pane}>sd</div>
               </TabPane>
             </Tabs>
           </div>
