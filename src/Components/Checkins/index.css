@@ -1,62 +1,63 @@
-.checkin-header{
-    margin:auto;
-    width:90%;
-    height:auto;
-    padding:10px;
-    border-radius:5px;
-    -moz-box-shadow:    3px 3px 5px 3px  #ccc;
-  -webkit-box-shadow: 3px 3px 5px 3px #ccc;
-  box-shadow:         3px 3px 5px 3px #ccc;
-display:flex;
-justify-content: space-around;
-border-color: black;
-flex-direction: row;
-position: relative;
-text-align: center;
-top:20px;
-}
-.Checkin-header-sub{
-    display:"flex";
-    flex-direction: column;
-}
-.Checkin-Profile{
-    width:90%;
-    height:90px;
-    -moz-box-shadow:    3px 3px 5px 3px  #ccc;
-  -webkit-box-shadow: 3px 3px 5px 3px #ccc;
-  box-shadow:         3px 3px 5px 3px #ccc;
-  top:40px;
-  margin:auto;
+.checkin-header {
+  margin: auto;
+  width: 90%;
+  height: auto;
+  padding: 10px;
+  border-radius: 5px;
+  -moz-box-shadow: 0 3px 5px 0 #ccc;
+  -webkit-box-shadow: 0 3px 5px 0 #ccc;
+  box-shadow: 0 3px 5px 0 #ccc;
+  display: flex;
+  background: white;
+  justify-content: space-around;
+  flex-direction: row;
   position: relative;
-  border-radius:5px;
-  padding-top:20px;
-  padding-right:20px;
-  display:flex;
-  justify-content: space-between
-
-  
+  text-align: center;
+  top: 20px;
 }
-.Checkin-Profile img{
-    height: 4rem;
-    width: 4rem;
-    position: relative;
-    
-    bottom:5px;
-    border-radius: 100%;
-    
-
+.Checkin-header-sub {
+  display: "flex";
+  flex-direction: column;
 }
-.Checkin-button{
-    width:100px;
-    height:28px;
-    background-color:#AFACAC;
-    text-align: center;
-    border-radius: 10px;
-    cursor:pointer;
-     font-size: 20px;
-     position: relative;
-     top:10px;
-     -moz-box-shadow:    3px 3px 5px #AFACAC;
-  -webkit-box-shadow: 3px 3px 5px  #AFACAC;
-  box-shadow:         3px 3px 5px  #AFACAC;
+.Checkin-Profile {
+  width: 90%;
+  height: 90px;
+  -moz-box-shadow: 0 3px 5px 0 #ccc;
+  -webkit-box-shadow: 0 3px 5px 0 #ccc;
+  box-shadow: 0 3px 5px 0 #ccc;
+
+  background: white;
+  margin: auto auto auto auto;
+  position: relative;
+  border-radius: 5px;
+  padding-top: 20px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.Checkin-Profile img {
+  height: 4rem;
+  width: 4rem;
+  position: relative;
+
+  bottom: 5px;
+  border-radius: 100%;
+}
+.Checkin-button {
+  width: 100px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #afacac;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  position: relative;
+  color: rgba(0, 0, 0, 0.8);
+  top: 10px;
+  -moz-box-shadow: 0 3px 5px 0 #ccc;
+  -webkit-box-shadow: 0 3px 5px 0 #ccc;
+  box-shadow: 0 3px 5px 0 #ccc;
 }
