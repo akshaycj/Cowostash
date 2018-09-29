@@ -32,6 +32,23 @@ export default class extends Component {
         const data = this.state.data;
         const email = this.state.email;
         const name = this.state.name;
+        if (data.length != 0) {
+          console.log("----------", data);
+
+          if (
+            data.some(function(el) {
+              return el.email === email;
+            })
+          ) {
+            message.error("Already exists!");
+          } else {
+            data.push({ name, email });
+            this.setState({ data });
+          }
+        } else {
+          data.push({ name, email });
+          this.setState({ data });
+        }
       } else {
         message.error("Enter a valid email");
       }
