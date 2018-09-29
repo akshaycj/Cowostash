@@ -1,0 +1,13 @@
+.message-tab-common-container {
+  width: 100%;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-tab-common-container .item {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}

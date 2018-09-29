@@ -6,32 +6,12 @@ export default class extends Component {
   render() {
     return (
       <div className="">
-        <div
-          style={{
-            width: "100%",
-            fontSize: 18,
-            display: "flex",
-            flexDirection: "column"
-          }}
-        >
-          <div
-            style={{
-              width: "40%",
-              display: "flex",
-              justifyContent: "space-between"
-            }}
-          >
+        <div className="message-tab-common-container">
+          <div className="item">
             Enable email <Switch />
           </div>
 
-          <div
-            style={{
-              width: "40%",
-              display: "flex",
-              justifyContent: "space-between",
-              marginTop: 10
-            }}
-          >
+          <div className="item">
             Default email for all purpose <Switch />
           </div>
           <div
