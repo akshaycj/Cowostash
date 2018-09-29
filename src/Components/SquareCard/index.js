@@ -117,19 +117,19 @@ export default class extends Component {
         <div className="square-card-menu">
           <div className="square-card-menu-inner">
             <div className="square-card-menu-inner-circle">
-              {this.state.enable ? (
+              {this.state.enable ? 
                 <Icon
                   onClick={this.onEn}
                   type="check-circle-o"
                   style={{ alignSelf: "center", margin: "auto" }}
                 />
-              ) : (
+              : 
                 <Icon
                   type="close-circle"
                   onClick={this.onEn}
                   style={{ alignSelf: "center", margin: "auto" }}
                 />
-              )}
+              }
             </div>
             <div className="square-card-menu-inner-circle">
               <Icon
