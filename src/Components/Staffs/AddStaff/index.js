@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import "./index.css";
-import { Icon, Input } from "antd";
+import { message, Icon, Input } from "antd";
 import SquareCard from "../../SquareCard";
+import Util from "../../../Utils";
+
+const Utils = new Util();
 const Search = Input.Search;
+
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -18,12 +22,19 @@ export default class extends Component {
   onAdd = () => {
     this.setState({ staff: !this.state.staff });
   };
+
+  alreadyExist = (a, b) => {
+    return a.indexOf(b) != -1;
+  };
   addCard() {
     if (this.state.name !== "" && this.state.email !== "") {
-      const data = this.state.data;
-      data.push({ name: this.state.name, email: this.state.email });
-      this.setState({ data });
-      console.log("arr", this.state.data);
+      if (Utils.emailValidation(this.state.email)) {
+        const data = this.state.data;
+        const email = this.state.email;
+        const name = this.state.name;
+      } else {
+        message.error("Enter a valid email");
+      }
     }
   }
   onName = e => {
