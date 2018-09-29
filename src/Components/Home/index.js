@@ -19,10 +19,14 @@ export default class App extends Component {
   state = {
     collapsed: false,
     notifications: ["asdsad", "sadas", "dasd"],
-    date: new Date().toString().slice(0, 24)
+    date: ""
   };
   componentDidMount() {
-    console.log(new Date());
+    setInterval(() => {
+      this.setState({
+        date: new Date().toString().slice(0, 24)
+      });
+    }, 1000);
   }
   toggle = () => {
     this.setState({
