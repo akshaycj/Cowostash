@@ -1,7 +1,33 @@
 import React, { Component } from "react";
 import "./index.css";
 import { Switch } from "antd";
+import { Cascader,Input } from 'antd';
+import Squarecard from "../../../SquareCard"
+
+
+const { TextArea } = Input;
+const options = [{
+  value: 'zhejiang',
+  label: 'Zhejiang',
+
+}, {
+  value: 'jiangsu',
+  label: 'Jiangsu',
+}];
 export default class extends Component {
+constructor(props){
+  super(props)
+  this.state={
+    show:false,
+    data:[]
+  }
+}
+onClick=()=>{
+  this.setState({show:!this.state.show})
+}
+onAdd=()=>{
+
+}
   render() {
     return (
       <div className="">
@@ -16,8 +42,25 @@ export default class extends Component {
           <div
             className="theme-button"
             style={{ width: 200, marginLeft: "auto" }}
+            onClick={this.onClick}
           >
             Add SMS +
+          </div>
+          {this.state.show?
+           <div>
+           <hr style={{width:"100%"}}/>
+           <div style={{display:"flex",flexDirection:"column"}}>
+           
+           <Cascader style={{margin:"10px",width:"400px"}} options={options} placeholder="Purpose Form Selector" />
+           <TextArea style={{margin:"10px",width:"400px"}}/>
+           <div className="theme-button" style={{width:"60px",margin:"auto"}} onClick={this.onAdd}>Add</div>
+           </div>
+           </div>:null
+        }
+         
+          <hr style={{width:"100%"}}/>
+          <div style={{display:"flex"}}>
+            {this.state.data.map(item=>(<Squarecard title="hello" img="true" />))}
           </div>
         </div>
       </div>

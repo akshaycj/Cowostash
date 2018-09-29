@@ -19,6 +19,7 @@ import Messages from "./Components/Settings/Messages";
 import Checkins from "./Components/Checkins";
 
 import CheckinProfile from "./Components/Checkins/CheckinProfile"
+import Profile from "./Components/Profile";
 
 export default class App extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ export default class App extends Component {
               <Home>
                 <Switch>
                 <Route path="/checkinprofile" component={CheckinProfile} />
-                
+                <Route path="/Profile" component={Profile} />
                 <Route path="/checkins" component={Checkins} />
                   <Route path="/settings" component={Settings} />
                   <Route path="/staffs" component={Staffs} />
