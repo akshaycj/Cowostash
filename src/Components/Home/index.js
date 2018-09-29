@@ -64,59 +64,68 @@ export default class App extends Component {
                 <span className="nav-text">Dashboard</span>
               </Menu.Item>
               <Menu.Item key="2">
-              <Link to="/checkins">
-                <Icon type="export" />
-                <span className="nav-text">Check-ins</span>
+                <Link to="/checkins">
+                  <Icon style={{ fontSize: 20 }} type="check-square" />
+                  <span className="nav-text">Check-ins</span>
                 </Link>
               </Menu.Item>
               <Menu.Item key="3">
                 <Link to="/devices">
-                  <Icon type="tablet" />
+                  <Icon style={{ fontSize: 20 }} type="tablet" />
                   <span className="nav-text">Devices</span>
                 </Link>
               </Menu.Item>
               <Menu.Item key="4">
                 <Link to="/staffs">
-                  <Icon type="user" />
+                  <Icon style={{ fontSize: 20 }} type="contacts" />
                   <span className="nav-text"> Staff</span>
                 </Link>
               </Menu.Item>
               <Menu.Item key="5">
-                <Icon type="flag" />
+                <Icon style={{ fontSize: 20 }} type="table" />
                 <span className="nav-text">Events</span>
               </Menu.Item>
               <Menu.Item key="6">
-                <Icon type="team" />
+                <Icon style={{ fontSize: 20 }} type="team" />
                 <span className="nav-text">All Users</span>
               </Menu.Item>
               <Menu.Item key="7">
-                <Icon type="mail" />
+                <Icon style={{ fontSize: 20 }} type="mail" />
                 <span className="nav-text">Emails</span>
               </Menu.Item>
+              <Menu.Item key="8">
+                <Icon style={{ fontSize: 20 }} type="pie-chart" />
+                <span className="nav-text">Insights</span>
+              </Menu.Item>
+
               <SubMenu
-                key="8"
+                key="9"
                 title={
                   <span>
-                    <Icon type="setting" />
+                    <Icon style={{ fontSize: 20 }} type="setting" />
                     <span>Settings</span>
                   </span>
                 }
               >
-                <Menu.Item key="9">
+                <Menu.Item key="10">
                   {" "}
                   <Link to="/settings">
                     <span className="nav-text-sub"> Desk Settings</span>
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="10">
+                <Menu.Item key="11">
                   <Link to="/messages">
                     <span className="nav-text-sub"> Messages</span>
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="11">
+                <Menu.Item key="12">
                   <span className="nav-text-sub"> Integrations</span>
                 </Menu.Item>
               </SubMenu>
+              <Menu.Item key="13">
+                <Icon style={{ fontSize: 20 }} type="schedule" />
+                <span className="nav-text">Meetings</span>
+              </Menu.Item>
             </Menu>
           </Sider>
           <Layout className="child-layout">
@@ -137,6 +146,7 @@ export default class App extends Component {
                 }}
               >
                 <Icon
+                  style={{ fontSize: 20 }}
                   className="trigger"
                   type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
                   onClick={this.toggle}
@@ -151,7 +161,11 @@ export default class App extends Component {
                     onClick={this.onClickNotification.bind(this)}
                   >
                     <Badge count={this.state.notifications.length}>
-                      <Icon type="bell" style={{ padding: 5, fontSize: 20 }} />
+                      <Icon
+                        style={{ fontSize: 20 }}
+                        type="bell"
+                        style={{ padding: 5, fontSize: 20 }}
+                      />
                     </Badge>
                   </Popover>
                 </div>
