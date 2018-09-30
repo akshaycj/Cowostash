@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./index.css";
-
+import StaffSettings from "./StaffSettings"
 import { Tabs } from "antd";
 import AddStaff from "./AddStaff";
 
@@ -27,7 +27,7 @@ export default class extends Component {
                 </div>
               </TabPane>
               <TabPane tab="Staff Settings" key="2">
-                <div />
+                <StaffSettings/>
               </TabPane>
             </Tabs>
           </div>

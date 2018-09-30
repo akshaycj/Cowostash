@@ -23,6 +23,9 @@ export default class extends Component {
       subject:""
     }
   }
+  onEnable = a => {
+    console.log("sss--", a);
+  };
   onAdd=()=>{
     if (this.state.purpose !== "" && this.state.subject !== "") {
       const data = this.state.data;
@@ -73,7 +76,7 @@ export default class extends Component {
          
           <hr style={{width:"100%"}}/>
           <div style={{display:"flex"}}>
-            {this.state.data.map(item=>(<Squarecard title={item.purpose}  
+            {this.state.data.map(item=>(<Squarecard onValue={this.onEnable.bind(this)} title={item.purpose}  
                   img={true}/>))}
           </div>
           

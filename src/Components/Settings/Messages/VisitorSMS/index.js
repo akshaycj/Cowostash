@@ -24,6 +24,9 @@ constructor(props){
     subject:""
   }
 }
+onEnable = a => {
+  console.log("sss--", a);
+};
 onClick=()=>{
   this.setState({show:!this.state.show})
 }
@@ -73,7 +76,8 @@ onPurpose=(e)=>{
          
           <hr style={{width:"100%"}}/>
           <div style={{display:"flex"}}>
-            {this.state.data.map(item=>(<Squarecard title={item.purpose} 
+            {this.state.data.map(item=>(<Squarecard title={item.purpose}
+            onValue={this.onEnable.bind(this)} 
                   img={true} />))}
           </div>
         </div>

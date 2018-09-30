@@ -15,6 +15,9 @@ export default class extends Component {
       data: []
     };
   }
+  onEnable = a => {
+    console.log("sss--", a);
+  };
   onAdd = () => {
     this.setState({ add: !this.state.add });
   };
@@ -83,12 +86,13 @@ export default class extends Component {
         ) : null}
         <hr style={{ width: "95%", marginTop: "3%" }} />
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          <SquareCard img={true} title="Standard Template NDA1" />
+          <SquareCard img={true} onValue={this.onEnable.bind(this)}  title="Standard Template NDA1" />
           {this.state.data.map(item => {
             return (
               <div>
                 <SquareCard
                   img={true}
+                  onValue={this.onEnable.bind(this)} 
                   getdata={this.getdata.bind(this)}
                   title={item.title}
                   edit={false}

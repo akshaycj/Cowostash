@@ -24,6 +24,9 @@ export default class extends Component {
       pane: { overflow: "auto", height: "100%" }
     };
   }
+  onEnable = a => {
+    console.log("sss--", a);
+  };
   onPhotoCaptureTRiggered = e => {};
   render() {
     return (
@@ -62,16 +65,16 @@ export default class extends Component {
                   margin: 15
                 }}
               >
-                <SquareCard title="Interview" src={teamwork} />
-                <SquareCard title="Guest" src={guest} />
-                <SquareCard title="Vendor" src={box} />
-                <SquareCard title="Employee" src={employee} />
-                <SquareCard title="Maintenance" src={maintenance} />
-                <SquareCard title="Interview" src={teamwork} />
-                <SquareCard title="Guest" src={guest} />
-                <SquareCard title="Vendor" src={box} />
-                <SquareCard title="Employee" src={employee} />
-                <SquareCard title="Maintenance" src={maintenance} />
+                <SquareCard onValue={this.onEnable.bind(this)} title="Interview" src={teamwork} />
+                <SquareCard onValue={this.onEnable.bind(this)} title="Guest" src={guest} />
+                <SquareCard onValue={this.onEnable.bind(this)}  title="Vendor" src={box} />
+                <SquareCard onValue={this.onEnable.bind(this)}  title="Employee" src={employee} />
+                <SquareCard onValue={this.onEnable.bind(this)}  title="Maintenance" src={maintenance} />
+                <SquareCard onValue={this.onEnable.bind(this)} title="Interview" src={teamwork} />
+                <SquareCard onValue={this.onEnable.bind(this)}  title="Guest" src={guest} />
+                <SquareCard onValue={this.onEnable.bind(this)}  title="Vendor" src={box} />
+                <SquareCard onValue={this.onEnable.bind(this)} title="Employee" src={employee} />
+                <SquareCard onValue={this.onEnable.bind(this)}  title="Maintenance" src={maintenance} />
               </div>
             </div>
           </TabPane>
