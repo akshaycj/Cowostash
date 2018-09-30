@@ -98,8 +98,10 @@ export default class App extends Component {
                 <span className="nav-text">Emails</span>
               </Menu.Item>
               <Menu.Item key="8">
+              <Link to="/insights">
                 <Icon style={{ fontSize: 20 }} type="pie-chart" />
                 <span className="nav-text">Insights</span>
+                </Link>
               </Menu.Item>
 
               <SubMenu
