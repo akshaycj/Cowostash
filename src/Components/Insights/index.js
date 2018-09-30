@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
-
+import {Bar, Pie, Line} from 'react-chartjs-2';
 
 export default class extends Component {
   constructor(props) {
@@ -15,9 +15,20 @@ export default class extends Component {
       time: "15:33",
       name: "sam",
       purpose: "interview",
-      staff: "jon snow"
+      staff: "jon snow",
+      chartdata:{
+        labels: ["January", "February", "March"],
+        datasets: [{
+        label: "Visits",
+        backgroundColor: ["purple","blue","red"],
+       
+        data: [10, 40, 5],
+        }]
+      }
+      
     };
   }
+  
   onClick = () => {};
 
   render() {
@@ -78,8 +89,13 @@ export default class extends Component {
           <div className="" />
         ))}
         <div style={{width:"50%",height:"auto"}}>
-        <div className="insight-card" ></div>
-        <div className="insight-card" ></div>
+        <div className="insight-card" >
+        < Line height="70%" width="100%" data={this.state.chartdata} />
+        </div>
+        <div className="insight-card" >
+        < Pie height="70%" width="100%" data={this.state.chartdata} />
+        </div>
+        
         </div>
         </div>
       </div>
