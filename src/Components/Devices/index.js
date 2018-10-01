@@ -17,13 +17,13 @@ const columns = [
   },
   {
     title: "User Login Id",
-    dataIndex: "userloginid",
-    key: "userloginid"
+    dataIndex: "code",
+    key: "code"
   },
   {
     title: "Token ID",
-    key: "token",
-    dataIndex: "token"
+    key: "token_code",
+    dataIndex: "token_code"
   },
   {
     title: "Delete",
@@ -40,13 +40,13 @@ const data = [
   {
     id: "1",
     name: "john Doe",
-    userloginid: "12345",
+    code: "12345",
     token: "25"
   },
   {
     id: "1",
     name: "john Doe",
-    userloginid: "12345",
+    code: "12345",
     token: "25"
   }
 ];
@@ -56,10 +56,44 @@ export default class extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      table: true
+      table: true,
+      data: []
     };
   }
-  componentDidMount() {}
+  componentDidMount() {
+    var that = this;
+    const url =
+      BASE_URL +
+      "dashboard/companies/" +
+      Utils.getCompanyId() +
+      "/users/" +
+      Utils.getUserId() +
+      "/devices";
+
+    const test =
+      BASE_URL +
+      "dashboard/companies/" +
+      Utils.getCompanyId() +
+      "/type_of_visits";
+    const auth = "Bearer " + Utils.getToken();
+    console.log("auth--", auth);
+
+    fetch(url, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: auth
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        console.log("devices" + Utils.getToken(), data);
+        that.setState({ data: data.devices });
+      });
+  }
   render() {
     return (
       <div className="devices-main">
@@ -90,7 +124,7 @@ export default class extends Component {
           <Table
             style={{ marginTop: "30px" }}
             columns={columns}
-            dataSource={data}
+            dataSource={this.state.data}
           />
         ) : null}
       </div>
