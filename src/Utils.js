@@ -4,7 +4,7 @@ import cookie from "react-cookies";
 export default class Utils {
   setSessionToken(key, value) {
     sessionStorage.setItem(key, value);
-    window.location.href = "/dashboard";
+    //window.location.href = "/dashboard";
   }
 
   validateToken(key) {

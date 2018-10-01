@@ -58,7 +58,12 @@ export default class extends Component {
             body: JSON.stringify(auth)
           }
         )
+          .then(res => {
+            return res.json();
+          })
           .then(data => {
+            console.log("data", data);
+
             Utils.setSessionToken("JWTToken", data.jwt);
             Utils.setSessionToken("comapnyId", data.company_id);
             Utils.setSessionToken("userId", data.user_id);
@@ -94,33 +99,6 @@ export default class extends Component {
         "error"
       );
     }
-    // let auth;
-    // auth = {
-    //   auth: {
-    //     email: this.state.email,
-    //     password: this.state.pass
-    //   }
-    // };
-
-    // fetch("https://cowostash-staging-app.herokuapp.com/dashboard/user_token", {
-    //   method: "post",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify(auth)
-    // }).then(response => {
-    //   console.log("res", response);
-    // });
-
-    // axios
-    //   .post(
-    //     "https://cowostash-staging-app.herokuapp.com/dashboard/user_token/",
-    //     auth
-    //   )
-    //   .then(response => {
-    //     console.log("res", response);
-    //   });
   };
   render() {
     return (
