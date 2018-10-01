@@ -3,6 +3,12 @@ import "./index.css";
 import { LineChart } from "react-easy-chart";
 
 export default class Graph extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+      data:""
+    }
+  }
   render() {
     return (
       <div className="main-rect1">
@@ -18,7 +24,7 @@ export default class Graph extends Component {
           <LineChart
             xType={"text"}
             axes
-            width={740}
+            width={600}
             height={220}
             interpolate={"cardinal"}
             data={[

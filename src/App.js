@@ -17,6 +17,7 @@ import Staffs from "./Components/Staffs";
 import Devices from "./Components/Devices";
 import Messages from "./Components/Settings/Messages";
 import Checkins from "./Components/Checkins";
+import Dashboard from "./Components/Dashboard"
 
 import CheckinProfile from "./Components/Checkins/CheckinProfile"
 import Profile from "./Components/Profile";
@@ -38,6 +39,7 @@ export default class App extends Component {
               <Route path="/" exact component={Login} />
               <Home>
                 <Switch>
+                  
                 <Route path="/Insights" component={Insights} />
                 <Route path="/checkinprofile" component={CheckinProfile} />
                 <Route path="/Profile" component={Profile} />
@@ -48,7 +50,7 @@ export default class App extends Component {
                   <Route path="/form" component={AddField} />
                   <Route path="/home" component={HomeScreen} />
                   <Route path="/vistor" component={Vistor} />
-                  <Route path="/dashboard" component={Settings} />
+                  <Route path="/dashboard" component={Dashboard} />
                   <Route path="/devices" component={Devices} />
                   <Route path="/messages" component={Messages} />
                 </Switch>

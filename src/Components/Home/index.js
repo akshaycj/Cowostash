@@ -11,6 +11,7 @@ import email from "../../Res/email.svg";
 import MainContent from "../MainContent";
 import { Link } from "react-router-dom";
 
+
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
@@ -19,7 +20,8 @@ export default class App extends Component {
   state = {
     collapsed: false,
     notifications: ["asdsad", "sadas", "dasd"],
-    date: ""
+    date: "",
+    Profile:[]
   };
   componentDidMount() {
     setInterval(() => {
@@ -36,12 +38,24 @@ export default class App extends Component {
   onClickNotification() {
     this.setState({ notifications: [] });
   }
+  onClickProfile() {
+    this.setState({ Profile: [] });
+  }
   render() {
     const text = <span>Notifications</span>;
     const content = (
       <div>
         <p>Content</p>
         <p>Content</p>
+      </div>
+    );
+      
+    const contentProfile = (
+      <div>
+        <Link to="/profile">
+        <p>Account Settings</p>
+        </Link>
+        <p>Signout</p>
       </div>
     );
     return (
@@ -62,10 +76,13 @@ export default class App extends Component {
             </div>
             <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
               <Menu.Item key="1">
+              <Link to="/dashboard">
                 <Icon style={{ color: "white" }}>
                   <img src={logo} />
+
                 </Icon>
                 <span className="nav-text">Dashboard</span>
+                </Link>
               </Menu.Item>
               <Menu.Item key="2">
                 <Link to="/checkins">
@@ -173,6 +190,21 @@ export default class App extends Component {
                         style={{ padding: 5, fontSize: 20 }}
                       />
                     </Badge>
+                  </Popover>
+                  <Popover
+                    placement="bottomRight"
+                    
+                    content={contentProfile}
+                    trigger="click"
+                    onClick={this.onClickProfile.bind(this)}
+                  >
+                   
+                      <Icon
+                        style={{ fontSize: 22 }}
+                        type="user"
+                        style={{ padding: 6, fontSize: 22 }}
+                      />
+                    
                   </Popover>
                 </div>
               </div>

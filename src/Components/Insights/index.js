@@ -90,7 +90,7 @@ export default class extends Component {
         ))}
         <div style={{width:"50%",height:"auto"}}>
         <div className="insight-card" >
-        < Line height="70%" width="100%" data={this.state.chartdata} />
+        < Line height="70%" width="100%" type="line" data={this.state.chartdata} />
         </div>
         <div className="insight-card" >
         < Pie height="70%" width="100%" data={this.state.chartdata} />

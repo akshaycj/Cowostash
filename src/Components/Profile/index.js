@@ -50,7 +50,7 @@ export default class  extends Component {
         <Cascader options={options}  placeholder="Select a Department" />
         <h3>DESIGNATION</h3>
         <Input/>
-
+        <Button>Update</Button>
         </div>
         <div style={{display:"flex",flexDirection:"column",textAlign:"flex-start"}}>
         <div><b>Avatar</b></div>
