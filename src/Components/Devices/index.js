@@ -1,40 +1,8 @@
 import React, { Component } from "react";
 import "./index.css";
-import { Card, Input, Icon, Table } from "antd";
+import { Card, Input, Icon, Table, Popconfirm } from "antd";
 import Util from "../../Utils";
 import { BASE_URL } from "./../../Utils/Api";
-
-const columns = [
-  {
-    title: "ID",
-    dataIndex: "id",
-    key: "id"
-  },
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name"
-  },
-  {
-    title: "User Login Id",
-    dataIndex: "code",
-    key: "code"
-  },
-  {
-    title: "Token ID",
-    key: "token_code",
-    dataIndex: "token_code"
-  },
-  {
-    title: "Delete",
-    key: "Delete",
-    render: (text, record) => (
-      <span>
-        <Icon type="delete" theme="outlined" />
-      </span>
-    )
-  }
-];
 
 const data = [
   {
@@ -94,7 +62,49 @@ export default class extends Component {
         that.setState({ data: data.devices });
       });
   }
+
+  onDelete = id => {
+    console.log("id:", id);
+  };
   render() {
+    const columns = [
+      {
+        title: "ID",
+        dataIndex: "id",
+        key: "id"
+      },
+      {
+        title: "Name",
+        dataIndex: "name",
+        key: "name"
+      },
+      {
+        title: "User Login Id",
+        dataIndex: "code",
+        key: "code"
+      },
+      {
+        title: "Token ID",
+        key: "token_code",
+        dataIndex: "token_code"
+      },
+      {
+        title: "Delete",
+        key: "Delete",
+        render: (text, record) => (
+          <span>
+            <Popconfirm
+              title="Are you sure？"
+              okText="Yes"
+              cancelText="No"
+              onConfirm={this.onDelete.bind(this, record.id)}
+            >
+              <Icon type="delete" theme="outlined" />
+            </Popconfirm>
+          </span>
+        )
+      }
+    ];
     return (
       <div className="devices-main">
         <div className="devices-sub">

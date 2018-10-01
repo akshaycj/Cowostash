@@ -59,12 +59,10 @@ export default class extends Component {
             return res.json();
           })
           .then(data => {
-            console.log("data", data);
-
             Utils.setSessionToken("JWTToken", data.jwt);
             Utils.setSessionToken("comapnyId", data.company_id);
             Utils.setSessionToken("userId", data.user_id);
-            if (this.state.checkboxValue) {
+            if (that.state.checkboxValue) {
               Utils.setCookie("JWTToken", data.jwt);
               Utils.setCookie("comapanyId", data.company_id);
               Utils.setCookie("userId", data.user_id);
