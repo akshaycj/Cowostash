@@ -5,6 +5,15 @@ import Util from "../../Utils";
 import { BASE_URL } from "./../../Utils/Api";
 
 const Utils = new Util();
+const auth = "Bearer " + Utils.getToken();
+const url =
+  BASE_URL +
+  "dashboard/companies/" +
+  Utils.getCompanyId() +
+  "/users/" +
+  Utils.getUserId() +
+  "/devices";
+
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -17,22 +26,10 @@ export default class extends Component {
     };
   }
   componentDidMount() {
+    this.getDevices();
+  }
+  getDevices = () => {
     var that = this;
-    const url =
-      BASE_URL +
-      "dashboard/companies/" +
-      Utils.getCompanyId() +
-      "/users/" +
-      Utils.getUserId() +
-      "/devices";
-
-    const test =
-      BASE_URL +
-      "dashboard/companies/" +
-      Utils.getCompanyId() +
-      "/type_of_visits";
-    const auth = "Bearer " + Utils.getToken();
-    console.log("auth--", auth);
 
     fetch(url, {
       method: "GET",
@@ -49,7 +46,7 @@ export default class extends Component {
         console.log("devices" + Utils.getToken(), data);
         that.setState({ data: data.devices, loading: false });
       });
-  }
+  };
 
   onDelete = id => {
     console.log("id:", id);
@@ -61,7 +58,18 @@ export default class extends Component {
     this.setState({ add: false });
   };
 
-  onConfirm = () => {};
+  onConfirm = () => {
+    var device = {
+      device: {
+        name: this.state.newDeviceName
+      }
+    };
+    fetch();
+  };
+
+  onNameChange = e => {
+    this.setState({ newDeviceName: e.target.value });
+  };
 
   render() {
     const columns = [
@@ -139,6 +147,7 @@ export default class extends Component {
           dataSource={this.state.data}
         />
         <Modal
+          title="Add a new device"
           visible={this.state.add}
           onCancel={this.onCancel}
           onOk={this.onConfirm}
@@ -160,7 +169,12 @@ export default class extends Component {
               </div>
             </div>
           ]}
-        />
+        >
+          <div>
+            Device Name:
+            <Input />
+          </div>
+        </Modal>
       </div>
     );
   }
