@@ -4,7 +4,7 @@ import { Input, Checkbox } from "antd";
 import { Link, Redirect } from "react-router-dom";
 import logo from "../../Res/textlogo.png";
 import Util from "../../Utils";
-import axios from "axios";
+import { BASE_URL } from "./../../Utils/Api";
 
 const Utils = new Util();
 
@@ -47,17 +47,14 @@ export default class extends Component {
             password: this.state.pass
           }
         };
-        fetch(
-          "https://cowostash-staging-app.herokuapp.com/dashboard/user_token",
-          {
-            method: "post",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(auth)
-          }
-        )
+        fetch(BASE_URL + "dashboard/user_token", {
+          method: "post",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(auth)
+        })
           .then(res => {
             return res.json();
           })

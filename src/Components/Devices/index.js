@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./index.css";
 import { Card, Input, Icon, Table } from "antd";
 import Util from "../../Utils";
+import { BASE_URL } from "./../../Utils/Api";
 
 const columns = [
   {
@@ -58,9 +59,7 @@ export default class extends Component {
       table: true
     };
   }
-  componentDidMount() {
-    console.log("--User:", Utils.getUserId());
-  }
+  componentDidMount() {}
   render() {
     return (
       <div className="devices-main">
