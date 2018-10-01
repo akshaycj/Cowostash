@@ -2,15 +2,7 @@ import React, { Component } from "react";
 import { Layout, Menu, Icon, Badge, Popover } from "antd";
 import logo from "../../Res/logo.svg";
 import "./index.css";
-import door from "../../Res/door.svg";
-import roc from "../../Res/rocket.svg";
-import staff from "../../Res/staff.svg";
-import events from "../../Res/ticket.svg";
-import allpep from "../../Res/users.svg";
-import email from "../../Res/email.svg";
-import MainContent from "../MainContent";
 import { Link } from "react-router-dom";
-
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -21,7 +13,7 @@ export default class App extends Component {
     collapsed: false,
     notifications: ["asdsad", "sadas", "dasd"],
     date: "",
-    Profile:[]
+    Profile: []
   };
   componentDidMount() {
     setInterval(() => {
@@ -49,11 +41,11 @@ export default class App extends Component {
         <p>Content</p>
       </div>
     );
-      
+
     const contentProfile = (
       <div>
         <Link to="/profile">
-        <p>Account Settings</p>
+          <p>Account Settings</p>
         </Link>
         <p>Signout</p>
       </div>
@@ -76,12 +68,11 @@ export default class App extends Component {
             </div>
             <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
               <Menu.Item key="1">
-              <Link to="/dashboard">
-                <Icon style={{ color: "white" }}>
-                  <img src={logo} />
-
-                </Icon>
-                <span className="nav-text">Dashboard</span>
+                <Link to="/dashboard">
+                  <Icon style={{ color: "white" }}>
+                    <img src={logo} />
+                  </Icon>
+                  <span className="nav-text">Dashboard</span>
                 </Link>
               </Menu.Item>
               <Menu.Item key="2">
@@ -115,9 +106,9 @@ export default class App extends Component {
                 <span className="nav-text">Emails</span>
               </Menu.Item>
               <Menu.Item key="8">
-              <Link to="/insights">
-                <Icon style={{ fontSize: 20 }} type="pie-chart" />
-                <span className="nav-text">Insights</span>
+                <Link to="/insights">
+                  <Icon style={{ fontSize: 20 }} type="pie-chart" />
+                  <span className="nav-text">Insights</span>
                 </Link>
               </Menu.Item>
 
@@ -193,18 +184,15 @@ export default class App extends Component {
                   </Popover>
                   <Popover
                     placement="bottomRight"
-                    
                     content={contentProfile}
                     trigger="click"
                     onClick={this.onClickProfile.bind(this)}
                   >
-                   
-                      <Icon
-                        style={{ fontSize: 22 }}
-                        type="user"
-                        style={{ padding: 6, fontSize: 22 }}
-                      />
-                    
+                    <Icon
+                      style={{ fontSize: 22 }}
+                      type="user"
+                      style={{ padding: 6, fontSize: 22 }}
+                    />
                   </Popover>
                 </div>
               </div>

@@ -3,11 +3,11 @@ import "./index.css";
 import { LineChart } from "react-easy-chart";
 
 export default class Graph extends Component {
-  constructor(props){
-    super(props)
-    this.state={
-      data:""
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: ""
+    };
   }
   render() {
     return (
@@ -15,16 +15,13 @@ export default class Graph extends Component {
         <div className="graph-top">
           <div className="top-text-layer">Check-ins</div>
           <div className="weeka-button">
-            <div style={{textAlign:'center',width:'100%'}} >
-              Week
-            </div>
+            <div style={{ textAlign: "center", width: "100%" }}>Week</div>
           </div>
         </div>
         <div>
           <LineChart
             xType={"text"}
             axes
-            width={600}
             height={220}
             interpolate={"cardinal"}
             data={[

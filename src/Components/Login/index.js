@@ -135,6 +135,7 @@ export default class extends Component {
           <input
             className="login__form--textbox"
             placeholder="Password"
+            type="password"
             onChange={this.handlePasswordChange.bind(this)}
           />
           <div

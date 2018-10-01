@@ -1,6 +1,6 @@
-
 .main-rect1 {
-  width: 590px;
+  max-width: 590px;
+  width: 60%;
   height: 260px;
   border: solid 1px #000000;
   display: flex;
@@ -64,7 +64,7 @@
   color: #ffffff;
 }
 
-.weeka-button h1{
+.weeka-button h1 {
   font-family: Offside;
   font-size: 14px;
   font-weight: normal;
@@ -74,5 +74,4 @@
   letter-spacing: normal;
   text-align: justify;
   color: #ffffff;
-
 }
