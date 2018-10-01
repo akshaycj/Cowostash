@@ -1,23 +1,8 @@
 import React, { Component } from "react";
 import "./index.css";
-import { Card, Input, Icon, Table, Popconfirm } from "antd";
+import { Card, Input, Icon, Table, Popconfirm, Modal } from "antd";
 import Util from "../../Utils";
 import { BASE_URL } from "./../../Utils/Api";
-
-const data = [
-  {
-    id: "1",
-    name: "john Doe",
-    code: "12345",
-    token: "25"
-  },
-  {
-    id: "1",
-    name: "john Doe",
-    code: "12345",
-    token: "25"
-  }
-];
 
 const Utils = new Util();
 export default class extends Component {
@@ -25,7 +10,10 @@ export default class extends Component {
     super(props);
     this.state = {
       table: true,
-      data: []
+      data: [],
+      newDeviceName: "",
+      loading: true,
+      add: false
     };
   }
   componentDidMount() {
@@ -59,13 +47,22 @@ export default class extends Component {
       })
       .then(data => {
         console.log("devices" + Utils.getToken(), data);
-        that.setState({ data: data.devices });
+        that.setState({ data: data.devices, loading: false });
       });
   }
 
   onDelete = id => {
     console.log("id:", id);
   };
+  onAdd = () => {
+    this.setState({ add: true });
+  };
+  onCancel = () => {
+    this.setState({ add: false });
+  };
+
+  onConfirm = () => {};
+
   render() {
     const columns = [
       {
@@ -99,7 +96,11 @@ export default class extends Component {
               cancelText="No"
               onConfirm={this.onDelete.bind(this, record.id)}
             >
-              <Icon type="delete" theme="outlined" />
+              <Icon
+                type="delete"
+                style={{ fontSize: 18, cursor: "pointer" }}
+                theme="outlined"
+              />
             </Popconfirm>
           </span>
         )
@@ -125,18 +126,41 @@ export default class extends Component {
           <div
             className="theme-button"
             style={{ width: "200px", height: "40px" }}
+            onClick={this.onAdd}
           >
             Add Device{" "}
             <Icon style={{ fontSize: "18px" }} type="plus" theme="outlined" />
           </div>
         </div>
-        {this.state.table ? (
-          <Table
-            style={{ marginTop: "30px" }}
-            columns={columns}
-            dataSource={this.state.data}
-          />
-        ) : null}
+        <Table
+          loading={this.state.loading}
+          style={{ marginTop: "30px" }}
+          columns={columns}
+          dataSource={this.state.data}
+        />
+        <Modal
+          visible={this.state.add}
+          onCancel={this.onCancel}
+          onOk={this.onConfirm}
+          footer={[
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <div
+                style={{ width: 25, marginLeft: 5 }}
+                className="theme-button"
+                onClick={this.onConfirm}
+              >
+                Add
+              </div>
+              <div
+                onClick={this.onCancel}
+                style={{ width: 25, marginLeft: 5 }}
+                className="theme-button"
+              >
+                Cancel
+              </div>
+            </div>
+          ]}
+        />
       </div>
     );
   }

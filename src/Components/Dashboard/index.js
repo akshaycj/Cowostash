@@ -11,6 +11,7 @@ export default class extends Component {
           padding: "15px",
           background: "white",
           display: "flex",
+          margin: 20,
           flexDirection: "column"
         }}
       >
