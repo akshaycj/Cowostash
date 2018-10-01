@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./index.css";
-import { Card, Input, Icon, Table, Popconfirm, Modal } from "antd";
+import { Card, Input, Icon, Table, Popconfirm, Modal, message } from "antd";
 import Util from "../../Utils";
 import { BASE_URL } from "./../../Utils/Api";
 
@@ -43,7 +43,6 @@ export default class extends Component {
         return res.json();
       })
       .then(data => {
-        console.log("devices" + Utils.getToken(), data);
         that.setState({ data: data.devices, loading: false });
       });
   };
@@ -59,12 +58,34 @@ export default class extends Component {
   };
 
   onConfirm = () => {
+    var that = this;
     var device = {
       device: {
         name: this.state.newDeviceName
       }
     };
-    fetch();
+    console.log("newdevice", device);
+
+    fetch(url, {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: auth
+      },
+      body: JSON.stringify(device)
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        that.setState({ add: false });
+        that.getDevices();
+        message.success(data.message);
+      })
+      .catch(error => {
+        Utils.displayNotification(error.response.data.error, "Error", "error");
+      });
   };
 
   onNameChange = e => {
@@ -172,7 +193,7 @@ export default class extends Component {
         >
           <div>
             Device Name:
-            <Input />
+            <Input onChange={this.onNameChange} />
           </div>
         </Modal>
       </div>
