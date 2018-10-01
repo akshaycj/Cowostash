@@ -48,7 +48,25 @@ export default class extends Component {
   };
 
   onDelete = id => {
-    console.log("id:", id);
+    var that = this;
+    fetch(url + "/" + id, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: auth
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        that.getDevices();
+        message.success(data.message);
+      })
+      .catch(error => {
+        Utils.displayNotification(error.response.data.error, "Error", "error");
+      });
   };
   onAdd = () => {
     this.setState({ add: true });
@@ -64,7 +82,6 @@ export default class extends Component {
         name: this.state.newDeviceName
       }
     };
-    console.log("newdevice", device);
 
     fetch(url, {
       method: "post",
