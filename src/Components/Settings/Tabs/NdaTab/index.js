@@ -90,8 +90,35 @@ export default class extends Component {
         });
     }
   };
-  getdata(title, nda, active) {
-    console.log("new---", title, nda, active);
+  getdata(title, content, active, id) {
+    var that = this;
+
+    console.log("-mmmm---", title, content, active, id);
+
+    const nda = {
+      nda: { title, active, content }
+    };
+
+    fetch(url + "/" + id, {
+      method: "put",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: AUTH
+      },
+      body: JSON.stringify(nda)
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        that.getNDAs();
+
+        message.success(data.message);
+      })
+      .catch(error => {
+        Utils.displayNotification(error.response.data.error, "Error", "error");
+      });
   }
   render() {
     return (
@@ -154,6 +181,7 @@ export default class extends Component {
               <div>
                 <SquareCard
                   img={true}
+                  id={item.id}
                   onValue={this.onEnable.bind(this)}
                   onUpdate={this.getdata.bind(this)}
                   title={item.title}

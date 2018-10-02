@@ -28,15 +28,21 @@ export default class extends Component {
       image: true,
       staff: false,
       visible: false,
-      title: "",
-      Nda: "",
-      email: ""
+      title: "" || this.props.title,
+      Nda: "" || this.props.content,
+      email: "",
+      id: "" || this.props.id
     };
   }
 
   onEn = () => {
     this.setState({ enable: !this.state.enable });
-    this.props.onUpdate(this.state.title, this.state.Nda, !this.state.enable);
+    this.props.onUpdate(
+      this.state.title,
+      this.state.Nda,
+      !this.state.enable,
+      this.state.id
+    );
   };
   showModal = () => {
     this.setState({
@@ -59,7 +65,7 @@ export default class extends Component {
 
   getdataforNDA = (title, Nda) => {
     this.setState({ title, Nda });
-    this.props.onUpdate(title, Nda, this.state.enable);
+    this.props.onUpdate(title, Nda, this.state.enable, this.state.id);
   };
   getdataforStaff = (data1, data2) => {
     this.setState({ title: data1, email: data2 });
