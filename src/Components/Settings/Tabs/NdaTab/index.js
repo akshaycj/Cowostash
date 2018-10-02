@@ -20,23 +20,7 @@ export default class extends Component {
     };
   }
   componentDidMount() {
-    fetch(url, {
-      method: "get",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: AUTH
-      }
-    })
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        console.log("incoming---", data);
-      })
-      .catch(error => {
-        Utils.displayNotification(error.response.data.error, "Error", "error");
-      });
+    this.getNDAs();
   }
   onEnable = a => {
     console.log("sss--", a);
@@ -49,6 +33,27 @@ export default class extends Component {
   };
   onNDA = e => {
     this.setState({ nda: e.target.value });
+  };
+
+  getNDAs = () => {
+    var that = this;
+    fetch(url, {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: AUTH
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        that.setState({ data: data.ndas });
+      })
+      .catch(error => {
+        Utils.displayNotification(error.response.data.error, "Error", "error");
+      });
   };
   onAddButton = () => {
     var that = this;
@@ -72,7 +77,7 @@ export default class extends Component {
           return res.json();
         })
         .then(data => {
-          that.setState({ data });
+          that.getNDAs();
 
           message.success(data.message);
         })
