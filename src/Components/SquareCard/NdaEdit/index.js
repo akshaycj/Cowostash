@@ -12,11 +12,9 @@ export default class extends Component {
     };
   }
   onTitle = e => {
-    console.log("value", e.target.value);
     this.setState({ Title: e.target.value });
   };
   onNda = f => {
-    console.log("value1", f.target.value);
     this.setState({ Nda: f.target.value });
   };
   onUpdate = () => {

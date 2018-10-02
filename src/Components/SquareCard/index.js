@@ -36,7 +36,7 @@ export default class extends Component {
 
   onEn = () => {
     this.setState({ enable: !this.state.enable });
-    this.props.onValue(this.state.enable);
+    this.props.onUpdate(this.state.title, this.state.Nda, !this.state.enable);
   };
   showModal = () => {
     this.setState({
@@ -52,19 +52,17 @@ export default class extends Component {
   };
 
   handleCancel = e => {
-    console.log(e);
     this.setState({
       visible: false
     });
   };
 
-  getdata(data1, data2) {
-    this.setState({ title: data1 });
-    this.setState({ Nda: data2 });
-  }
+  getdataforNDA = (title, Nda) => {
+    this.setState({ title, Nda });
+    this.props.onUpdate(title, Nda, this.state.enable);
+  };
   getdataforStaff = (data1, data2) => {
-    this.setState({ title: data1 });
-    this.setState({ email: data2 });
+    this.setState({ title: data1, email: data2 });
   };
   getdataintablet = data => {
     console.log("get", data);
@@ -147,6 +145,7 @@ export default class extends Component {
                   <NdaEdit
                     title={this.props.title}
                     content={this.props.content}
+                    data={this.getdataforNDA}
                   />
                 ) : null}
                 {this.props.edit && this.props.edit1 ? (

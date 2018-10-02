@@ -90,7 +90,9 @@ export default class extends Component {
         });
     }
   };
-  getdata(data) {}
+  getdata(title, nda, active) {
+    console.log("new---", title, nda, active);
+  }
   render() {
     return (
       <div style={{ overflowY: "auto", height: "95%" }}>
@@ -153,7 +155,7 @@ export default class extends Component {
                 <SquareCard
                   img={true}
                   onValue={this.onEnable.bind(this)}
-                  getdata={this.getdata.bind(this)}
+                  onUpdate={this.getdata.bind(this)}
                   title={item.title}
                   content={item.content}
                   edit={false}
