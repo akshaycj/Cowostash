@@ -117,19 +117,19 @@ export default class extends Component {
         <div className="square-card-menu">
           <div className="square-card-menu-inner">
             <div className="square-card-menu-inner-circle">
-              {this.state.enable ? 
+              {this.state.enable ? (
                 <Icon
                   onClick={this.onEn}
                   type="check-circle-o"
                   style={{ alignSelf: "center", margin: "auto" }}
                 />
-              : 
+              ) : (
                 <Icon
                   type="close-circle"
                   onClick={this.onEn}
                   style={{ alignSelf: "center", margin: "auto" }}
                 />
-              }
+              )}
             </div>
             <div className="square-card-menu-inner-circle">
               <Icon
@@ -144,7 +144,10 @@ export default class extends Component {
                 onCancel={this.handleCancel}
               >
                 {this.props.edit1 && this.props.edit2 ? (
-                  <NdaEdit data={this.getdata.bind(this)} />
+                  <NdaEdit
+                    title={this.props.title}
+                    content={this.props.content}
+                  />
                 ) : null}
                 {this.props.edit && this.props.edit1 ? (
                   <StaffEdit data={this.getdataforStaff} />

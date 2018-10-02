@@ -155,6 +155,7 @@ export default class extends Component {
                   onValue={this.onEnable.bind(this)}
                   getdata={this.getdata.bind(this)}
                   title={item.title}
+                  content={item.content}
                   edit={false}
                   edit1={true}
                   edit2={true}
