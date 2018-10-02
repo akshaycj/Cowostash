@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import "./index.css";
-import { Switch, Icon, Input } from "antd";
+import { Switch, Icon, Input, message } from "antd";
 import SquareCard from "../../../SquareCard";
+import Util from "./../../../../Utils/index";
+import { BASE_URL, AUTH } from "./../../../../Utils/Api";
 
 const { TextArea } = Input;
+const Utils = new Util();
+const url = BASE_URL + "/dashboard/companies/" + Utils.getCompanyId() + "/ndas";
 
 export default class extends Component {
   constructor(props) {
@@ -28,10 +32,38 @@ export default class extends Component {
     this.setState({ nda: e.target.value });
   };
   onAddButton = () => {
+    var that = this;
     if (this.state.title && this.state.nda !== "") {
       const data = this.state.data;
+      const nda = {
+        nda: { title: this.state.title, active: true, content: this.state.nda }
+      };
       data.push({ title: this.state.title, nda: this.state.nda });
-      this.setState({ data });
+
+      fetch(url, {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: AUTH
+        },
+        body: JSON.stringify(nda)
+      })
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          that.setState({ data });
+
+          message.success(data.message);
+        })
+        .catch(error => {
+          Utils.displayNotification(
+            error.response.data.error,
+            "Error",
+            "error"
+          );
+        });
     }
   };
   getdata(data) {}
@@ -86,13 +118,17 @@ export default class extends Component {
         ) : null}
         <hr style={{ width: "95%", marginTop: "3%" }} />
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          <SquareCard img={true} onValue={this.onEnable.bind(this)}  title="Standard Template NDA1" />
+          <SquareCard
+            img={true}
+            onValue={this.onEnable.bind(this)}
+            title="Standard Template NDA1"
+          />
           {this.state.data.map(item => {
             return (
               <div>
                 <SquareCard
                   img={true}
-                  onValue={this.onEnable.bind(this)} 
+                  onValue={this.onEnable.bind(this)}
                   getdata={this.getdata.bind(this)}
                   title={item.title}
                   edit={false}

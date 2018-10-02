@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import "./index.css";
 import { Card, Input, Icon, Table, Popconfirm, Modal, message } from "antd";
 import Util from "../../Utils";
-import { BASE_URL } from "./../../Utils/Api";
+import { BASE_URL, AUTH } from "./../../Utils/Api";
 
 const Utils = new Util();
-const auth = "Bearer " + Utils.getToken();
+
 const url =
   BASE_URL +
   "dashboard/companies/" +
@@ -36,7 +36,7 @@ export default class extends Component {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: auth
+        Authorization: AUTH
       }
     })
       .then(res => {
@@ -54,7 +54,7 @@ export default class extends Component {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: auth
+        Authorization: AUTH
       }
     })
       .then(res => {
@@ -88,7 +88,7 @@ export default class extends Component {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: auth
+        Authorization: AUTH
       },
       body: JSON.stringify(device)
     })
