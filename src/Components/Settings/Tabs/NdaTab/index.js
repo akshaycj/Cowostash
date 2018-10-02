@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./index.css";
-import { Switch, Icon, Input, message } from "antd";
+import { Switch, Icon, Input, message, Spin } from "antd";
 import SquareCard from "../../../SquareCard";
 import Util from "./../../../../Utils/index";
 import { BASE_URL, AUTH } from "./../../../../Utils/Api";
@@ -16,7 +16,8 @@ export default class extends Component {
       add: false,
       title: "",
       nda: "",
-      data: []
+      data: [],
+      loading: true
     };
   }
   componentDidMount() {
@@ -36,6 +37,7 @@ export default class extends Component {
   };
 
   getNDAs = () => {
+    this.setState({ loading: true });
     var that = this;
     fetch(url, {
       method: "get",
@@ -49,7 +51,7 @@ export default class extends Component {
         return res.json();
       })
       .then(data => {
-        that.setState({ data: data.ndas });
+        that.setState({ data: data.ndas, loading: false });
       })
       .catch(error => {
         Utils.displayNotification(error.response.data.error, "Error", "error");
@@ -176,23 +178,30 @@ export default class extends Component {
             onValue={this.onEnable.bind(this)}
             title="Standard Template NDA1"
           />
-          {this.state.data.map(item => {
-            return (
-              <div>
-                <SquareCard
-                  img={true}
-                  id={item.id}
-                  onValue={this.onEnable.bind(this)}
-                  onUpdate={this.getdata.bind(this)}
-                  title={item.title}
-                  content={item.content}
-                  edit={false}
-                  edit1={true}
-                  edit2={true}
-                />
-              </div>
-            );
-          })}
+
+          {this.state.loading ? (
+            <div style={{ alignSelf: "center" }}>
+              <Spin />
+            </div>
+          ) : (
+            this.state.data.map(item => {
+              return (
+                <div>
+                  <SquareCard
+                    img={true}
+                    id={item.id}
+                    onValue={this.onEnable.bind(this)}
+                    onUpdate={this.getdata.bind(this)}
+                    title={item.title}
+                    content={item.content}
+                    edit={false}
+                    edit1={true}
+                    edit2={true}
+                  />
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
     );

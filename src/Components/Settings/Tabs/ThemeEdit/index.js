@@ -257,17 +257,17 @@ export default class extends Component {
                 <Input style={{ width: "200px" }} placeholder="Interview" />
                 <div className="theme-button">Add</div>
               </div>
-              <hr style={{ width: "320px" }} />
-              <div className="Theme-padding QuickLinkPop ">
-                <h3>Enable QR</h3>
-                <Switch
-                  checkedChildren={<Icon type="check" />}
-                  onChange={this.onSwitch}
-                  unCheckedChildren={<Icon type="cross" />}
-                />
-              </div>
             </div>
           ) : null}
+          <hr style={{ width: "320px" }} />
+          <div className="Theme-padding QuickLinkPop ">
+            <h3>Enable QR</h3>
+            <Switch
+              checkedChildren={<Icon type="check" />}
+              onChange={this.onSwitch}
+              unCheckedChildren={<Icon type="cross" />}
+            />
+          </div>
         </div>
 
         <div className="Ipad-Container">

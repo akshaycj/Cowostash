@@ -37,12 +37,14 @@ export default class extends Component {
 
   onEn = () => {
     this.setState({ enable: !this.state.enable });
-    this.props.onUpdate(
-      this.state.title,
-      this.state.Nda,
-      !this.state.enable,
-      this.state.id
-    );
+    this.props.edit1 && this.props.edit2
+      ? this.props.onUpdate(
+          this.state.title,
+          this.state.Nda,
+          !this.state.enable,
+          this.state.id
+        )
+      : this.props.onValue(!this.state.enable);
   };
   showModal = () => {
     this.setState({
