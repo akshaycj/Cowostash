@@ -19,6 +19,25 @@ export default class extends Component {
       data: []
     };
   }
+  componentDidMount() {
+    fetch(url, {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: AUTH
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        console.log("incoming---", data);
+      })
+      .catch(error => {
+        Utils.displayNotification(error.response.data.error, "Error", "error");
+      });
+  }
   onEnable = a => {
     console.log("sss--", a);
   };
