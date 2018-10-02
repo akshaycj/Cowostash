@@ -140,7 +140,7 @@ export default class extends Component {
               <Modal
                 title="Edit"
                 visible={this.state.visible}
-                onOk={this.handleOk}
+                footer={null}
                 onCancel={this.handleCancel}
               >
                 {this.props.edit1 && this.props.edit2 ? (

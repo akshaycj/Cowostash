@@ -24,7 +24,14 @@ export default class extends Component {
   };
   render() {
     return (
-      <div className="">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
         <Input
           value={this.state.Title}
           style={{ marginTop: "1%", width: "320px" }}
@@ -39,7 +46,9 @@ export default class extends Component {
           placeholder="NDA"
           autosize={{ minRows: "6" }}
         />
-        <Button onClick={this.onUpdate}>update</Button>
+        <Button style={{ marginTop: 10 }} onClick={this.onUpdate}>
+          update
+        </Button>
       </div>
     );
   }
