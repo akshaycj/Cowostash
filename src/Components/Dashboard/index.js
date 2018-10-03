@@ -3,9 +3,22 @@ import "./index.css";
 import Graph from "../Graph";
 import Calendar from "react-calendar";
 import Box from "../Box";
-
+import {Bar, Pie, Line, Doughnut} from 'react-chartjs-2';
 
 export default class extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+      chartdata: {
+        labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+        datasets: [{
+          label: 'Visitors',
+          data: [12, 19, 3, 17, 6, 3, 7],
+          borderColor: "black"
+        }]
+      }
+    }
+  }
   render() {
     return (
       <div
@@ -23,7 +36,19 @@ export default class extends Component {
           <Box top="User Registered" main="463" />
         </div>
         <div className="container" style={{ marginLeft: 20 }}>
-          <Graph />
+        
+        <div className="Dashboard-Graph" >
+        <div>
+          <h3 style={{display:"flex",justifyContent:"flex-start"}}>Check-ins</h3>
+        <div style={{display:"flex",justifyContent:"flex-end"}}>
+          <div className="theme-button">Day</div>
+          <div className="theme-button">week</div>
+          <div className="theme-button">Month</div>
+        </div>
+        </div>
+        < Line height="30%" width="100%" type="line" data={this.state.chartdata} />
+        </div>
+       
           <div style={{ marginLeft: 40 }}>
             <Calendar />
           </div>
