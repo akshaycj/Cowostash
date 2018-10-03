@@ -79,51 +79,35 @@ export default class extends Component {
   }
 
   onSave = () => {
-
-    "configuration": {
-      "id": 2,
-      "background_image": null,
-      "logo": null,
-      "text_color": "Red",
-      "company_id": "1",
-      "company_name": "Cowostash",
-      "main_text": null,
-      "sub_text": null,
-      "quick_links": [],
-      "photo_capture": false
-  }
-  var data ={
-    configuration:{
-      id:this.state.config_id,
-      background_image:this.state.ipadbackground,
-      logo:this.state.logo,
-      text_color:this.state.TextCol,
-      main_text:this.state.MainText,
-      sub_text:this.state.SubText,
-      quick_links:this.state.quickLinks
-    }
-  }
-  fetch(url+'/'+this.state.config_id, {
-    method: "post",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: AUTH
-    },
-    body: JSON.stringify(data)
-  })
-    .then(res => {
-      return res.json();
+    var data = {
+      configuration: {
+        id: this.state.config_id,
+        background_image: this.state.ipadbackground,
+        logo: this.state.logo,
+        text_color: this.state.TextCol,
+        main_text: this.state.MainText,
+        sub_text: this.state.SubText,
+        quick_links: this.state.quickLinks
+      }
+    };
+    fetch(url + "/" + this.state.config_id, {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: AUTH
+      },
+      body: JSON.stringify(data)
     })
-    .then(data => {
-      
-      message.success(data.message);
-    })
-    .catch(error => {
-      Utils.displayNotification(error.response.data.error, "Error", "error");
-    });
-
-
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        message.success(data.message);
+      })
+      .catch(error => {
+        Utils.displayNotification(error.response.data.error, "Error", "error");
+      });
   };
 
   onEnableCheck = value => {
