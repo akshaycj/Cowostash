@@ -13,7 +13,7 @@ import Util from "./../../../../Utils/index";
 const Utils = new Util();
 const { TextArea } = Input;
 const url =
-  BASE_URL + "/dashboard/companies/" + Utils.getCompanyId() + "/configurations";
+  BASE_URL + "dashboard/companies/" + Utils.getCompanyId() + "/configurations";
 
 export default class extends Component {
   constructor(props) {
@@ -74,6 +74,8 @@ export default class extends Component {
         return res.json();
       })
       .then(data => {
+        console.log("data---", data);
+
         that.setState({ config_id: data.configuration.id });
       });
   }
@@ -81,9 +83,6 @@ export default class extends Component {
   onSave = () => {
     var data = {
       configuration: {
-        id: this.state.config_id,
-        background_image: this.state.ipadbackground,
-        logo: this.state.logo,
         text_color: this.state.TextCol,
         main_text: this.state.MainText,
         sub_text: this.state.SubText,
@@ -91,7 +90,7 @@ export default class extends Component {
       }
     };
     fetch(url + "/" + this.state.config_id, {
-      method: "post",
+      method: "put",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
