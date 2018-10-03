@@ -1,7 +1,20 @@
 import React, { Component } from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
-import {Bar, Pie, Line} from 'react-chartjs-2';
+import {Bar, Pie, Line, Doughnut} from 'react-chartjs-2';
+import { DatePicker, Input } from 'antd';
+import { Cascader } from 'antd';
+const options = [{
+  value: 'zhejiang',
+  label: 'Zhejiang',
+  
+}, {
+  value: 'jiangsu',
+  label: 'Jiangsu',
+}]
+
+const { RangePicker} = DatePicker;
+const Search = Input.Search;
 
 export default class extends Component {
   constructor(props) {
@@ -21,21 +34,41 @@ export default class extends Component {
         datasets: [{
         label: "Visits",
         backgroundColor: ["purple","blue","red"],
-       
+        size: 'default',
         data: [10, 40, 5],
         }]
       }
       
     };
   }
-  
+ onChange=(value)=> {
+    console.log(value);
+  }
   onClick = () => {};
 
   render() {
     return (
       <div>
-        <div className="checkin-header">
-          
+        <div className="Insight-header">
+        <div className="checkin-tab">
+        <Search
+      placeholder="search"
+      onSearch={value => console.log(value)}
+      style={{ width: 120 }}
+    />
+    <div className="checkin-Cascader">
+    <Cascader options={options} style={{width:"100px"}} onChange={this.onChange} placeholder="Staffs" />
+    <Cascader options={options} style={{width:"140px"}} onChange={this.onChange} placeholder="Department" />
+    </div>
+    </div>
+    <div className="checkin-daybar">
+        <h4>All Day</h4>
+        <h4>All Week</h4>
+        <h4>All Month</h4>
+        <h4>All Year</h4>
+        
+        </div> 
+        <RangePicker style={{width:"250px"}}  size="small" />
         </div>
         <br />
         <br />
@@ -93,7 +126,7 @@ export default class extends Component {
         < Line height="70%" width="100%" type="line" data={this.state.chartdata} />
         </div>
         <div className="insight-card" >
-        < Pie height="70%" width="100%" data={this.state.chartdata} />
+        < Doughnut height="70%" width="100%" data={this.state.chartdata} />
         </div>
         
         </div>

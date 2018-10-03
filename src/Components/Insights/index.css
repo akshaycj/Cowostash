@@ -1,7 +1,7 @@
-.checkin-header {
+.Insight-header {
     margin: auto;
-    width: 90%;
-    height: auto;
+    width: 100%;
+    height: 60px;
     padding: 10px;
     border-radius: 5px;
     -moz-box-shadow: 0 3px 5px 0 #ccc;
@@ -44,7 +44,8 @@
     align-items: center;
     justify-content: center;
     background-color: #afacac;
-    text-align: center;
+    text-align: center;color: peachpuff;
+    font-size: 13px;
     border-radius: 10px;
     cursor: pointer;
     font-size: 10px;
@@ -65,4 +66,17 @@
     background-color: white;
     border: 1px solid #e3e3e3;
   }
-  
+  .checkin-daybar{
+    display:flex
+  }
+  .checkin-Cascader{
+    display:flex
+  }
+  .checkin-tab{
+    display:flex
+  }
+  @media(max-width:834px){
+  .checkin-tab{
+    flex-direction: column;
+  }
+  }
