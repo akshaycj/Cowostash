@@ -34,12 +34,7 @@ export default class extends Component {
         <Tabs type="card" defaultActiveKey="1">
           <TabPane tab="Tablet Theme" key="1">
             <div style={this.style.pane}>
-              <div
-                className="theme-button"
-                style={{ width: 100, marginLeft: "auto" }}
-              >
-                Save
-              </div>
+              
               <ThemeEdit />
               <div />
             </div>
