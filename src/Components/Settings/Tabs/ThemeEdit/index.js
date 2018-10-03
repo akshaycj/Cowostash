@@ -151,6 +151,7 @@ export default class extends Component {
     return (
       <div>
         <div
+          onClick={this.onSave}
           className="theme-button"
           style={{ width: 100, marginLeft: "auto" }}
         >
