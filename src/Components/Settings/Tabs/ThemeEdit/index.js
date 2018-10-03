@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import "./index.css";
-import { Input, Icon, Upload, Button, Modal, Switch } from "antd";
+import { Input, Icon, Upload, Button, Modal, Switch, message } from "antd";
 import SquareCard from "../../../SquareCard";
 import theme1 from "../../../../Res/theme1.jpeg";
 import theme2 from "../../../../Res/theme2.jpg";
