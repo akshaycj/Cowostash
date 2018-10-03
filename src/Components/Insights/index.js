@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
-import {Bar, Pie, Line} from 'react-chartjs-2';
+import {Bar, Pie, Line, Doughnut} from 'react-chartjs-2';
 import { DatePicker, Input } from 'antd';
 import { Cascader } from 'antd';
 const options = [{
@@ -49,7 +49,7 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <div className="checkin-header">
+        <div className="Insight-header">
         <div className="checkin-tab">
         <Search
       placeholder="search"
@@ -126,7 +126,7 @@ export default class extends Component {
         < Line height="70%" width="100%" type="line" data={this.state.chartdata} />
         </div>
         <div className="insight-card" >
-        < Pie height="70%" width="100%" data={this.state.chartdata} />
+        < Doughnut height="70%" width="100%" data={this.state.chartdata} />
         </div>
         
         </div>

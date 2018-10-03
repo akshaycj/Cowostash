@@ -15,7 +15,7 @@ export default class Box extends Component {
       <div className="top-text-layer" >
         {this.props.top}
       </div>
-        <div className="text-layer" >
+        <div className="box-text-layer" >
           {this.props.main}
         </div>
       </div>
