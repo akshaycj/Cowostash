@@ -35,22 +35,22 @@ export default class extends Component {
           <Box top="Total Check-ins" main="5322" />
           <Box top="User Registered" main="463" />
         </div>
-        <div className="container" style={{ marginLeft: 20 }}>
+        <div className="container" style={{ marginLeft: 20,flexWrap:"wrap" ,justifyContent:"center",alignItems:"center"}}>
         
         <div className="Dashboard-Graph" >
         <div>
           <h3 style={{display:"flex",justifyContent:"flex-start"}}>Check-ins</h3>
         <div style={{display:"flex",justifyContent:"flex-end"}}>
-          <div className="theme-button">Day</div>
-          <div className="theme-button">week</div>
-          <div className="theme-button">Month</div>
+          <div className="theme-button" style={{margin:"10px"}}>Day</div>
+          <div className="theme-button" style={{margin:"10px"}}>week</div>
+          <div className="theme-button" style={{margin:"10px"}}>Month</div>
         </div>
         </div>
         < Line height="30%" width="100%" type="line" data={this.state.chartdata} />
         </div>
        
           <div style={{ marginLeft: 40 }}>
-            <Calendar />
+            <Calendar  style={{width:600}}/>
           </div>
         </div>
       </div>

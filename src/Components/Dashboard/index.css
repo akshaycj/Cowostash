@@ -17,8 +17,9 @@
   
 }
 .Dashboard-Graph{
-  width: 600px;
-  max-width: 100%;
+width:600px;
+
+  max-width: 80%;
   height: 270px;
   margin: 5px;
   display: flex;
@@ -35,5 +36,11 @@
   .Dashboard-Card h1 {
     font-size: 20px;
     font-weight: bold;
+  }
+  .react-calender{
+  width:100% !important;
+  }
+  .Dashboard-Graph{
+    width:100%;
   }
 }

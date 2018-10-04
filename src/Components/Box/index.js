@@ -12,7 +12,7 @@ export default class Box extends Component {
 
     return (
       <div className="main-rect" >
-      <div className="top-text-layer" >
+      <div className="box-top-text-layer" >
         {this.props.top}
       </div>
         <div className="box-text-layer" >
