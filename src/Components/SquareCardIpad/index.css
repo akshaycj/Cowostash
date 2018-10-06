@@ -1,0 +1,56 @@
+.square-card-Ipad {
+    height:60px;
+    width: 130px;
+    text-align: center;
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 12px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: 0.5s ease;
+    backface-visibility: hidden;
+  }
+  .square-card-container-Ipad {
+    position: relative;
+  }
+  
+  .square-card-menu-Ipad {
+    transition: 0.5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .square-card-container-Ipad:hover .square-card-Ipad {
+    opacity: 0.3;
+  }
+  
+  .square-card-container-Ipad:hover .square-card-menu-Ipad {
+    opacity: 1;
+  }
+  
+  .square-card-menu-inner-Ipad {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .square-card-menu-inner-circle-Ipad {
+    cursor: pointer;
+    border-radius: 20px;
+    width: 40px;
+    display: flex;
+    height: 40px;
+    text-align: center;
+    background-color: #ccc;
+  }
+  

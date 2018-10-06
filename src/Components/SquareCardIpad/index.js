@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import "./index.css";
 import { Icon, Modal, Input } from "antd";
-import NdaEdit from "./NdaEdit";
-import StaffEdit from "./StaffEdit";
-import QuickEdit from "./QuickEdit";
 
 const { TextArea } = Input;
 
@@ -31,8 +28,7 @@ export default class extends Component {
       title: "" || this.props.title,
       Nda: "" || this.props.content,
       email: "",
-      id: "" || this.props.id,
-      height:"130px"||this.props.eight
+      id: "" || this.props.id
     };
   }
 
@@ -66,21 +62,15 @@ export default class extends Component {
     });
   };
 
-  getdataforNDA = (title, Nda) => {
-    this.setState({ title, Nda });
-    this.props.onUpdate(title, Nda, this.state.enable, this.state.id);
-  };
-  getdataforStaff = (data1, data2) => {
-    this.setState({ title: data1, email: data2 });
-  };
+  
   getdataintablet = data => {
     console.log("get", data);
   };
 
   render() {
     return (
-      <div className="square-card-container">
-        <div className="square-card" style={{height:this.state.height}}>
+      <div className="square-card-container-Ipad">
+        <div className="square-card-Ipad">
           {this.props.img ? null : (
             <img
               src={this.props.src}
@@ -89,23 +79,7 @@ export default class extends Component {
               height={50}
             />
           )}
-          {this.props.staff ? (
-            <div
-              style={{
-                width: "50%",
-                backgroundColor: "#d8d8d8",
-                margin: "auto",
-                height: "50%",
-                borderRadius: "50%",
-                fontSize: "30px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              {this.state.title.charAt(0).toUpperCase()}
-            </div>
-          ) : null}
+          
           <div style={{ marginTop: 5, fontSize: "15px" }}>
             {this.state.title}
           </div>
@@ -121,9 +95,9 @@ export default class extends Component {
             />
           )}
         </div>
-        <div className="square-card-menu">
-          <div className="square-card-menu-inner">
-            <div className="square-card-menu-inner-circle">
+        <div className="square-card-menu-Ipad">
+          <div className="square-card-menu-inner-Ipad">
+            <div className="square-card-menu-inner-circle-Ipad">
               {this.state.enable ? (
                 <Icon
                   onClick={this.onEn}
@@ -138,7 +112,7 @@ export default class extends Component {
                 />
               )}
             </div>
-            <div className="square-card-menu-inner-circle">
+            <div className="square-card-menu-inner-circle-Ipad">
               <Icon
                 type="form"
                 style={{ alignSelf: "center", margin: "auto" }}
@@ -150,19 +124,7 @@ export default class extends Component {
                 footer={null}
                 onCancel={this.handleCancel}
               >
-                {this.props.edit1 && this.props.edit2 ? (
-                  <NdaEdit
-                    title={this.props.title}
-                    content={this.props.content}
-                    data={this.getdataforNDA}
-                  />
-                ) : null}
-                {this.props.edit && this.props.edit1 ? (
-                  <StaffEdit data={this.getdataforStaff} />
-                ) : null}
-                {this.props.edit && this.props.edit2 ? (
-                  <QuickEdit data={this.getdataintablet} />
-                ) : null}
+                
               </Modal>
             </div>
           </div>
