@@ -62,17 +62,17 @@ export default class extends Component {
     </div>
     </div>
     <div className="checkin-daybar">
-        <h4>All Day</h4>
-        <h4>All Week</h4>
-        <h4>All Month</h4>
-        <h4>All Year</h4>
+        <h4 style={{marginRight:"10px"}}>Day</h4>
+        <h4 style={{marginRight:"10px"}}>Week</h4>
+        <h4 style={{marginRight:"10px"}}>Month</h4>
+        <h4 style={{marginRight:"10px"}}>Year</h4>
         
         </div> 
         <RangePicker style={{width:"250px"}}  size="small" />
         </div>
         <br />
         <br />
-        <div style={{display:"flex",justifyContent:"space-between",padding:"10px"}}>
+        <div style={{display:"flex",justifyContent:"flex-start",padding:"10px"}}>
         <div className="Insight-Profile">
           <div style={{ display: "flex" }}>
             <img
