@@ -13,7 +13,7 @@
 .box-text-layer {
 
   font-family: Offside;
-  font-size: 500%;
+  font-size: 300%;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
@@ -23,12 +23,12 @@
   color: #000000;
 }
 
-.top-text-layer {
+.box-top-text-layer {
   margin-left: 30px;
   width: 153px;
   height: 23px;
   font-family: Offside;
-  font-size: 18px;
+  font-size: 100%;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;

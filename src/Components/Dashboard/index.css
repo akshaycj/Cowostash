@@ -12,10 +12,30 @@
   font-size: 60px;
   font-weight: bold;
 }
-.container {
+.DashBoard-container {
   display: flex;
   
 }
+.Dashboard-Graph{
+width:600px;
+
+  max-width: 80%;
+  height: 270px;
+
+  display: flex;
+  padding: 15px;
+  background-color: white;
+  border: 1px solid #000;
+  flex-direction: column;
+ 
+  
+}
+.ant-layout.ant-layout-has-sider > .ant-layout, .ant-layout.ant-layout-has-sider > .ant-layout-content {
+  overflow: auto;
+  height: fit-content;
+}
+
+
 @media (max-width: 834px) {
   .Dashboard-Card {
     font-size: 12px;
@@ -24,5 +44,11 @@
   .Dashboard-Card h1 {
     font-size: 20px;
     font-weight: bold;
+  }
+  .react-calender{
+  width:100% !important;
+  }
+  .Dashboard-Graph{
+    width:100%;
   }
 }
