@@ -27,15 +27,16 @@ export default class extends Component {
           background: "white",
           display: "flex",
           margin: 20,
-          flexDirection: "column"
+          flexDirection: "column",
+          height:"100%"
         }}
       >
-        <div className="container">
+        <div className="DashBoard-container">
           <Box top="Check-ins Today" main="98" />
           <Box top="Total Check-ins" main="5322" />
           <Box top="User Registered" main="463" />
         </div>
-        <div className="container" style={{ marginLeft: 20,flexWrap:"wrap" ,justifyContent:"center",alignItems:"center"}}>
+        <div className="DashBoard-container" style={{ marginLeft: 20,flexWrap:"wrap" ,justifyContent:"center",alignItems:"center",marginTop:"5%"}}>
         
         <div className="Dashboard-Graph" >
         <div>
