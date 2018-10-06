@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./index.css";
-import { Input, Checkbox } from "antd";
+import { Input, Checkbox, message, Spin } from "antd";
 import { Link, Redirect } from "react-router-dom";
 import logo from "../../Res/textlogo.png";
 import Util from "../../Utils";
@@ -15,7 +15,8 @@ export default class extends Component {
       email: "",
       pass: "",
       checkboxValue: false,
-      redirect: false
+      redirect: false,
+      spin: false
     };
   }
 
@@ -37,6 +38,7 @@ export default class extends Component {
 
   onLogin = () => {
     var that = this;
+    this.setState({ spin: true });
 
     if (this.state.email && Utils.emailValidation(this.state.email)) {
       if (this.state.pass) {
@@ -68,12 +70,13 @@ export default class extends Component {
               Utils.setCookie("userId", data.user_id);
             }
             if (data.jwt) {
-              that.setState({ redirect: true });
+              that.setState({ redirect: true, spin: false });
             }
             //that.setState({ redirect: true });
             console.log("done");
           })
           .catch(error => {
+            that.setState({ spin: false });
             Utils.displayNotification(
               error.response.data.error,
               "Error",
@@ -130,7 +133,7 @@ export default class extends Component {
             style={{ marginTop: 30, width: 200, padding: 10, height: 50 }}
             onClick={this.onLogin}
           >
-            Login
+            {this.state.spin ? <Spin /> : "Login"}
           </div>
           {/* <Link to="/dashboard">
           </Link> */}
