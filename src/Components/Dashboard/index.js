@@ -36,7 +36,7 @@ export default class extends Component {
           <Box top="Total Check-ins" main="5322" />
           <Box top="User Registered" main="463" />
         </div>
-        <div className="DashBoard-container" style={{ marginLeft: 20,flexWrap:"wrap" ,justifyContent:"center",alignItems:"center",marginTop:"5%"}}>
+        <div className="DashBoard-container" style={{ marginLeft: 20,flexWrap:"wrap" ,justifyContent:"center",alignItems:"center"}}>
         
         <div className="Dashboard-Graph" >
         <div>
@@ -50,7 +50,7 @@ export default class extends Component {
         < Line height="30%" width="100%" type="line" data={this.state.chartdata} />
         </div>
        
-          <div style={{ marginLeft: 40 }}>
+          <div style={{ marginLeft: 40,marginTop:"10px" }}>
             <Calendar  style={{width:600}}/>
           </div>
         </div>

@@ -30,6 +30,11 @@ width:600px;
  
   
 }
+.ant-layout.ant-layout-has-sider > .ant-layout, .ant-layout.ant-layout-has-sider > .ant-layout-content {
+  overflow: auto;
+  height: fit-content;
+}
+
 
 @media (max-width: 834px) {
   .Dashboard-Card {
