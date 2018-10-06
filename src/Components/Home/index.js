@@ -63,8 +63,7 @@ export default class App extends Component {
             collapsed={this.state.collapsed}
           >
             <div className="header-logo">
-              {/*<img src={logo} style={{ marginRight: 5 }} />*/}
-              <div className="compname" />
+              <span className="compname">Cowostash</span>
             </div>
             <Menu theme="light" mode="inline" defaultSelectedKeys={["1"]}>
               <Menu.Item key="1">

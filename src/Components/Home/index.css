@@ -1,8 +1,8 @@
 .header-logo {
   height: 32px;
   background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
-
+  margin-bottom: 16px;
+  margin-top: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,9 +37,9 @@
   margin-left: 10px;
 }
 
-
 .compname {
-  width: 133px;
+  max-width: 133px;
+  width: 100%;
   height: 20px;
   font-family: Offside;
   font-size: 16px;
@@ -49,6 +49,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: left;
+  color: gray;
 }
 .trigger {
   font-size: 20px;
