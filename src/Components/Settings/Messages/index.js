@@ -8,7 +8,7 @@ const TabPane = Tabs.TabPane;
 
 export default class extends Component {
   style = {
-    pane: { overflow: "auto", height: "100%" }
+    pane: { overflow: "auto" }
   };
 
   render() {
