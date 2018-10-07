@@ -71,11 +71,9 @@ export default class extends Component {
     this.setState({ current, show: true, val });
   };
 
-  onNext = onDataChange => {
+  onNext = (onDataChange, data) => {
     var val = this.state.val;
 
-    const formData = this.state.formData;
-    const data = this.state.data;
     if (val) {
       var d = {
         type: this.state.val,
@@ -217,7 +215,7 @@ export default class extends Component {
                           width: 80,
                           margin: "auto"
                         }}
-                        onClick={this.onNext.bind(this, onDataChange)}
+                        onClick={this.onNext.bind(this, onDataChange, data)}
                       >
                         Next >
                       </div>
