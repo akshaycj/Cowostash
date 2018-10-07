@@ -10,6 +10,8 @@ export class DataContextProvider extends Component {
     };
   }
   onDataChange = data => {
+    console.log("entho ethi", data);
+
     this.setState({ data });
   };
   render() {

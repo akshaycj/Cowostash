@@ -17,11 +17,12 @@ import Staffs from "./Components/Staffs";
 import Devices from "./Components/Devices";
 import Messages from "./Components/Settings/Messages";
 import Checkins from "./Components/Checkins";
-import Dashboard from "./Components/Dashboard"
+import Dashboard from "./Components/Dashboard";
 
-import CheckinProfile from "./Components/Checkins/CheckinProfile"
+import CheckinProfile from "./Components/Checkins/CheckinProfile";
 import Profile from "./Components/Profile";
 import Insights from "./Components/Insights";
+import { DataContextProvider } from "./Context/DataContext";
 
 export default class App extends Component {
   constructor(props) {
@@ -37,24 +38,25 @@ export default class App extends Component {
           <div>
             <Switch>
               <Route path="/" exact component={Login} />
-              <Home>
-                <Switch>
-                  
-                <Route path="/Insights" component={Insights} />
-                <Route path="/checkinprofile" component={CheckinProfile} />
-                <Route path="/Profile" component={Profile} />
-                <Route path="/checkins" component={Checkins} />
-                  <Route path="/settings" component={Settings} />
-                  <Route path="/staffs" component={Staffs} />
-                  <Route path="/digit" component={Digitlogin} />
-                  <Route path="/form" component={AddField} />
-                  <Route path="/home" component={HomeScreen} />
-                  <Route path="/vistor" component={Vistor} />
-                  <Route path="/dashboard" component={Dashboard} />
-                  <Route path="/devices" component={Devices} />
-                  <Route path="/messages" component={Messages} />
-                </Switch>
-              </Home>
+              <DataContextProvider>
+                <Home>
+                  <Switch>
+                    <Route path="/Insights" component={Insights} />
+                    <Route path="/checkinprofile" component={CheckinProfile} />
+                    <Route path="/Profile" component={Profile} />
+                    <Route path="/checkins" component={Checkins} />
+                    <Route path="/settings" component={Settings} />
+                    <Route path="/staffs" component={Staffs} />
+                    <Route path="/digit" component={Digitlogin} />
+                    <Route path="/form" component={AddField} />
+                    <Route path="/home" component={HomeScreen} />
+                    <Route path="/vistor" component={Vistor} />
+                    <Route path="/dashboard" component={Dashboard} />
+                    <Route path="/devices" component={Devices} />
+                    <Route path="/messages" component={Messages} />
+                  </Switch>
+                </Home>
+              </DataContextProvider>
             </Switch>
           </div>
         </BrowserRouter>

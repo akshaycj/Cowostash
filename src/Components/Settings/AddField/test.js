@@ -53,10 +53,10 @@ class DynamicFieldSet extends React.Component {
     console.log("neww--", data);
   };
 
-  componentWillReceiveProps(props) {
-    const data = props.data;
-    this.setState({ data: props.data });
-  }
+  // componentWillReceiveProps(props) {
+  //   const data = props.data;
+  //   this.setState({ data: props.data });
+  // }
 
   // componentDidUpdate(prevProps, prevState) {
   //   if (prevState.data !== this.state.data) {
