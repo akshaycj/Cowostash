@@ -58,6 +58,18 @@ class DynamicFieldSet extends React.Component {
     this.setState({ data: props.data });
   }
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.data !== this.state.data) {
+  //     this.setState({ data: prevProps.data });
+  //   }
+  // }
+
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   if (nextProps.data !== prevState.data) {
+  //     return { data: nextProps.data };
+  //   } else return null;
+  // }
+
   remove = k => {
     const data = this.state.data;
     const d = data.filter(item => item.key !== k);

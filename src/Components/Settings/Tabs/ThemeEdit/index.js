@@ -9,28 +9,34 @@ import logo from "../../../../Res/logo.svg";
 import qr from "../../../../Res/qr.png";
 import { BASE_URL, AUTH } from "../../../../Utils/Api";
 import Util from "./../../../../Utils/index";
-import { Cascader } from 'antd';
+import { Cascader } from "antd";
 
-const options = [{
-  value: "Visitor",
-  label: 'Visitor',
-  
-}, {
-  value: 'Event',
-  label: 'Event',
-}, {
-  value: 'Vendor',
-  label: 'Vendor',
-}, {
-  value: 'Maintenence',
-  label: 'Maintenence',
-}, {
-  value: 'Employee',
-  label: 'Employee',
-}, {
-  value: 'Delivery',
-  label: 'Deilvery',
-}];
+const options = [
+  {
+    value: "Visitor",
+    label: "Visitor"
+  },
+  {
+    value: "Event",
+    label: "Event"
+  },
+  {
+    value: "Vendor",
+    label: "Vendor"
+  },
+  {
+    value: "Maintenence",
+    label: "Maintenence"
+  },
+  {
+    value: "Employee",
+    label: "Employee"
+  },
+  {
+    value: "Delivery",
+    label: "Deilvery"
+  }
+];
 
 const Utils = new Util();
 const { TextArea } = Input;
@@ -57,7 +63,7 @@ export default class extends Component {
       quicklinkenable: null,
       quickLinks: [],
       config_id: "",
-      eight:"80px"
+      eight: "80px"
     };
   }
 
@@ -78,8 +84,7 @@ export default class extends Component {
       title: "Event",
       enable: true,
       edit: true,
-      edit2: true,
-      
+      edit2: true
     };
     var data = [];
     data.push(d);
@@ -199,9 +204,7 @@ export default class extends Component {
     this.setState({ Switch: !this.state.Switch });
   };
   getdata = data1 => {};
-  CascaderonChange=()=>{
-
-  }
+  CascaderonChange = () => {};
   render() {
     return (
       <div>
@@ -346,7 +349,12 @@ export default class extends Component {
                   placeholder="Quick Edit Title"
                 />
                 <div className="Theme-padding QuickLinkPop ">
-                <Cascader style={{width:"200px"}} options={options} onChange={this.CascaderonChange} placeholder="Select Form" />
+                  <Cascader
+                    style={{ width: "200px" }}
+                    options={options}
+                    onChange={this.CascaderonChange}
+                    placeholder="Select Form"
+                  />
                   <div className="theme-button">Add</div>
                 </div>
               </div>

@@ -121,7 +121,7 @@ export default class extends Component {
   };
   ongetdata(data) {
     console.log(data);
-    // this.setState({ data });
+    this.setState({ data });
   }
   render() {
     return (
