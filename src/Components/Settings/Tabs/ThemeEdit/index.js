@@ -253,7 +253,7 @@ export default class extends Component {
                 <img
                   src={theme1}
                   class="br-100"
-                  style={{ width: "30px", height: "30px" }}
+                  style={{ width: "40px", height: "40px" }}
                   alt="avatar"
                 />
               </div>
@@ -261,7 +261,7 @@ export default class extends Component {
                 <img
                   src={theme2}
                   class="br-100"
-                  style={{ width: "30px", height: "30px" }}
+                  style={{ width: "40px", height: "40px" }}
                   alt="avatar"
                 />
               </div>
@@ -269,14 +269,14 @@ export default class extends Component {
                 <img
                   src={theme3}
                   class="br-100"
-                  style={{ width: "30px", height: "30px" }}
+                  style={{ width: "40px", height: "40px" }}
                   alt="avatar"
                 />
               </div>
               <div>
                 {" "}
                 <Icon
-                  style={{ fontSize: "30px", marginTop: "15px" }}
+                  style={{ fontSize: "40px", marginTop: "15px",marginLeft:"30px" }}
                   onClick={() => this.setModal2Visible(true)}
                   type="cloud-upload"
                 />{" "}
@@ -326,7 +326,7 @@ export default class extends Component {
                 Quick Link +
               </div>
             </div>
-            <hr style={{ width: "320px" }} />
+            <hr style={{ width: "360px" }} />
             <div className="Theme-padding">
               {this.state.quickLinks.map(item => (
                 <SquareCard
@@ -351,7 +351,7 @@ export default class extends Component {
                 </div>
               </div>
             ) : null}
-            <hr style={{ width: "320px" }} />
+            <hr style={{ width: "360px" }} />
             <div className="Theme-padding QuickLinkPop ">
               <h3>Enable QR</h3>
               <Switch

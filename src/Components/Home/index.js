@@ -1,11 +1,39 @@
 import React, { Component } from "react";
-import { Layout, Menu, Icon, Badge, Popover } from "antd";
+import { Layout, Menu, Icon, Badge, Popover ,Tabs} from "antd";
 import logo from "../../Res/logo.svg";
 import "./index.css";
 import { Link } from "react-router-dom";
+import { List, Avatar } from 'antd';
+import moment from 'moment';
+import { Tag } from 'antd';
 
+const TabPane = Tabs.TabPane;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
+const data = [
+  {
+    id:'000000001',
+    datetime: '2017-08-09',
+    title: 'Ant Design Title 1',
+
+  },
+  {
+    id:'000000002',
+    datetime: '2017-08-08',
+    title: 'Ant Design Title 2',
+  },
+  {
+    id:'000000003',
+    datetime: '2017-08-10',
+    title: 'Ant Design Title 3',
+  },
+  {
+    id:'000000004',
+    datetime: '2017-08-11',
+    title: 'Ant Design Title 4',  
+  },
+];
+
 
 const { Header, Content, Footer, Sider } = Layout;
 export default class App extends Component {
@@ -13,12 +41,15 @@ export default class App extends Component {
     collapsed: false,
     notifications: ["asdsad", "sadas", "dasd"],
     date: "",
-    Profile: []
+    Profile: [],
+    dataNotifications:data,
+    messageNotifications:data
   };
   componentDidMount() {
     setInterval(() => {
       this.setState({
-        date: new Date().toString().slice(0, 24)
+        date: new Date().toString().slice(0, 24),
+        
       });
     }, 1000);
   }
@@ -33,12 +64,48 @@ export default class App extends Component {
   onClickProfile() {
     this.setState({ Profile: [] });
   }
+  onClickClearNotifications=()=>{
+    this.setState({dataNotifications:""})
+  }
+  onClickClearMessages=()=>{
+    this.setState({messageNotifications:""})
+  }
   render() {
     const text = <span>Notifications</span>;
     const content = (
       <div>
-        <p>Content</p>
-        <p>Content</p>
+       <Tabs defaultActiveKey="1" style={{width:"300px"}}>
+    <TabPane tab="Notifications" key="1" >  <List
+    itemLayout="horizontal"
+    dataSource={this.state.dataNotifications}
+    footer={<div style={{textAlign:"center",cursor:"pointer"}} onClick={this.onClickClearNotifications}><Icon type="delete" theme="outlined" />Clear Notifications</div>}
+    renderItem={item => (
+      <List.Item>
+        <List.Item.Meta
+          avatar={<Avatar><Icon type="notification" theme="filled" /></Avatar>}
+          title={<a>{item.title}</a>}
+          description={moment(this.state.dataNotifications.datetime).fromNow()}
+   
+        />
+      </List.Item>
+    )}
+  /></TabPane>
+    <TabPane tab="Messages" key="2"><List
+    itemLayout="horizontal"
+    dataSource={this.state.messageNotifications}
+    footer={<div style={{textAlign:"center",cursor:"pointer"}} onClick={this.onClickClearMessages}><Icon type="delete" theme="outlined" />Clear Notifications</div>}
+    renderItem={item => (
+      <List.Item>
+        <List.Item.Meta
+          avatar={<Avatar><Icon type="mail" theme="outlined" /></Avatar>}
+          title={<a>{item.title}</a>}
+          description={moment(this.state.messageNotifications.datetime).fromNow()}
+        />
+      </List.Item>
+    )}
+  /></TabPane>
+    
+  </Tabs>
       </div>
     );
 
@@ -164,7 +231,7 @@ export default class App extends Component {
                   {this.state.date}
                   <Popover
                     placement="bottomRight"
-                    title={text}
+                    
                     content={content}
                     trigger="click"
                     onClick={this.onClickNotification.bind(this)}
