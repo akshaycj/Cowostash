@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 const DataContext = React.createContext();
 
-export default class extends Component {
+export class DataContextProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,3 +24,5 @@ export default class extends Component {
     );
   }
 }
+
+export const DataContextConsumer = DataContext.Consumer;
