@@ -15,7 +15,7 @@
   top: 20px;
 }
 .Insight-Profile {
-  width: 50%;
+  width: 70%;
   height: 70 px;
   -moz-box-shadow: 0 3px 5px 0 #ccc;
   -webkit-box-shadow: 0 3px 5px 0 #ccc;
@@ -80,11 +80,26 @@
   align-self: auto;
   align-items: center;
 }
+.day-bar {
+  cursor: pointer;
+}
+.insight-search {
+  width: 120;
+  margin-right: 10px;
+}
+.day-bar:hover {
+  color: #4caf50;
+  font-size: 20px;
+}
 @media (max-width: 834px) {
   .checkin-tab {
     flex-direction: column;
   }
   .Insight-header {
     height: auto;
+  }
+  .insight-search {
+    width: 250px;
+    margin-bottom: 10px;
   }
 }

@@ -57,28 +57,36 @@ export default class extends Component {
             <Search
               placeholder="search"
               onSearch={value => console.log(value)}
-              style={{ width: 120 }}
+              className="insight-search"
             />
             <div className="checkin-Cascader">
               <Cascader
                 options={options}
-                style={{ width: "100px" }}
+                style={{ width: "100px", marginRight: "10px" }}
                 onChange={this.onChange}
                 placeholder="Staffs"
               />
               <Cascader
                 options={options}
-                style={{ width: "140px" }}
+                style={{ width: "140px", marginRight: "10px" }}
                 onChange={this.onChange}
                 placeholder="Department"
               />
             </div>
           </div>
           <div className="checkin-daybar">
-            <h4 style={{ marginRight: "10px" }}>Day</h4>
-            <h4 style={{ marginRight: "10px" }}>Week</h4>
-            <h4 style={{ marginRight: "10px" }}>Month</h4>
-            <h4 style={{ marginRight: "10px" }}>Year</h4>
+            <h4 style={{ marginRight: "10px" }} className="day-bar">
+              Day
+            </h4>
+            <h4 style={{ marginRight: "10px" }} className="day-bar">
+              Week
+            </h4>
+            <h4 style={{ marginRight: "10px" }} className="day-bar">
+              Month
+            </h4>
+            <h4 style={{ marginRight: "10px" }} className="day-bar">
+              Year
+            </h4>
           </div>
           <RangePicker
             style={{
