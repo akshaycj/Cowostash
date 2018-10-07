@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input, Icon, Button, Rate, Select, Checkbox } from "antd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DataContextConsumer } from "../../../Context/DataContext";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -46,10 +47,7 @@ class DynamicFieldSet extends React.Component {
       result.destination.index
     );
 
-    this.setState({
-      data
-    });
-    //this.props.onDataChange(data);
+    this.props.onDataChange(data);
     console.log("neww--", data);
   };
 
@@ -58,17 +56,22 @@ class DynamicFieldSet extends React.Component {
   //   this.setState({ data: props.data });
   // }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.data !== this.state.data) {
-  //     this.setState({ data: prevProps.data });
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    console.log("prevprop--", prevProps.data);
+    console.log("prevState--", prevState);
+    if (prevState.data !== this.state.data) {
+      this.setState({ data: prevProps.data });
+    }
+  }
 
-  // static getDerivedStateFromProps(nextProps, prevState) {
-  //   if (nextProps.data !== prevState.data) {
-  //     return { data: nextProps.data };
-  //   } else return null;
-  // }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log("nextprop", nextProps.data);
+    console.log("prevState", prevState);
+
+    if (nextProps.data !== prevState.data) {
+      return { data: nextProps.data };
+    } else return null;
+  }
 
   remove = k => {
     const data = this.state.data;
@@ -234,7 +237,18 @@ class DynamicFieldSet extends React.Component {
     );
   }
 }
-
 const WrappedDynamicFieldSet = DynamicFieldSet;
 
 export default WrappedDynamicFieldSet;
+
+// export default class WrappedDynamicFieldSet extends Component {
+//   render() {
+//     return (
+//       <DataContextConsumer>
+//         {({ onDataChange, data }) => {
+//           <DynamicFieldSet data={data} />;
+//         }}
+//       </DataContextConsumer>
+//     );
+//   }
+// }

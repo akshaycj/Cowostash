@@ -243,8 +243,8 @@ export default class extends Component {
                 >
                   {this.state.data ? (
                     <WrappedDynamicFieldSet
-                      data={this.state.data}
-                      getdata={this.ongetdata.bind(this)}
+                      onDataChange={onDataChange}
+                      data={data}
                     />
                   ) : (
                     <div>No Content Added!</div>
