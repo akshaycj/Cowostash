@@ -51,23 +51,13 @@ class DynamicFieldSet extends React.Component {
     console.log("neww--", data);
   };
 
-  // componentWillReceiveProps(props) {
-  //   const data = props.data;
-  //   this.setState({ data: props.data });
-  // }
-
   componentDidUpdate(prevProps, prevState) {
-    console.log("prevprop--", prevProps.data);
-    console.log("prevState--", prevState);
     if (prevState.data !== this.state.data) {
       this.setState({ data: prevProps.data });
     }
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log("nextprop", nextProps.data);
-    console.log("prevState", prevState);
-
     if (nextProps.data !== prevState.data) {
       return { data: nextProps.data };
     } else return null;
@@ -76,11 +66,7 @@ class DynamicFieldSet extends React.Component {
   remove = k => {
     const data = this.state.data;
     const d = data.filter(item => item.key !== k);
-    this.setState({
-      data: d
-    });
-
-    this.props.getdata(d);
+    this.props.onDataChange(d);
   };
 
   handleSubmit = e => {
