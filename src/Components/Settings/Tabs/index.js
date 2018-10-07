@@ -12,7 +12,8 @@ import { Switch } from "antd";
 import NdaTab from "./NdaTab";
 import Staffs from "./Staffs";
 import { Link } from "react-router-dom";
-import Badge from "./BadgeTab"
+import Badge from "./BadgeTab";
+import VistorPurpose from "./VisitorPurpose";
 
 const TabPane = Tabs.TabPane;
 
@@ -34,44 +35,12 @@ export default class extends Component {
         <Tabs type="card" defaultActiveKey="1">
           <TabPane tab="Tablet Theme" key="1">
             <div style={this.style.pane}>
-              
               <ThemeEdit />
               <div />
             </div>
           </TabPane>
           <TabPane tab="Visitor Purpose" key="2">
-            <div>
-              <Link to="/form">
-                {" "}
-                <div
-                  className="theme-button"
-                  style={{ width: 150, marginLeft: "auto" }}
-                >
-                  Add Purpose +
-                </div>
-              </Link>
-              <br />
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  justifyContent: "center",
-                  padding: 10,
-                  margin: 15
-                }}
-              >
-                <SquareCard onValue={this.onEnable.bind(this)} title="Interview" src={teamwork} />
-                <SquareCard onValue={this.onEnable.bind(this)} title="Guest" src={guest} />
-                <SquareCard onValue={this.onEnable.bind(this)}  title="Vendor" src={box} />
-                <SquareCard onValue={this.onEnable.bind(this)}  title="Employee" src={employee} />
-                <SquareCard onValue={this.onEnable.bind(this)}  title="Maintenance" src={maintenance} />
-                <SquareCard onValue={this.onEnable.bind(this)} title="Interview" src={teamwork} />
-                <SquareCard onValue={this.onEnable.bind(this)}  title="Guest" src={guest} />
-                <SquareCard onValue={this.onEnable.bind(this)}  title="Vendor" src={box} />
-                <SquareCard onValue={this.onEnable.bind(this)} title="Employee" src={employee} />
-                <SquareCard onValue={this.onEnable.bind(this)}  title="Maintenance" src={maintenance} />
-              </div>
-            </div>
+            <VistorPurpose />
           </TabPane>
           <TabPane tab="Photo Capture" key="3">
             <div style={{ display: "flex" }}>
@@ -87,7 +56,7 @@ export default class extends Component {
             <NdaTab />
           </TabPane>
           <TabPane tab="Badge Settings" key="5">
-            <Badge/>
+            <Badge />
           </TabPane>
         </Tabs>
       </div>
