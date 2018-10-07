@@ -68,7 +68,7 @@ export default class extends Component {
         <h4 style={{marginRight:"10px"}}>Year</h4>
         
         </div> 
-        <RangePicker style={{width:"250px"}}  size="small" />
+        <RangePicker style={{width:"250px",display:"flex",alignSelf:"auto",alignItems:"center"}}  size="small" />
         </div>
         <br />
         <br />

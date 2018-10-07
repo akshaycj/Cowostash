@@ -67,16 +67,26 @@
     border: 1px solid #e3e3e3;
   }
   .checkin-daybar{
-    display:flex
+    display:flex;
+    align-self: auto;
+    align-items: center
   }
   .checkin-Cascader{
-    display:flex
+    display:flex;
+    align-self: auto;
+    align-items: center
   }
   .checkin-tab{
-    display:flex
+    display:flex;
+    align-self: auto;
+    align-items: center
   }
   @media(max-width:834px){
   .checkin-tab{
     flex-direction: column;
+
+  }
+  .Insight-header{
+    height:auto;
   }
   }
