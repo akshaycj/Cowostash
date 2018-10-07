@@ -11,7 +11,6 @@ import Digitlogin from "./Components/DigitLogin";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomeScreen from "./Components/HomeScreen";
 import Settings from "./Components/Settings";
-import AddField from "./Components/Settings/AddField/add";
 import Login from "./Components/Login";
 import Staffs from "./Components/Staffs";
 import Devices from "./Components/Devices";
@@ -48,7 +47,6 @@ export default class App extends Component {
                     <Route path="/settings" component={Settings} />
                     <Route path="/staffs" component={Staffs} />
                     <Route path="/digit" component={Digitlogin} />
-                    <Route path="/form" component={AddField} />
                     <Route path="/home" component={HomeScreen} />
                     <Route path="/vistor" component={Vistor} />
                     <Route path="/dashboard" component={Dashboard} />

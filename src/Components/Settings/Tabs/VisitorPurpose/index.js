@@ -7,6 +7,7 @@ import guest from "../../../../Res/guest.png";
 import employee from "../../../../Res/employee.png";
 import maintenance from "../../../../Res/maintenance.png";
 import teamwork from "../../../../Res/teamwork.png";
+import AddField from "../../AddField";
 
 export default class extends Component {
   onEnable = a => {
