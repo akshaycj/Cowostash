@@ -1,36 +1,40 @@
 import React, { Component } from "react";
 import "./index.css";
-import { Input, Checkbox, Select, Upload, Button, Icon } from "antd";
+import { Input, Checkbox, Select, Upload, Button, Icon, Rate } from "antd";
+import WrappedDynamicFieldSet from "./test";
+import { DataContextConsumer } from "../../../Context/DataContext";
 
 const Option = Select.Option;
+const CheckboxGroup = Checkbox.Group;
+
 const options = [
   {
     data: "Textbox",
-    val: "tb"
+    val: "text"
   },
   {
     data: "Email",
-    val: "em"
+    val: "email"
   },
   {
     data: "Phone Number",
-    val: "ph"
+    val: "number"
   },
   {
-    data: "Website",
-    val: "wb"
+    data: "Drop Down",
+    val: "select"
   },
   {
     data: "Photo Upload",
-    val: "pu"
+    val: "file"
   },
   {
-    data: "Document Upload",
-    val: "du"
+    data: "CheckBox",
+    val: "checkbox"
   },
   {
-    data: "QR Scanner",
-    val: "qr"
+    data: "Rating",
+    val: "rating"
   }
 ];
 
@@ -40,13 +44,18 @@ const initialState = {
     inputTypes: [],
     uploadTypes: []
   },
+  data: [],
   current: "",
   val: "",
   show: false,
   label: "",
   req: false,
-  labelAP: false
+  labelAP: false,
+  rating: "",
+  options: []
 };
+
+let uuid = 0;
 
 export default class extends Component {
   constructor(props) {
@@ -62,41 +71,30 @@ export default class extends Component {
     this.setState({ current, show: true, val });
   };
 
-  onNext = () => {
+  onNext = (onDataChange, data) => {
     var val = this.state.val;
 
-    const formData = this.state.formData;
-
-    switch (val) {
-      case "tb":
-      case "em":
-      case "ph":
-      case "wb":
-        formData.inputTypes.push({
-          type: val,
-          label: this.state.label,
-          labelAP: this.state.labelAP,
-          req: this.state.req
-        });
-        console.log("tb");
-
-        break;
-
-      case "pu":
-      case "du":
-        console.log("pu/du");
-
-        formData.uploadTypes.push({
-          type: val,
-          label: this.state.label,
-          labelAP: this.state.labelAP,
-          req: this.state.req
-        });
-        break;
+    if (val) {
+      var d = {
+        type: this.state.val,
+        label: this.state.label,
+        placeholder: this.state.labelAP,
+        required: this.state.req,
+        key: uuid++,
+        options: this.state.options
+      };
+      data.push(d);
+      console.log("init", data);
+      onDataChange(data);
+      //this.setState({ data });
+      this.onClear();
     }
-    this.setState({ formData });
+  };
 
-    //this.setState(initialState);
+  onOptions = e => {
+    const options = e.target.value.split(",");
+    this.setState({ options });
+    //console.log("options", options);
   };
 
   onLabel = e => {
@@ -118,127 +116,166 @@ export default class extends Component {
     this.setState({ req: e.target.checked });
   };
   onClear = () => {
-    const formData = {
-      formTitle: "",
-      inputTypes: [],
-      uploadTypes: []
-    };
-    this.setState({ formData });
+    this.setState(initialState);
   };
-
+  ongetdata(data) {
+    console.log(data);
+    this.setState({ data });
+  }
   render() {
     return (
-      <div className="AddField-main">
-        <div style={{ width: "50%", margin: 20 }}>
-          <div style={{ width: "60%" }}>
-            <Input
-              required={true}
-              placeholder="Form Title"
-              type="phone"
-              size="large"
-              onChange={this.onFormTitle}
-            />
-            <br />
-            <br />
-            <div className="form-gen-font">
-              <Select
-                style={{ width: "100%" }}
-                placeholder="Select Field"
-                size="large"
-                onSelect={this.onSelect}
+      <DataContextConsumer>
+        {({ onDataChange, data }) => (
+          <div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}
+            >
+              <div
+                className="theme-button"
+                style={{ width: 100 }}
+                onClick={() => {
+                  this.props.onGoback();
+                }}
               >
-                {options.map(item => (
-                  <Option value={item.val}>{item.data}</Option>
-                ))}
-              </Select>
-              <br />
-              <br />
-              <text>{this.state.current}</text>
-              <br />
-              <br />
-              {this.state.show ? (
-                <div>
-                  <text>Label</text>
-
-                  <Input size="large" onChange={this.onLabel} />
-                  <br />
-                  <br />
-                  <Checkbox onChange={this.onReq}>Required</Checkbox>
-                  <br />
-                  <Checkbox onChange={this.onLabelAP}>
-                    Label as placeholder
-                  </Checkbox>
-                </div>
-              ) : null}
+                Cancel
+              </div>
+              <div className="theme-button" style={{ width: 100 }}>
+                Save
+              </div>
             </div>
 
-            <div className="form-gen-font" />
-          </div>
-        </div>
-        <div
-          className="theme-button"
-          style={{
-            height: 40,
-            marginTop: "auto",
-            marginBottom: 30,
-            marginRight: 25
-          }}
-          onClick={this.onNext}
-        >
-          Next >
-        </div>
-        <div className="form-preview">
-          <div className="form-preview-inner">
-            <h2>Form Preview :</h2>
-            <div style={{ padding: 10 }}>
-              <h3> {this.state.formData.formTitle} </h3>
-              {this.state.formData.inputTypes.map(x => (
-                <div style={{ display: "flex" }}>
+            <div className="AddField-main">
+              <div style={{ width: "50%", margin: 20 }}>
+                <div style={{ width: "60%" }}>
                   <Input
-                    style={{ margin: 5 }}
-                    addonBefore={x.label}
-                    placeholder={x.labelAP ? x.label : ""}
-                    disabled
+                    required={true}
+                    placeholder="Form Title"
+                    size="large"
+                    onChange={this.onFormTitle}
                   />
-                  {x.req ? (
-                    <div style={{ color: "red" }}>*</div>
-                  ) : (
-                    <div style={{ color: "whitesmoke" }}>*</div>
-                  )}
                   <br />
-                </div>
-              ))}
+                  <br />
+                  <div className="form-gen-font">
+                    <Select
+                      style={{ width: "100%" }}
+                      placeholder="Select Field"
+                      size="large"
+                      onSelect={this.onSelect}
+                    >
+                      {options.map(item => (
+                        <Option value={item.val}>{item.data}</Option>
+                      ))}
+                    </Select>
+                    <br />
+                    <br />
+                    <text>{this.state.current}</text>
+                    <br />
+                    <br />
+                    {this.state.show ? (
+                      <div>
+                        <text>Label</text>
 
-              <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-                {this.state.formData.uploadTypes.map(x => (
-                  <div style={{ display: "flex" }}>
-                    <Upload name={x.label} disabled>
-                      <Button>
-                        <Icon type={x.type == "pu" ? "camera" : "file"} />
-                        {x.label}
-                      </Button>
-                    </Upload>{" "}
-                    <div>
-                      {x.req ? (
-                        <div style={{ color: "red" }}>*</div>
-                      ) : (
-                        <div style={{ color: "whitesmoke" }}>*</div>
-                      )}
-                    </div>
+                        <Input size="large" onChange={this.onLabel} />
+                        <br />
+                        <br />
+                        <Checkbox onChange={this.onReq}>Required</Checkbox>
+                        <br />
+                        <div>
+                          {this.state.val === "text" ? (
+                            <Checkbox onChange={this.onLabelAP}>
+                              Label as placeholder
+                            </Checkbox>
+                          ) : null}
+                          {this.state.val === "email" ? (
+                            <Checkbox onChange={this.onLabelAP}>
+                              Label as placeholder
+                            </Checkbox>
+                          ) : null}
+                          {this.state.val === "number" ? (
+                            <Checkbox onChange={this.onLabelAP}>
+                              Label as placeholder
+                            </Checkbox>
+                          ) : null}
+                          {this.state.val === "rating" ? (
+                            <CheckboxGroup>
+                              <Checkbox>
+                                <Rate defaultValue={3} />
+                              </Checkbox>
+                            </CheckboxGroup>
+                          ) : null}
+                          {this.state.val === "select" ||
+                          this.state.val === "checkbox" ? (
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                marginTop: 10
+                              }}
+                            >
+                              <Input
+                                placeholder="Options"
+                                onChange={this.onOptions}
+                              />
+                              <div style={{ fontSize: 10, marginTop: 3 }}>
+                                Enter select option seperated by comma(,){" "}
+                              </div>
+                            </div>
+                          ) : null}
+                        </div>
+
+                        <br />
+                        <br />
+                        <div
+                          className="theme-button"
+                          style={{
+                            height: 40,
+                            marginTop: 30,
+                            width: 80,
+                            margin: "auto"
+                          }}
+                          onClick={this.onNext.bind(this, onDataChange, data)}
+                        >
+                          Next >
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
-                ))}
+
+                  <div className="form-gen-font" />
+                </div>
+              </div>
+
+              <div className="form-preview">
+                <div className="form-preview-inner">
+                  <h2>Form Preview :</h2>
+                  <h3>Click & drag to reorder</h3>
+                  <div
+                    style={{
+                      padding: 10,
+                      margin: 18,
+                      background: "white",
+                      minHeight: "80%"
+                    }}
+                  >
+                    {this.state.data ? (
+                      <WrappedDynamicFieldSet
+                        onDataChange={onDataChange}
+                        data={data}
+                      />
+                    ) : (
+                      <div>No Content Added!</div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div
-            style={{ height: 45, width: 50, marginTop: 5, alignSelf: "center" }}
-            className="theme-button"
-            onClick={this.onClear}
-          >
-            Clear ^
-          </div>
-        </div>
-      </div>
+        )}
+      </DataContextConsumer>
     );
   }
 }

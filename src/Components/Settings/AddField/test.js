@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input, Icon, Button, Rate, Select, Checkbox } from "antd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DataContextConsumer } from "../../../Context/DataContext";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -46,26 +47,26 @@ class DynamicFieldSet extends React.Component {
       result.destination.index
     );
 
-    this.setState({
-      data
-    });
-    //this.props.onDataChange(data);
+    this.props.onDataChange(data);
     console.log("neww--", data);
   };
 
-  componentWillReceiveProps(props) {
-    const data = props.data;
-    this.setState({ data: props.data });
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.data !== this.state.data) {
+      this.setState({ data: prevProps.data });
+    }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.data !== prevState.data) {
+      return { data: nextProps.data };
+    } else return null;
   }
 
   remove = k => {
     const data = this.state.data;
     const d = data.filter(item => item.key !== k);
-    this.setState({
-      data: d
-    });
-
-    this.props.getdata(d);
+    this.props.onDataChange(d);
   };
 
   handleSubmit = e => {
@@ -222,7 +223,18 @@ class DynamicFieldSet extends React.Component {
     );
   }
 }
-
 const WrappedDynamicFieldSet = DynamicFieldSet;
 
 export default WrappedDynamicFieldSet;
+
+// export default class WrappedDynamicFieldSet extends Component {
+//   render() {
+//     return (
+//       <DataContextConsumer>
+//         {({ onDataChange, data }) => {
+//           <DynamicFieldSet data={data} />;
+//         }}
+//       </DataContextConsumer>
+//     );
+//   }
+// }
