@@ -81,38 +81,37 @@ export default class App extends Component {
                 </Link>
               </Menu.Item>
               <Menu.Item key="3">
-                <Link to="/devices">
-                  <Icon style={{ fontSize: 20 }} type="tablet" />
-                  <span className="nav-text">Devices</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="4">
-                <Link to="/staffs">
-                  <Icon style={{ fontSize: 20 }} type="contacts" />
-                  <span className="nav-text"> Staff</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="5">
-                <Icon style={{ fontSize: 20 }} type="table" />
-                <span className="nav-text">Events</span>
-              </Menu.Item>
-              <Menu.Item key="6">
-                <Icon style={{ fontSize: 20 }} type="team" />
-                <span className="nav-text">All Users</span>
-              </Menu.Item>
-              <Menu.Item key="7">
-                <Icon style={{ fontSize: 20 }} type="mail" />
-                <span className="nav-text">Emails</span>
-              </Menu.Item>
-              <Menu.Item key="8">
                 <Link to="/insights">
                   <Icon style={{ fontSize: 20 }} type="pie-chart" />
                   <span className="nav-text">Insights</span>
                 </Link>
               </Menu.Item>
+              <Menu.Item key="4">
+                <Link to="/devices">
+                  <Icon style={{ fontSize: 20 }} type="tablet" />
+                  <span className="nav-text">Devices</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="5">
+                <Link to="/staffs">
+                  <Icon style={{ fontSize: 20 }} type="contacts" />
+                  <span className="nav-text"> Staff</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="6">
+                <Icon style={{ fontSize: 20 }} type="schedule" />
+                <span className="nav-text">Meetings</span>
+              </Menu.Item>
+              <Menu.Item key="7">
+                <Icon style={{ fontSize: 20 }} type="table" />
+                <span className="nav-text">Events</span>
+              </Menu.Item>
+              
+             
+              
 
               <SubMenu
-                key="9"
+                key="8"
                 title={
                   <span>
                     <Icon style={{ fontSize: 20 }} type="setting" />
@@ -120,25 +119,22 @@ export default class App extends Component {
                   </span>
                 }
               >
-                <Menu.Item key="10">
+                <Menu.Item key="9">
                   {" "}
                   <Link to="/settings">
                     <span className="nav-text-sub"> Desk Settings</span>
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="11">
+                <Menu.Item key="10">
                   <Link to="/messages">
                     <span className="nav-text-sub"> Messages</span>
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="12">
+                <Menu.Item key="11">
                   <span className="nav-text-sub"> Integrations</span>
                 </Menu.Item>
               </SubMenu>
-              <Menu.Item key="13">
-                <Icon style={{ fontSize: 20 }} type="schedule" />
-                <span className="nav-text">Meetings</span>
-              </Menu.Item>
+              
             </Menu>
           </Sider>
           <Layout className="child-layout">
