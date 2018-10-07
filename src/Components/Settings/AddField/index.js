@@ -143,7 +143,13 @@ export default class extends Component {
               >
                 Cancel
               </div>
-              <div className="theme-button" style={{ width: 100 }}>
+              <div
+                className="theme-button"
+                style={{ width: 100 }}
+                onClick={() => {
+                  this.props.onSave(data);
+                }}
+              >
                 Save
               </div>
             </div>

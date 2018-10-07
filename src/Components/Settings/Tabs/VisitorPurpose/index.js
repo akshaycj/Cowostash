@@ -8,6 +8,13 @@ import employee from "../../../../Res/employee.png";
 import maintenance from "../../../../Res/maintenance.png";
 import teamwork from "../../../../Res/teamwork.png";
 import AddField from "../../AddField";
+import { AUTH, BASE_URL } from "./../../../../Utils/Api";
+import Util from "../../../../Utils";
+
+const Utils = new Util();
+
+const url =
+  BASE_URL + "dashboard/companies/" + Utils.getCompanyId() + "/type_of_visits";
 
 export default class extends Component {
   state = {
@@ -22,11 +29,35 @@ export default class extends Component {
   onGoback = () => {
     this.setState({ addField: false });
   };
+  onSave = data => {
+    var postData = {
+      type_of_visits: data
+    };
+
+    fetch(url, {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: AUTH
+      },
+      body: JSON.stringify(postData)
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        message.success(data.message);
+      })
+      .catch(error => {
+        Utils.displayNotification(error.response.data.error, "Error", "error");
+      });
+  };
   render() {
     return (
       <div className="">
         {this.state.addField ? (
-          <AddField onGoback={this.onGoback} />
+          <AddField onGoback={this.onGoback} onSave={this.onSave} />
         ) : (
           <div>
             <div
