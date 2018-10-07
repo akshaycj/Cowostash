@@ -2,7 +2,16 @@ import React, { Component } from "react";
 import "./index.css";
 import SquareCard from "../../../SquareCard";
 
+import box from "../../../../Res/box.png";
+import guest from "../../../../Res/guest.png";
+import employee from "../../../../Res/employee.png";
+import maintenance from "../../../../Res/maintenance.png";
+import teamwork from "../../../../Res/teamwork.png";
+
 export default class extends Component {
+  onEnable = a => {
+    console.log("sss--", a);
+  };
   render() {
     return (
       <div className="">
