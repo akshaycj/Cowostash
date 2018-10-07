@@ -18,7 +18,7 @@ export class DataContextProvider extends Component {
         <DataContext.Provider
           value={{ onDataChange: this.onDataChange, data: this.state.data }}
         >
-          {children}
+          {this.props.children}
         </DataContext.Provider>
       </div>
     );
