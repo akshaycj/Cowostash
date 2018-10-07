@@ -106,6 +106,9 @@ export default class extends Component {
         console.log("data---", data);
 
         that.setState({ config_id: data.configuration.id });
+      })
+      .catch(error => {
+        Utils.displayNotification(error.response.data.error, "Error", "error");
       });
   }
 
