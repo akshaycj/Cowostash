@@ -39,11 +39,7 @@ const options = [
 ];
 
 const initialState = {
-  formData: {
-    formTitle: "",
-    inputTypes: [],
-    uploadTypes: []
-  },
+  formTitle: "",
   data: [],
   current: "",
   val: "",
@@ -102,10 +98,7 @@ export default class extends Component {
   };
 
   onFormTitle = e => {
-    const formData = this.state.formData;
-    formData.formTitle = e.target.value;
-
-    this.setState({ formData });
+    this.setState({ formTitle: e.target.value });
   };
 
   onLabelAP = e => {
@@ -147,7 +140,7 @@ export default class extends Component {
                 className="theme-button"
                 style={{ width: 100 }}
                 onClick={() => {
-                  this.props.onSave(data);
+                  this.props.onSave(data, this.state.formTitle);
                 }}
               >
                 Save

@@ -44,6 +44,8 @@ export default class extends Component {
       })
       .then(data => {
         that.setState({ data: data.devices, loading: false });
+      }).catch(error => {
+        Utils.displayNotification(error.response.data.error, "Error", "error");
       });
   };
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./index.css";
 import SquareCard from "../../../SquareCard";
-
+import { message } from "antd";
 import box from "../../../../Res/box.png";
 import guest from "../../../../Res/guest.png";
 import employee from "../../../../Res/employee.png";
@@ -20,6 +20,26 @@ export default class extends Component {
   state = {
     addField: false
   };
+
+  componentDidMount() {
+    fetch(url, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: AUTH
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        console.log("got--data", data);
+      })
+      .catch(error => {
+        Utils.displayNotification(error.response.data.error, "Error", "error");
+      });
+  }
   onEnable = a => {
     console.log("sss--", a);
   };
@@ -29,9 +49,30 @@ export default class extends Component {
   onGoback = () => {
     this.setState({ addField: false });
   };
-  onSave = data => {
+  onSave = (data, formTitle) => {
+    // var postData = {
+    //   type_of_visits: {
+    //     name: formTitle,
+    //     form_fields: data
+    //   }
+    // };
+
     var postData = {
-      type_of_visits: data
+      type_of_visits: {
+        name: "interview",
+        form_fields_attributes: [
+          {
+            properties: {
+              name: "Email",
+              type: "email",
+              label: "Full Name",
+              placeholder: "Enter Name",
+              required: true,
+              icon: null
+            }
+          }
+        ]
+      }
     };
 
     fetch(url, {
@@ -44,6 +85,8 @@ export default class extends Component {
       body: JSON.stringify(postData)
     })
       .then(res => {
+        console.log("Res---", res);
+
         return res.json();
       })
       .then(data => {

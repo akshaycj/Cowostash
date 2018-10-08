@@ -108,7 +108,15 @@ export default class extends Component {
         that.setState({ config_id: data.configuration.id });
       })
       .catch(error => {
-        Utils.displayNotification(error.response.data.error, "Error", "error");
+        if (error) {
+          Utils.displayNotification(
+            error.response.data.error,
+            "Error",
+            "error"
+          );
+        } else {
+          message.error("Error");
+        }
       });
   }
 
@@ -282,7 +290,11 @@ export default class extends Component {
               <div>
                 {" "}
                 <Icon
-                  style={{ fontSize: "40px", marginTop: "15px",marginLeft:"30px" }}
+                  style={{
+                    fontSize: "40px",
+                    marginTop: "15px",
+                    marginLeft: "30px"
+                  }}
                   onClick={() => this.setModal2Visible(true)}
                   type="cloud-upload"
                 />{" "}
