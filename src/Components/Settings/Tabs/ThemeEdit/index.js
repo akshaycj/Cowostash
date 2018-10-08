@@ -233,7 +233,7 @@ export default class extends Component {
               <div>
                 {" "}
                 <Icon
-                  style={{ fontSize: "30px" }}
+                  style={{ fontSize: "30px", cursor: "pointer" }}
                   type="cloud-upload"
                   onClick={() => this.setModal1Visible(true)}
                 />
@@ -293,7 +293,8 @@ export default class extends Component {
                   style={{
                     fontSize: "40px",
                     marginTop: "15px",
-                    marginLeft: "30px"
+                    marginLeft: "30px",
+                    cursor: "pointer"
                   }}
                   onClick={() => this.setModal2Visible(true)}
                   type="cloud-upload"
