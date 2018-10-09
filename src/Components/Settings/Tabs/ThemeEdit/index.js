@@ -103,9 +103,11 @@ export default class extends Component {
         return res.json();
       })
       .then(data => {
-        console.log("data---", data);
+        if (data) {
+          console.log("data---", data);
 
-        that.setState({ config_id: data.configuration.id });
+          that.setState({ config_id: data.configuration.id });
+        }
       })
       .catch(error => {
         if (error) {
@@ -142,7 +144,9 @@ export default class extends Component {
         return res.json();
       })
       .then(data => {
-        message.success(data.message);
+        if (data) {
+          message.success(data.message);
+        }
       })
       .catch(error => {
         Utils.displayNotification(error.response.data.error, "Error", "error");

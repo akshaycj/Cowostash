@@ -61,19 +61,21 @@ export default class extends Component {
             return res.json();
           })
           .then(data => {
-            Utils.setSessionToken("JWTToken", data.jwt);
-            Utils.setSessionToken("comapnyId", data.company_id);
-            Utils.setSessionToken("userId", data.user_id);
-            if (that.state.checkboxValue) {
-              Utils.setCookie("JWTToken", data.jwt);
-              Utils.setCookie("comapanyId", data.company_id);
-              Utils.setCookie("userId", data.user_id);
+            if (data) {
+              Utils.setSessionToken("JWTToken", data.jwt);
+              Utils.setSessionToken("comapnyId", data.company_id);
+              Utils.setSessionToken("userId", data.user_id);
+              if (that.state.checkboxValue) {
+                Utils.setCookie("JWTToken", data.jwt);
+                Utils.setCookie("comapanyId", data.company_id);
+                Utils.setCookie("userId", data.user_id);
+              }
+              if (data.jwt) {
+                that.setState({ redirect: true, spin: false });
+              }
+              //that.setState({ redirect: true });
+              console.log("done");
             }
-            if (data.jwt) {
-              that.setState({ redirect: true, spin: false });
-            }
-            //that.setState({ redirect: true });
-            console.log("done");
           })
           .catch(error => {
             that.setState({ spin: false });

@@ -34,7 +34,9 @@ export default class extends Component {
         return res.json();
       })
       .then(data => {
-        console.log("got--data", data);
+        if (data) {
+          console.log("got--data", data);
+        }
       })
       .catch(error => {
         Utils.displayNotification(error.response.data.error, "Error", "error");
@@ -90,7 +92,9 @@ export default class extends Component {
         return res.json();
       })
       .then(data => {
-        message.success(data.message);
+        if (data) {
+          message.success(data.message);
+        }
       })
       .catch(error => {
         Utils.displayNotification(error.response.data.error, "Error", "error");
