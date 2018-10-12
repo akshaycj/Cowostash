@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import "./index.css";
 import { Card, Input, Icon, Table, Popconfirm, Modal, message } from "antd";
 import Util from "../../Utils";
-import { BASE_URL, AUTH } from "./../../Utils/Api";
+import { BASE_URL } from "./../../Utils/Api";
 
 const Utils = new Util();
+
+const AUTH = "Bearer " + Utils.getToken();
 
 const url =
   BASE_URL +
@@ -30,6 +32,7 @@ export default class extends Component {
   }
   getDevices = () => {
     var that = this;
+    console.log("Auth", AUTH);
 
     fetch(url, {
       method: "GET",
@@ -44,7 +47,8 @@ export default class extends Component {
       })
       .then(data => {
         that.setState({ data: data.devices, loading: false });
-      }).catch(error => {
+      })
+      .catch(error => {
         Utils.displayNotification(error.response.data.error, "Error", "error");
       });
   };

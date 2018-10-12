@@ -1,13 +1,11 @@
 {
-  "main.css": "static/css/main.06c379a2.css",
-  "main.css.map": "static/css/main.06c379a2.css.map",
-  "main.js": "static/js/main.712b3a40.js",
-  "main.js.map": "static/js/main.712b3a40.js.map",
-  "static\\media\\door.svg": "static/media/door.00996343.svg",
-  "static\\media\\email.svg": "static/media/email.c5cc9529.svg",
-  "static\\media\\logo.svg": "static/media/logo.ee7cd8ed.svg",
-  "static\\media\\rocket.svg": "static/media/rocket.80709fbb.svg",
-  "static\\media\\staff.svg": "static/media/staff.3a264965.svg",
-  "static\\media\\ticket.svg": "static/media/ticket.74328a0f.svg",
-  "static\\media\\users.svg": "static/media/users.f47248da.svg"
+  "main.css": "static/css/main.e4305f4b.css",
+  "main.css.map": "static/css/main.e4305f4b.css.map",
+  "main.js": "static/js/main.41b51ef9.js",
+  "main.js.map": "static/js/main.41b51ef9.js.map",
+  "static\\media\\ipad.png": "static/media/ipad.fc8af12c.png",
+  "static\\media\\logo.svg": "static/media/logo.0035227f.svg",
+  "static\\media\\textlogo.png": "static/media/textlogo.e41b6882.png",
+  "static\\media\\theme2.jpg": "static/media/theme2.663a2c55.jpg",
+  "static\\media\\theme3.jpeg": "static/media/theme3.6121c1ed.jpeg"
 }
