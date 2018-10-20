@@ -3,13 +3,19 @@ import "./index.css";
 import { Switch, Icon, Input, message, Spin } from "antd";
 import SquareCard from "../../../SquareCard";
 import Util from "./../../../../Utils/index";
-import { BASE_URL, AUTH } from "./../../../../Utils/Api";
+import { BASE_URL } from "./../../../../Utils/Api";
 
 const { TextArea } = Input;
 const Utils = new Util();
 const url = BASE_URL + "/dashboard/companies/" + Utils.getCompanyId() + "/ndas";
 
-export default class extends Component {
+export default props => (
+  <DataContextConsumer>
+    {({ auth, authChange }) => <NDA {...props} auth={auth} />}
+  </DataContextConsumer>
+);
+
+export class NDA extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +23,8 @@ export default class extends Component {
       title: "",
       nda: "",
       data: [],
-      loading: true
+      loading: true,
+      auth: this.props.auth
     };
   }
   componentDidMount() {

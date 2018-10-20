@@ -3,10 +3,9 @@ import "./index.css";
 import { Card, Input, Icon, Table, Popconfirm, Modal, message } from "antd";
 import Util from "../../Utils";
 import { BASE_URL } from "./../../Utils/Api";
+import { DataContextConsumer } from "../../Context/DataContext";
 
 const Utils = new Util();
-
-const AUTH = "Bearer " + Utils.getToken();
 
 const url =
   BASE_URL +
@@ -16,7 +15,13 @@ const url =
   Utils.getUserId() +
   "/devices";
 
-export default class extends Component {
+export default props => (
+  <DataContextConsumer>
+    {({ auth, authChange }) => <Devices {...props} auth={auth} />}
+  </DataContextConsumer>
+);
+
+export class Devices extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +29,8 @@ export default class extends Component {
       data: [],
       newDeviceName: "",
       loading: true,
-      add: false
+      add: false,
+      auth: this.props.auth
     };
   }
   componentDidMount() {
@@ -32,7 +38,7 @@ export default class extends Component {
   }
   getDevices = () => {
     var that = this;
-    // console.log("Auth", AUTH);
+    // console.log("Auth", this.state.auth);
     // console.log("url",url);
 
     fetch(url, {
@@ -40,7 +46,7 @@ export default class extends Component {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: AUTH
+        Authorization: this.state.auth
       }
     })
       .then(res => {
@@ -61,7 +67,7 @@ export default class extends Component {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: AUTH
+        Authorization: this.state.auth
       }
     })
       .then(res => {
@@ -95,7 +101,7 @@ export default class extends Component {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: AUTH
+        Authorization: this.state.auth
       },
       body: JSON.stringify(device)
     })

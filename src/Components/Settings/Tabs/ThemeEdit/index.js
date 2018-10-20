@@ -91,35 +91,35 @@ export default class extends Component {
     data.push(e);
     this.setState({ quickLinks: data });
 
-    fetch(url, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: AUTH
-      }
-    })
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        if (data) {
-          console.log("data---", data);
+    // fetch(url, {
+    //   method: "GET",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //     Authorization: AUTH
+    //   }
+    // })
+    //   .then(res => {
+    //     return res.json();
+    //   })
+    //   .then(data => {
+    //     if (data) {
+    //       console.log("data---", data);
 
-          that.setState({ config_id: data.configuration.id });
-        }
-      })
-      .catch(error => {
-        if (error) {
-          Utils.displayNotification(
-            error.response.data.error,
-            "Error",
-            "error"
-          );
-        } else {
-          message.error("Error");
-        }
-      });
+    //       that.setState({ config_id: data.configuration.id });
+    //     }
+    //   })
+    //   .catch(error => {
+    //     if (error) {
+    //       Utils.displayNotification(
+    //         error.response.data.error,
+    //         "Error",
+    //         "error"
+    //       );
+    //     } else {
+    //       message.error("Error");
+    //     }
+    //   });
   }
 
   onSave = () => {
@@ -133,28 +133,28 @@ export default class extends Component {
     };
     console.log("postData", JSON.stringify(data));
 
-    fetch(url, {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: AUTH
-      },
-      body: JSON.stringify(data)
-    })
-      .then(res => {
-        console.log("response", res);
+    // fetch(url, {
+    //   method: "post",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //     Authorization: AUTH
+    //   },
+    //   body: JSON.stringify(data)
+    // })
+    //   .then(res => {
+    //     console.log("response", res);
 
-        return res.json();
-      })
-      .then(data => {
-        if (data) {
-          message.success(data.message);
-        }
-      })
-      .catch(error => {
-        Utils.displayNotification(error.response.data.error, "Error", "error");
-      });
+    //     return res.json();
+    //   })
+    //   .then(data => {
+    //     if (data) {
+    //       message.success(data.message);
+    //     }
+    //   })
+    //   .catch(error => {
+    //     Utils.displayNotification(error.response.data.error, "Error", "error");
+    //   });
   };
 
   onEnableCheck = value => {

@@ -14,8 +14,9 @@ export class DataContextProvider extends Component {
     this.setState({ data });
   };
 
-  onAuthChange = auth => {
-    console.log("auth ethi", auth);
+  onAuthChange = token => {
+    console.log("auth ethi", token);
+    const auth = "Bearer " + token;
 
     this.setState({ auth });
   };
