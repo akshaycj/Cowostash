@@ -7,24 +7,29 @@ export class DataContextProvider extends Component {
     super(props);
     this.state = {
       data: [],
-      auth:null
+      auth: null
     };
   }
   onDataChange = data => {
     this.setState({ data });
   };
 
-  onAuthChange = auth =>{
-    console.log("auth ethi",auth);
-    
-    this.setState({auth})
-  }
+  onAuthChange = auth => {
+    console.log("auth ethi", auth);
+
+    this.setState({ auth });
+  };
 
   render() {
     return (
       <div>
         <DataContext.Provider
-          value={{ onDataChange: this.onDataChange, data: this.state.data, auth:this.state.auth }}
+          value={{
+            onDataChange: this.onDataChange,
+            data: this.state.data,
+            auth: this.state.auth,
+            authChange: this.onAuthChange
+          }}
         >
           {this.props.children}
         </DataContext.Provider>

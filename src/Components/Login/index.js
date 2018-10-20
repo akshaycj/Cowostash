@@ -5,10 +5,19 @@ import { Link, Redirect } from "react-router-dom";
 import logo from "../../Res/textlogo.png";
 import Util from "../../Utils";
 import { BASE_URL } from "./../../Utils/Api";
+import { DataContextConsumer } from "../../Context/DataContext";
 
 const Utils = new Util();
 
-export default class extends Component {
+export default props => (
+  <DataContextConsumer>
+    {({ auth, authChange }) => (
+      <Login {...props} auth={auth} authChange={authChange} />
+    )}
+  </DataContextConsumer>
+);
+
+export class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,6 +47,7 @@ export default class extends Component {
 
   onLogin = () => {
     var that = this;
+    const { auth, authChange } = this.props;
     this.setState({ spin: true });
 
     if (this.state.email && Utils.emailValidation(this.state.email)) {
@@ -70,9 +80,11 @@ export default class extends Component {
                 Utils.setCookie("comapanyId", data.company_id);
                 Utils.setCookie("userId", data.user_id);
               }
+              authChange(data.jwt || Utils.getToken());
               if (data.jwt) {
                 that.setState({ redirect: true, spin: false });
               }
+
               //that.setState({ redirect: true });
               console.log("done");
             }
