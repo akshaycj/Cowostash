@@ -1,13 +1,16 @@
 import React, { Component } from "react";
+import Util from "./../Utils/index";
 
 const DataContext = React.createContext();
+
+const Utils = new Util();
 
 export class DataContextProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
-      auth: null
+      auth: Utils.getToken()
     };
   }
   onDataChange = data => {

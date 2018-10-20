@@ -4,6 +4,7 @@ import { Switch, Icon, Input, message, Spin } from "antd";
 import SquareCard from "../../../SquareCard";
 import Util from "./../../../../Utils/index";
 import { BASE_URL } from "./../../../../Utils/Api";
+import { DataContextConsumer } from "../../../../Context/DataContext";
 
 const { TextArea } = Input;
 const Utils = new Util();
@@ -51,7 +52,7 @@ export class NDA extends Component {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: AUTH
+        Authorization: this.state.auth
       }
     })
       .then(res => {
@@ -78,7 +79,7 @@ export class NDA extends Component {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: AUTH
+          Authorization: this.state.auth
         },
         body: JSON.stringify(nda)
       })
@@ -113,7 +114,7 @@ export class NDA extends Component {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: AUTH
+        Authorization: this.state.auth
       },
       body: JSON.stringify(nda)
     })
