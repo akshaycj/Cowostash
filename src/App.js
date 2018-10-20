@@ -35,9 +35,9 @@ export default class App extends Component {
       <div>
         <BrowserRouter>
           <div>
-            <Switch>
-              <Route path="/" exact component={Login} />
-              <DataContextProvider>
+            <DataContextProvider>
+              <Switch>
+                <Route path="/" exact component={Login} />
                 <Home>
                   <Switch>
                     <Route path="/Insights" component={Insights} />
@@ -54,8 +54,8 @@ export default class App extends Component {
                     <Route path="/messages" component={Messages} />
                   </Switch>
                 </Home>
-              </DataContextProvider>
-            </Switch>
+              </Switch>
+            </DataContextProvider>
           </div>
         </BrowserRouter>
       </div>
