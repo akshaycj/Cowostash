@@ -131,8 +131,10 @@ export default class extends Component {
         quick_links: this.state.quickLinks
       }
     };
-    fetch(url + "/" + this.state.config_id, {
-      method: "put",
+    console.log("postData", JSON.stringify(data));
+
+    fetch(url, {
+      method: "post",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -141,6 +143,8 @@ export default class extends Component {
       body: JSON.stringify(data)
     })
       .then(res => {
+        console.log("response", res);
+
         return res.json();
       })
       .then(data => {

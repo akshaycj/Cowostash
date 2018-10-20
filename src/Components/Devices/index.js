@@ -32,7 +32,8 @@ export default class extends Component {
   }
   getDevices = () => {
     var that = this;
-    console.log("Auth", AUTH);
+    // console.log("Auth", AUTH);
+    // console.log("url",url);
 
     fetch(url, {
       method: "GET",
