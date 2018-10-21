@@ -26,7 +26,7 @@ const options = [
   },
   {
     data: "Photo Upload",
-    val: "file"
+    val: "photo"
   },
   {
     data: "CheckBox",

@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { Form, Input, Icon, Button, Rate, Select, Checkbox } from "antd";
+import {
+  Form,
+  Input,
+  Icon,
+  Button,
+  Rate,
+  Select,
+  Checkbox,
+  Upload
+} from "antd";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { DataContextConsumer } from "../../../Context/DataContext";
 
@@ -100,7 +109,8 @@ class DynamicFieldSet extends React.Component {
                   flexDirection: "row",
                   alignItems: "center",
                   margin: 5,
-                  padding: 2
+                  padding: 2,
+                  justifyContent: "center"
                 }}
               >
                 {k.type === "text" ? (
@@ -194,6 +204,30 @@ class DynamicFieldSet extends React.Component {
                     </div>
                   </div>
                 ) : null}
+                {k.type === "photo" ? (
+                  <Upload style={{ width: "100%" }}>
+                    <Input
+                      style={{ width: "100%" }}
+                      addonBefore={
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "space-between"
+                          }}
+                        >
+                          <Icon
+                            style={{ fontSize: 20, marginRight: 2 }}
+                            type="camera"
+                          />
+                        </div>
+                      }
+                      size="default"
+                      placeholder={k.label != "" ? k.label : "Upload Photo"}
+                    />
+                  </Upload>
+                ) : null}
                 <Icon
                   style={{ marginLeft: 2 }}
                   type="minus-circle-o"
@@ -226,15 +260,3 @@ class DynamicFieldSet extends React.Component {
 const WrappedDynamicFieldSet = DynamicFieldSet;
 
 export default WrappedDynamicFieldSet;
-
-// export default class WrappedDynamicFieldSet extends Component {
-//   render() {
-//     return (
-//       <DataContextConsumer>
-//         {({ onDataChange, data }) => {
-//           <DynamicFieldSet data={data} />;
-//         }}
-//       </DataContextConsumer>
-//     );
-//   }
-// }
