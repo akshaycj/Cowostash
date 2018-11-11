@@ -7,7 +7,7 @@ import theme2 from "../../../../Res/theme2.jpg";
 import theme3 from "../../../../Res/theme3.jpeg";
 import logo from "../../../../Res/logo.svg";
 import qr from "../../../../Res/qr.png";
-import { BASE_URL, AUTH } from "../../../../Utils/Api";
+import { BASE_URL } from "../../../../Utils/Api";
 import Util from "./../../../../Utils/index";
 import { Cascader } from "antd";
 
@@ -40,6 +40,7 @@ const options = [
 
 const Utils = new Util();
 const { TextArea } = Input;
+const AUTH = "Bearer " + Utils.getToken();
 const url =
   BASE_URL + "dashboard/companies/" + Utils.getCompanyId() + "/configurations";
 
@@ -91,70 +92,72 @@ export default class extends Component {
     data.push(e);
     this.setState({ quickLinks: data });
 
-    // fetch(url, {
-    //   method: "GET",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //     Authorization: AUTH
-    //   }
-    // })
-    //   .then(res => {
-    //     return res.json();
-    //   })
-    //   .then(data => {
-    //     if (data) {
-    //       console.log("data---", data);
+    fetch(url, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: AUTH
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        if (data) {
+          console.log("data---", data);
 
-    //       that.setState({ config_id: data.configuration.id });
-    //     }
-    //   })
-    //   .catch(error => {
-    //     if (error) {
-    //       Utils.displayNotification(
-    //         error.response.data.error,
-    //         "Error",
-    //         "error"
-    //       );
-    //     } else {
-    //       message.error("Error");
-    //     }
-    //   });
+          that.setState({ config_id: data.configuration.id });
+        }
+      })
+      .catch(error => {
+        if (error) {
+          Utils.displayNotification(
+            error.response.data.error,
+            "Error",
+            "error"
+          );
+        } else {
+          message.error("Error");
+        }
+      });
   }
 
   onSave = () => {
+    const { TextCol, MainText, SubText, logo } = this.state;
     var data = {
       configuration: {
-        text_color: this.state.TextCol,
-        main_text: this.state.MainText,
-        sub_text: this.state.SubText,
+        main_text: MainText,
+        text_color: TextCol,
+        sub_text: SubText,
+        abc: "abc",
         quick_links: this.state.quickLinks
       }
     };
     console.log("postData", JSON.stringify(data));
 
-    // fetch(url, {
-    //   method: "post",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //     Authorization: AUTH
-    //   },
-    //   body: JSON.stringify(data)
-    // })
-    //   .then(res => {
-    //     console.log("response", res);
+    fetch(url, {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: AUTH
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => {
+        console.log("response", res);
 
-    //     return res.json();
-    //   })
-    //   .then(data => {
-    //     if (data) {
-    //       message.success(data.message);
-    //     }
-    //   })
-    //   .catch(error => {
-    //     Utils.displayNotification(error.response.data.error, "Error", "error");
-    //   });
+        return res.json();
+      })
+      .then(data => {
+        if (data) {
+          message.success(data.message);
+        }
+      })
+      .catch(error => {
+        Utils.displayNotification(error.response.data.error, "Error", "error");
+      });
   };
 
   onEnableCheck = value => {

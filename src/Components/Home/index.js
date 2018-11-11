@@ -166,8 +166,10 @@ export default class App extends Component {
                 </Link>
               </Menu.Item>
               <Menu.Item key="6">
+                <Link to='/meetings'>
                 <Icon style={{ fontSize: 20 }} type="schedule" />
                 <span className="nav-text">Meetings</span>
+                </Link>
               </Menu.Item>
               <Menu.Item key="7">
                 <Icon style={{ fontSize: 20 }} type="table" />

@@ -21,6 +21,7 @@ import Dashboard from "./Components/Dashboard";
 import CheckinProfile from "./Components/Checkins/CheckinProfile";
 import Profile from "./Components/Profile";
 import Insights from "./Components/Insights";
+import Meetings from './Components/Meeting'
 import { DataContextProvider } from "./Context/DataContext";
 
 export default class App extends Component {
@@ -52,6 +53,7 @@ export default class App extends Component {
                     <Route path="/dashboard" component={Dashboard} />
                     <Route path="/devices" component={Devices} />
                     <Route path="/messages" component={Messages} />
+                    <Route path='/meetings' component={Meetings} />
                   </Switch>
                 </Home>
               </Switch>
