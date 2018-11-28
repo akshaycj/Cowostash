@@ -62,20 +62,12 @@ export default class extends Component {
     var postData = {
       type_of_visits: {
         name: "interview",
-        form_fields_attributes: [
-          {
-            properties: {
-              name: "Email",
-              type: "email",
-              label: "Full Name",
-              placeholder: "Enter Name",
-              required: true,
-              icon: null
-            }
-          }
-        ]
+        form_fields_attributes: data
       }
     };
+
+    console.log("post--",postData);
+    
 
     fetch(url, {
       method: "post",

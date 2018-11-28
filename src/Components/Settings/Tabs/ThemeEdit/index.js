@@ -107,7 +107,7 @@ export default class extends Component {
         if (data) {
           console.log("data---", data);
 
-          that.setState({ config_id: data.configuration.id });
+          that.setState({ config_id: data.configuration.id,logo:data.configuration.logo });
         }
       })
       .catch(error => {
@@ -124,14 +124,14 @@ export default class extends Component {
   }
 
   onSave = () => {
-    const { TextCol, MainText, SubText, logo } = this.state;
+    const { TextCol, MainText, SubText, logo ,quickLinks } = this.state;
     var data = {
       configuration: {
         main_text: MainText,
         text_color: TextCol,
         sub_text: SubText,
-        abc: "abc",
-        quick_links: this.state.quickLinks
+       
+        quick:JSON.stringify(quickLinks) 
       }
     };
     console.log("postData", JSON.stringify(data));

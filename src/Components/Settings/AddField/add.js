@@ -81,7 +81,7 @@ export default class extends Component {
         placeholder: this.state.labelAP,
         required: this.state.req,
         key: uuid++,
-        options: this.state.options
+        
       };
       data.push(d);
       console.log("init", data);
