@@ -32,7 +32,7 @@ export default class extends Component {
       Nda: "" || this.props.content,
       email: "",
       id: "" || this.props.id,
-      height:"130px"||this.props.eight
+      height: "130px" || this.props.eight
     };
   }
 
@@ -80,7 +80,7 @@ export default class extends Component {
   render() {
     return (
       <div className="square-card-container">
-        <div className="square-card" style={{height:this.state.height}}>
+        <div className="square-card" style={{ height: this.state.height }}>
           {this.props.img ? null : (
             <img
               src={this.props.src}
@@ -150,17 +150,17 @@ export default class extends Component {
                 footer={null}
                 onCancel={this.handleCancel}
               >
-                {this.props.edit1 && this.props.edit2 ? (
+                {this.props.type === "nda" ? (
                   <NdaEdit
                     title={this.props.title}
                     content={this.props.content}
                     data={this.getdataforNDA}
                   />
                 ) : null}
-                {this.props.edit && this.props.edit1 ? (
+                {this.props.type === "staff" ? (
                   <StaffEdit data={this.getdataforStaff} />
                 ) : null}
-                {this.props.edit && this.props.edit2 ? (
+                {this.props.type === "ql" ? (
                   <QuickEdit data={this.getdataintablet} />
                 ) : null}
               </Modal>

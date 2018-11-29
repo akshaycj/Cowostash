@@ -76,16 +76,14 @@ export default class extends Component {
       img: true,
       title: "Visitor",
       enable: true,
-      edit: true,
-      edit2: true
+      type='ql'
     };
     var e = {
       id: 1,
       img: true,
       title: "Event",
       enable: true,
-      edit: true,
-      edit2: true
+      type='ql'
     };
     var data = [];
     data.push(d);
@@ -107,7 +105,10 @@ export default class extends Component {
         if (data) {
           console.log("data---", data);
 
-          that.setState({ config_id: data.configuration.id,logo:data.configuration.logo });
+          that.setState({
+            config_id: data.configuration.id,
+            logo: data.configuration.logo
+          });
         }
       })
       .catch(error => {
@@ -124,14 +125,14 @@ export default class extends Component {
   }
 
   onSave = () => {
-    const { TextCol, MainText, SubText, logo ,quickLinks } = this.state;
+    const { TextCol, MainText, SubText, logo, quickLinks } = this.state;
     var data = {
       configuration: {
         main_text: MainText,
         text_color: TextCol,
         sub_text: SubText,
-       
-        quick:JSON.stringify(quickLinks) 
+
+        quick_links: quickLinks
       }
     };
     console.log("postData", JSON.stringify(data));
@@ -363,8 +364,7 @@ export default class extends Component {
                   eight={this.state.eight}
                   img={item.img}
                   onValue={this.onEnableCheck}
-                  edit={item.edit}
-                  edit2={item.edit2}
+                  type={item.type}
                   title={item.title}
                 />
               ))}

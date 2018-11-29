@@ -202,9 +202,7 @@ export class NDA extends Component {
                     onUpdate={this.getdata.bind(this)}
                     title={item.title}
                     content={item.content}
-                    edit={false}
-                    edit1={true}
-                    edit2={true}
+                    type="nda"
                   />
                 </div>
               );

@@ -66,11 +66,10 @@ export default class extends Component {
       }
     };
 
-    console.log("post--",postData);
-    
+    console.log("post--", JSON.stringify(postData));
 
     fetch(url, {
-      method: "post",
+      method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",

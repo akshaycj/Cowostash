@@ -4,8 +4,21 @@ import Graph from "../Graph";
 import Calendar from "react-calendar";
 import Box from "../Box";
 import { Bar, Pie, Line, Doughnut } from "react-chartjs-2";
+import { BASE_URL } from "../../Utils/Api";
+import Util from "../../Utils";
+import { DataContextConsumer } from "../../Context/DataContext";
 
-export default class extends Component {
+const Utils = new Util();
+
+const url = BASE_URL + "dashboard/companies/" + Utils.getCompanyId();
+
+export default props => (
+  <DataContextConsumer>
+    {({ auth }) => <Dashboard {...props} auth={auth} />}
+  </DataContextConsumer>
+);
+
+export class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,6 +34,31 @@ export default class extends Component {
       }
     };
   }
+
+  componentDidMount() {
+    // var data = {
+    //   company: { subscription_plan: "enterprise" }
+    // };
+    // fetch(url, {
+    //   method: "PUT",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //     Authorization: this.props.auth
+    //   },
+    //   body: JSON.stringify(data)
+    // })
+    //   .then(res => {
+    //     return res.json();
+    //   })
+    //   .then(data => {
+    //     console.log("red00", data);
+    //   })
+    //   .catch(error => {
+    //     Utils.displayNotification(error.response.data.error, "Error", "error");
+    //   });
+  }
+
   render() {
     return (
       <div

@@ -89,7 +89,8 @@ class DynamicFieldSet extends React.Component {
 
   render() {
     const keys = this.state.data;
-    const formItems = keys.map((k, index) => {
+    const formItems = keys.map((item, index) => {
+      var k = item.properties;
       return (
         <Draggable key={k.key} draggableId={k.key} index={index}>
           {(provided, snapshot) => (

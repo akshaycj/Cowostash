@@ -72,12 +72,14 @@ export default class extends Component {
 
     if (val) {
       var d = {
-        type: this.state.val,
-        label: this.state.label,
-        placeholder: this.state.labelAP,
-        required: this.state.req,
-        key: uuid++,
-        options: this.state.options
+        properties: {
+          type: this.state.val,
+          label: this.state.label,
+          placeholder: this.state.labelAP,
+          required: this.state.req,
+          key: uuid++,
+          options: this.state.options
+        }
       };
       data.push(d);
       console.log("init", data);
