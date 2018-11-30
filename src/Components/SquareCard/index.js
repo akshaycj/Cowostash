@@ -17,10 +17,6 @@ const Purpose = () => {
   );
 };
 export default class extends Component {
-  componentDidMount() {
-    this.setState({ title: this.props.title });
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -32,8 +28,12 @@ export default class extends Component {
       Nda: "" || this.props.content,
       email: "",
       id: "" || this.props.id,
-      height: "130px" || this.props.eight
+      height: "130px" || this.props.height
     };
+  }
+
+  componentDidMount() {
+    this.setState({ title: this.props.title, enable: this.props.enable });
   }
 
   onEn = () => {
@@ -80,7 +80,13 @@ export default class extends Component {
   render() {
     return (
       <div className="square-card-container">
-        <div className="square-card" style={{ height: this.state.height }}>
+        <div
+          className="square-card"
+          style={{
+            height: this.state.height,
+            width: "130px" || this.props.width
+          }}
+        >
           {this.props.img ? null : (
             <img
               src={this.props.src}

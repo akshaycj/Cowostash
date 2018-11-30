@@ -74,7 +74,7 @@ class DynamicFieldSet extends React.Component {
 
   remove = k => {
     const data = this.state.data;
-    const d = data.filter(item => item.key !== k);
+    const d = data.filter(item => item.properties.key !== k);
     this.props.onDataChange(d);
   };
 

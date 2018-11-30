@@ -64,7 +64,7 @@ export default class extends Component {
       quicklinkenable: null,
       quickLinks: [],
       config_id: "",
-      eight: "80px"
+      height: "80px"
     };
   }
 
@@ -72,56 +72,61 @@ export default class extends Component {
     var that = this;
 
     var d = {
-      id: 0,
       img: true,
       title: "Visitor",
       enable: true,
-      type='ql'
+      type: "ql"
     };
     var e = {
-      id: 1,
       img: true,
       title: "Event",
       enable: true,
-      type='ql'
+      type: "ql"
+    };
+    var f = {
+      img: true,
+      title: "Check in",
+      enable: false,
+      type: "ql"
     };
     var data = [];
     data.push(d);
     data.push(e);
+    data.push(f);
     this.setState({ quickLinks: data });
 
-    fetch(url, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: AUTH
-      }
-    })
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        if (data) {
-          console.log("data---", data);
+    // fetch(url, {
+    //   method: "GET",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //     Authorization: AUTH
+    //   }
+    // })
+    //   .then(res => {
+    //     return res.json();
+    //   })
+    //   .then(data => {
+    //     if (data) {
+    //       console.log("data---", data);
 
-          that.setState({
-            config_id: data.configuration.id,
-            logo: data.configuration.logo
-          });
-        }
-      })
-      .catch(error => {
-        if (error) {
-          Utils.displayNotification(
-            error.response.data.error,
-            "Error",
-            "error"
-          );
-        } else {
-          message.error("Error");
-        }
-      });
+    //       that.setState({
+    //         config_id: data.configuration.id,
+    //         logo: data.configuration.logo
+    //       });
+    //     }
+    //   })
+    //   .catch(error => {
+    //     if (error) {
+    //       Utils.displayNotification(
+    //         error.response.data.error,
+    //         "Error",
+    //         "error"
+    //       );
+    //     } else {
+    //       message.error("Error");
+    //     }
+    //   });
   }
 
   onSave = () => {
@@ -357,18 +362,20 @@ export default class extends Component {
                 Quick Link +
               </div>
             </div>
-            <hr style={{ width: "360px" }} />
+            <hr style={{ width: "100%" }} />
             <div className="Theme-padding">
               {this.state.quickLinks.map(item => (
                 <SquareCard
-                  eight={this.state.eight}
+                  height={this.state.eight}
                   img={item.img}
+                  enable={item.enable}
                   onValue={this.onEnableCheck}
                   type={item.type}
                   title={item.title}
                 />
               ))}
             </div>
+            <div>* You can only enable 2 Quick Links at the same time</div>
             {this.state.displayquick ? (
               <div>
                 <Input
@@ -386,7 +393,7 @@ export default class extends Component {
                 </div>
               </div>
             ) : null}
-            <hr style={{ width: "360px" }} />
+            <hr style={{ width: "100%" }} />
             <div className="Theme-padding QuickLinkPop ">
               <h3>Enable QR</h3>
               <Switch
@@ -422,22 +429,24 @@ export default class extends Component {
                 {this.state.SubText}
               </h5>
               <div style={{ display: "flex", marginTop: "-10px" }}>
-                {this.state.quickLinks.map(item => (
-                  <div class="pa4">
-                    <div
-                      style={{
-                        backgroundColor: "#e6e6e6",
-                        opacity: "0.8",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center"
-                      }}
-                      class="Ipad-Logo"
-                    >
-                      <h6>{item.title}</h6>
+                {this.state.quickLinks.map(item => {
+                  return item.enable ? (
+                    <div class="pa4">
+                      <div
+                        style={{
+                          backgroundColor: "#e6e6e6",
+                          opacity: "0.8",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center"
+                        }}
+                        class="Ipad-Logo"
+                      >
+                        <h6>{item.title}</h6>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ) : null;
+                })}
               </div>
               {this.state.Switch ? (
                 <div style={{ marginTop: "-15px" }} className="QuickLinkPop">

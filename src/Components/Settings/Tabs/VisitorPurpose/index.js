@@ -60,8 +60,8 @@ export default class extends Component {
     // };
 
     var postData = {
-      type_of_visits: {
-        name: "interview",
+      type_of_visit: {
+        name: formTitle,
         form_fields_attributes: data
       }
     };

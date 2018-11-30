@@ -15,7 +15,7 @@ const Purpose = () => {
 };
 export default class extends Component {
   componentDidMount() {
-    this.setState({ title: this.props.title });
+    this.setState({ title: this.props.title, enable: this.props.enable });
   }
 
   constructor(props) {
@@ -62,7 +62,6 @@ export default class extends Component {
     });
   };
 
-  
   getdataintablet = data => {
     console.log("get", data);
   };
@@ -79,7 +78,7 @@ export default class extends Component {
               height={50}
             />
           )}
-          
+
           <div style={{ marginTop: 5, fontSize: "15px" }}>
             {this.state.title}
           </div>
@@ -123,9 +122,7 @@ export default class extends Component {
                 visible={this.state.visible}
                 footer={null}
                 onCancel={this.handleCancel}
-              >
-                
-              </Modal>
+              />
             </div>
           </div>
         </div>
