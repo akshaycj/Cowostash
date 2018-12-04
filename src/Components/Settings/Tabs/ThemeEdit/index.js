@@ -1,50 +1,77 @@
 import React, { Component, Fragment } from "react";
 import "./index.css";
-import { Input, Icon, Upload, Button, Modal, Switch, message } from "antd";
+import {
+  Input,
+  Icon,
+  Upload,
+  Button,
+  Modal,
+  Switch,
+  message,
+  Transfer,
+  Select
+} from "antd";
 import SquareCard from "../../../SquareCardIpad";
 import theme1 from "../../../../Res/theme1.jpeg";
 import theme2 from "../../../../Res/theme2.jpg";
 import theme3 from "../../../../Res/theme3.jpeg";
 import logo from "../../../../Res/logo.svg";
 import qr from "../../../../Res/qr.png";
-import { BASE_URL } from "../../../../Utils/Api";
+import { BASE_URL, BASE_URL_COMP } from "../../../../Utils/Api";
 import Util from "./../../../../Utils/index";
 import { Cascader } from "antd";
+import { DataContextConsumer } from "../../../../Context/DataContext";
 
-const options = [
-  {
-    value: "Visitor",
-    label: "Visitor"
-  },
-  {
-    value: "Event",
-    label: "Event"
-  },
-  {
-    value: "Vendor",
-    label: "Vendor"
-  },
-  {
-    value: "Maintenence",
-    label: "Maintenence"
-  },
-  {
-    value: "Employee",
-    label: "Employee"
-  },
-  {
-    value: "Delivery",
-    label: "Deilvery"
-  }
-];
+export default props => (
+  <DataContextConsumer>
+    {({ quicklinks, setQuickLinks }) => (
+      <ThemeEdit
+        {...props}
+        quicklinks={quicklinks}
+        setQuickLinks={setQuickLinks}
+      />
+    )}
+  </DataContextConsumer>
+);
+
+const Option = Select.Option;
+
+// const options = [
+//   {
+//     value: "Visitor",
+//     label: "Visitor"
+//   },
+//   {
+//     value: "Event",
+//     label: "Event"
+//   },
+//   {
+//     value: "Vendor",
+//     label: "Vendor"
+//   },
+//   {
+//     value: "Maintenence",
+//     label: "Maintenence"
+//   },
+//   {
+//     value: "Employee",
+//     label: "Employee"
+//   },
+//   {
+//     value: "Delivery",
+//     label: "Deilvery"
+//   }
+// ];
 
 const Utils = new Util();
 const { TextArea } = Input;
 const AUTH = "Bearer " + Utils.getToken();
 const url =
   BASE_URL + "dashboard/companies/" + Utils.getCompanyId() + "/configurations";
+const QL_url =
+  BASE_URL + "dashboard/companies/" + Utils.getCompanyId() + "/quick_links";
 
-export default class extends Component {
+export class ThemeEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -64,79 +91,195 @@ export default class extends Component {
       quicklinkenable: null,
       quickLinks: [],
       config_id: "",
-      height: "80px"
+      height: "80px",
+      typesOfVisits: [],
+      quickLinkTitle: "",
+      selectedFormId: "",
+      selectedKeys: [],
+      targetKeys: []
     };
   }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.quicklinks !== this.state.quickLinks) {
+  //     this.setState({ quicklinks: prevProps.quicklinks });
+  //   }
+  // }
 
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   if (nextProps.quicklinks !== prevState.quicklinks) {
+  //     return { data: nextProps.quicklinks };
+  //   } else return null;
+  // }
   componentDidMount() {
     var that = this;
 
-    var d = {
-      img: true,
-      title: "Visitor",
-      enable: true,
-      type: "ql"
-    };
-    var e = {
-      img: true,
-      title: "Event",
-      enable: true,
-      type: "ql"
-    };
-    var f = {
-      img: true,
-      title: "Check in",
-      enable: false,
-      type: "ql"
-    };
-    var data = [];
-    data.push(d);
-    data.push(e);
-    data.push(f);
-    this.setState({ quickLinks: data });
+    const { quicklinks, setQuickLinks } = this.props;
 
-    // fetch(url, {
-    //   method: "GET",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //     Authorization: AUTH
-    //   }
-    // })
-    //   .then(res => {
-    //     return res.json();
-    //   })
-    //   .then(data => {
-    //     if (data) {
-    //       console.log("data---", data);
+    // var d = {
+    //   key: 0,
+    //   img: true,
+    //   title: "Visitor",
+    //   enable: true,
+    //   type: "ql"
+    // };
+    // var e = {
+    //   key: 1,
+    //   img: true,
+    //   title: "Event",
+    //   enable: true,
+    //   type: "ql"
+    // };
+    // var f = {
+    //   key: 2,
+    //   img: true,
+    //   title: "Check in",
+    //   enable: false,
+    //   type: "ql"
+    // };
 
-    //       that.setState({
-    //         config_id: data.configuration.id,
-    //         logo: data.configuration.logo
-    //       });
-    //     }
-    //   })
-    //   .catch(error => {
-    //     if (error) {
-    //       Utils.displayNotification(
-    //         error.response.data.error,
-    //         "Error",
-    //         "error"
-    //       );
-    //     } else {
-    //       message.error("Error");
-    //     }
-    //   });
+    // setQuickLinks(d);
+
+    // setQuickLinks(e);
+
+    // setQuickLinks(f);
+
+    // var data = [];
+    // data.push(d);
+    // data.push(e);
+    // data.push(f);
+    //this.setState({ quickLinks: quicklinks });
+
+    this.getConfig();
+
+    this.getVisitForms();
+
+    this.getQL();
   }
 
+  getConfig = () => {
+    fetch(url, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: AUTH
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        if (data) {
+          console.log("data---", data);
+
+          const config = data.configuration;
+
+          this.setState({
+            config_id: config.id,
+            logo: config.logo,
+            ipadbackground: config.background_image,
+            MainText: config.main_text,
+            SubText: config.sub_text,
+            TextCol: config.text_color
+          });
+        }
+      })
+      .catch(error => {
+        if (error) {
+          Utils.displayNotification(
+            error.response.data.error,
+            "Error",
+            "error"
+          );
+        } else {
+          message.error("Error");
+        }
+      });
+  };
+
+  getQL = () => {
+    fetch(QL_url, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: AUTH
+      }
+    })
+      .then(res => {
+        console.log("response", res);
+
+        return res.json();
+      })
+      .then(data => {
+        if (data) {
+          console.log("Data-qL", data);
+
+          const quickLinks = [];
+          const targetKeys = [];
+
+          data.quick_links.map(item => {
+            item.active ? targetKeys.push(item.id) : null;
+
+            quickLinks.push({
+              key: item.id,
+              name: item.name,
+              active: item.active
+            });
+          });
+          console.log("quick[[", quickLinks);
+
+          this.setState({ quickLinks, targetKeys });
+        }
+      })
+      .catch(error => {
+        Utils.displayNotification(error.response, "Error", "error");
+      });
+  };
+
+  getVisitForms = () => {
+    fetch(BASE_URL_COMP + "/type_of_visits", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: AUTH
+      }
+    })
+      .then(res => {
+        console.log("response", res);
+
+        return res.json();
+      })
+      .then(data => {
+        if (data) {
+          console.log("data", data);
+
+          this.setState({ typesOfVisits: data.type_of_visits });
+        }
+      })
+      .catch(error => {
+        Utils.displayNotification(error.response, "Error", "error");
+      });
+  };
+
   onSave = () => {
-    const { TextCol, MainText, SubText, logo, quickLinks } = this.state;
+    const {
+      TextCol,
+      MainText,
+      SubText,
+      logo,
+      quickLinks,
+      ipadbackground
+    } = this.state;
+
     var data = {
       configuration: {
         main_text: MainText,
         text_color: TextCol,
+        logo: logo,
         sub_text: SubText,
-
+        background_image: ipadbackground,
         quick_links: quickLinks
       }
     };
@@ -162,7 +305,7 @@ export default class extends Component {
         }
       })
       .catch(error => {
-        Utils.displayNotification(error.response.data.error, "Error", "error");
+        Utils.displayNotification(error.response, "Error", "error");
       });
   };
 
@@ -233,6 +376,111 @@ export default class extends Component {
   };
   getdata = data1 => {};
   CascaderonChange = () => {};
+
+  onQuickLinkTitleChange = e => {
+    this.setState({ quickLinkTitle: e.target.value });
+  };
+
+  onFormSelect = (value, opt) => {
+    this.setState({ selectedFormId: value });
+  };
+
+  onQuickLinkAdd = () => {
+    const { quickLinkTitle, selectedFormId } = this.state;
+    var data = {
+      quick_link: {
+        name: quickLinkTitle,
+        type_of_visit_id: selectedFormId,
+        active: false
+      }
+    };
+
+    fetch(QL_url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: AUTH
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => {
+        console.log("response", res);
+        this.getQL();
+        return res.json();
+      })
+      .then(data => {
+        if (data) {
+          console.log("Dones", data);
+          message.success(data.message);
+        } else {
+          message.error("Something went wrong");
+        }
+      })
+      .catch(error => {
+        Utils.displayNotification(error.response, "Error", "error");
+      });
+  };
+
+  handleTransferChange = (sourceSelectedKeys, targetSelectedKeys) => {
+    this.setState({
+      selectedKeys: [...sourceSelectedKeys, ...targetSelectedKeys]
+    });
+    //this.setState({ quickLinks: [...quickLinks, ...selectedKeys] });
+    console.log("-----", this.state.selectedKeys);
+  };
+
+  transferChange = (nextTargetKeys, direction, moveKeys) => {
+    if (direction === "right") {
+      if (nextTargetKeys.length <= 2) {
+        this.state.targetKeys.length < 2
+          ? this.changeQLActive(nextTargetKeys, moveKeys, direction)
+          : message.warning("You can only have 2 active quicklinks at a time");
+      } else {
+        message.warning("You can only have 2 active quicklinks at a time");
+      }
+    } else {
+      this.changeQLActive(nextTargetKeys, moveKeys, direction);
+    }
+
+    console.log("targetKeys: ", nextTargetKeys);
+    console.log("len ", nextTargetKeys.length);
+    console.log("moveKeys: ", moveKeys);
+  };
+
+  changeQLActive = (nextTargetKeys, moveKeys, direction) => {
+    this.setState({ targetKeys: nextTargetKeys });
+    var data = {
+      quick_link: {
+        active: direction === "right" ? true : false
+      }
+    };
+
+    moveKeys.map(item => {
+      fetch(QL_url + "/" + item, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: AUTH
+        },
+        body: JSON.stringify(data)
+      })
+        .then(res => {
+          console.log("response", res);
+
+          return res.json();
+        })
+        .then(data => {
+          if (data) {
+            this.getQL();
+          }
+        })
+        .catch(error => {
+          Utils.displayNotification(error.response, "Error", "error");
+        });
+    });
+  };
   render() {
     return (
       <div>
@@ -364,7 +612,17 @@ export default class extends Component {
             </div>
             <hr style={{ width: "100%" }} />
             <div className="Theme-padding">
-              {this.state.quickLinks.map(item => (
+              <Transfer
+                dataSource={this.state.quickLinks}
+                selectedKeys={this.state.selectedKeys}
+                targetKeys={this.state.targetKeys}
+                titles={["Available", "Active"]}
+                render={item => item.name}
+                onChange={this.transferChange}
+                onSelectChange={this.handleTransferChange}
+              />
+
+              {/* {this.state.quickLinks.map(item => (
                 <SquareCard
                   height={this.state.eight}
                   img={item.img}
@@ -373,23 +631,29 @@ export default class extends Component {
                   type={item.type}
                   title={item.title}
                 />
-              ))}
+              ))} */}
             </div>
             <div>* You can only enable 2 Quick Links at the same time</div>
             {this.state.displayquick ? (
               <div>
                 <Input
                   className="Theme-padding "
-                  placeholder="Quick Edit Title"
+                  placeholder="Quick Link Title"
+                  onChange={this.onQuickLinkTitleChange}
                 />
                 <div className="Theme-padding QuickLinkPop ">
-                  <Cascader
-                    style={{ width: "200px" }}
-                    options={options}
-                    onChange={this.CascaderonChange}
-                    placeholder="Select Form"
-                  />
-                  <div className="theme-button">Add</div>
+                  <Select
+                    onChange={this.onFormSelect}
+                    placeholder="Select Visitor Form"
+                    style={{ width: "100%" }}
+                  >
+                    {this.state.typesOfVisits.map(item => (
+                      <Option value={item.id}>{item.name}</Option>
+                    ))}
+                  </Select>
+                  <div className="theme-button" onClick={this.onQuickLinkAdd}>
+                    Add
+                  </div>
                 </div>
               </div>
             ) : null}
@@ -430,7 +694,7 @@ export default class extends Component {
               </h5>
               <div style={{ display: "flex", marginTop: "-10px" }}>
                 {this.state.quickLinks.map(item => {
-                  return item.enable ? (
+                  return item.active ? (
                     <div class="pa4">
                       <div
                         style={{
@@ -442,7 +706,7 @@ export default class extends Component {
                         }}
                         class="Ipad-Logo"
                       >
-                        <h6>{item.title}</h6>
+                        <h6>{item.name}</h6>
                       </div>
                     </div>
                   ) : null;

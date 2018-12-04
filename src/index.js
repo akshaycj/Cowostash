@@ -8,10 +8,5 @@ import arEG from "antd/lib/locale-provider/ar_EG";
 
 import frFR from "antd/lib/locale-provider/fr_FR";
 
-ReactDOM.render(
-  <LocaleProvider locale={arEG}>
-    <App />
-  </LocaleProvider>,
-  document.getElementById("root")
-);
+ReactDOM.render(<App />, document.getElementById("root"));
 registerServiceWorker();

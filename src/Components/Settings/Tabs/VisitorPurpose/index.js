@@ -39,7 +39,7 @@ export default class extends Component {
         }
       })
       .catch(error => {
-        Utils.displayNotification(error.response.data.error, "Error", "error");
+        Utils.displayNotification(error.response, "Error", "error");
       });
   }
   onEnable = a => {
@@ -58,6 +58,8 @@ export default class extends Component {
     //     form_fields: data
     //   }
     // };
+
+    console.log("formTitle", formTitle);
 
     var postData = {
       type_of_visit: {
@@ -88,7 +90,7 @@ export default class extends Component {
         }
       })
       .catch(error => {
-        Utils.displayNotification(error.response.data.error, "Error", "error");
+        Utils.displayNotification(error.response, "Error", "error");
       });
   };
   render() {

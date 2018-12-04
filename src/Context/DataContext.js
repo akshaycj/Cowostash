@@ -10,9 +10,15 @@ export class DataContextProvider extends Component {
     super(props);
     this.state = {
       data: [],
-      auth: Utils.getToken()
+      auth: Utils.getToken(),
+      quicklinks: []
     };
   }
+  setQuickLinks = data => {
+    const quicklinks = this.state.quicklinks;
+    quicklinks.push(data);
+    this.setState({ quicklinks });
+  };
   onDataChange = data => {
     this.setState({ data });
   };
@@ -32,7 +38,9 @@ export class DataContextProvider extends Component {
             onDataChange: this.onDataChange,
             data: this.state.data,
             auth: this.state.auth,
-            authChange: this.onAuthChange
+            authChange: this.onAuthChange,
+            quicklinks: this.state.quicklinks,
+            setQuickLinks: this.setQuickLinks
           }}
         >
           {this.props.children}

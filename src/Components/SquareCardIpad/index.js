@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./index.css";
-import { Icon, Modal, Input } from "antd";
+import { Icon, Modal, Input, message } from "antd";
+import { DataContextConsumer } from "../../Context/DataContext";
 
 const { TextArea } = Input;
 
@@ -13,7 +14,20 @@ const Purpose = () => {
     />
   );
 };
-export default class extends Component {
+
+export default props => (
+  <DataContextConsumer>
+    {({ setQuickLinks, quicklinks }) => (
+      <SquareCard
+        {...props}
+        setQuickLinks={setQuickLinks}
+        quicklinks={quicklinks}
+      />
+    )}
+  </DataContextConsumer>
+);
+
+export class SquareCard extends Component {
   componentDidMount() {
     this.setState({ title: this.props.title, enable: this.props.enable });
   }
@@ -33,15 +47,31 @@ export default class extends Component {
   }
 
   onEn = () => {
-    this.setState({ enable: !this.state.enable });
-    this.props.edit1 && this.props.edit2
-      ? this.props.onUpdate(
-          this.state.title,
-          this.state.Nda,
-          !this.state.enable,
-          this.state.id
-        )
-      : this.props.onValue(!this.state.enable);
+    const { quicklinks } = this.props;
+
+    if (this.state.enable) {
+      this.setState({ enable: !this.state.enable });
+    } else {
+      var flag = 0;
+
+      quicklinks.map(item => {
+        item.enable ? flag++ : null;
+      });
+
+      flag < 2
+        ? this.setState({ enable: !this.state.enable })
+        : message.warning("You can only enable 2 quicklinks at a time");
+    }
+
+    // this.setState({ enable: !this.state.enable });
+    // this.props.edit1 && this.props.edit2
+    //   ? this.props.onUpdate(
+    //       this.state.title,
+    //       this.state.Nda,
+    //       !this.state.enable,
+    //       this.state.id
+    //     )
+    //   : this.props.onValue(!this.state.enable);
   };
   showModal = () => {
     this.setState({
