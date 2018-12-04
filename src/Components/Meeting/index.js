@@ -12,6 +12,26 @@ const style = {
   marginLeft: 50
 };
 
+const numbers = [] ;
+
+const numberStyle = {
+  height : "40px" ,
+  fontSize : "15px",
+}
+
+for(let i=12 ; i>0 ; i--){
+  numbers.push(
+    <div style={numberStyle}>{i}</div>
+  )
+}
+
+const SliderColumn = (props) => {
+      return <div style={style}>
+              <div>{props.day}</div>
+              <Slider vertical range step={1} max={12} min={1} defaultValue={[1, 6]}/>
+            </div>
+      }
+
 const steps = [
   {
     title: "Time Slot",
@@ -38,97 +58,16 @@ const steps = [
             flexDirection: "column"
           }}
         >
-          <div style={{ height: "40px", fontSize: "15px" }}> </div>
-          <div style={{ height: "40px", fontSize: "15px" }}>12</div>
-          <div style={{ height: "40px", fontSize: "15px" }}>11</div>
-          <div style={{ height: "40px", fontSize: "15px" }}>10</div>
-          <div style={{ height: "40px", fontSize: "15px" }}>9</div>
-          <div style={{ height: "40px", fontSize: "15px" }}>8</div>
-          <div style={{ height: "40px", fontSize: "15px" }}>7</div>
-          <div style={{ height: "40px", fontSize: "15px" }}>6</div>
-          <div style={{ height: "40px", fontSize: "15px" }}>5</div>
-          <div style={{ height: "40px", fontSize: "15px" }}>4</div>
-          <div style={{ height: "40px", fontSize: "15px" }}>3</div>
-          <div style={{ height: "40px", fontSize: "15px" }}>2</div>
-          <div style={{ height: "40px", fontSize: "15px" }}>1</div>
+          <div style={numberStyle}> </div>
+          {numbers}
         </div>
-        <div style={style}>
-          <div>Sun</div>
-          <Slider
-            vertical
-            range
-            step={1}
-            max={12}
-            min={1}
-            defaultValue={[1, 6]}
-          />
-        </div>
-        <div style={style}>
-          <div>Mon</div>
-          <Slider
-            vertical
-            range
-            step={1}
-            max={12}
-            min={1}
-            defaultValue={[6, 10]}
-          />
-        </div>
-        <div style={style}>
-          <div>Tue</div>
-          <Slider
-            vertical
-            range
-            step={1}
-            max={12}
-            min={1}
-            defaultValue={[2, 6]}
-          />
-        </div>
-        <div style={style}>
-          <div>Wed</div>
-          <Slider
-            vertical
-            range
-            step={1}
-            max={12}
-            min={1}
-            defaultValue={[8, 12]}
-          />
-        </div>
-        <div style={style}>
-          <div>Thu</div>
-          <Slider
-            vertical
-            range
-            step={1}
-            max={12}
-            min={1}
-            defaultValue={[1, 4]}
-          />
-        </div>
-        <div style={style}>
-          <div>Fri</div>
-          <Slider
-            vertical
-            range
-            step={1}
-            max={12}
-            min={1}
-            defaultValue={[1, 2]}
-          />
-        </div>
-        <div style={style}>
-          <div>Sat</div>
-          <Slider
-            vertical
-            range
-            step={1}
-            max={12}
-            min={1}
-            defaultValue={[2, 9]}
-          />
-        </div>
+          <SliderColumn day="Sun"/>
+          <SliderColumn day="Mon"/>
+          <SliderColumn day="Tue"/>
+          <SliderColumn day="Wed"/>
+          <SliderColumn day="Thu"/>
+          <SliderColumn day="Fri"/>
+          <SliderColumn day="Sat"/>
       </div>
     )
   },
@@ -146,7 +85,7 @@ const steps = [
       >
         <div
           style={{
-            width: "350px",
+            width: "100%",
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
@@ -154,7 +93,7 @@ const steps = [
           }}
         >
           <div style={{ padding: "20px" }}>Name</div>
-          <Input style={{ width: "200px" }} placeholder="Basic usage" />
+          <Input style={{ width: "200px" }} placeholder="Enter Your Name" onClick={this.onName}/>
         </div>
         <div
           style={{
@@ -168,12 +107,13 @@ const steps = [
           <div style={{ padding: "20px", paddingRight: "-10px" }}>Email</div>
           <Input
             style={{ width: "100%" }}
-            defaultValue="Xihu District, Hangzhou"
+            placeholder="Enter Your Email id"
+            onClick={this.onEmail}
           />
         </div>
         <div
           style={{
-            width: "350px",
+            width: "100%",
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
@@ -181,11 +121,11 @@ const steps = [
           }}
         >
           <div style={{ padding: "20px" }}>Organization</div>
-          <Input style={{ width: "200px" }} placeholder="Basic usage" />
+          <Input style={{ width: "200px" }} placeholder="Enter Organizaton" onClick={this.onOrganization}/>
         </div>
         <div
           style={{
-            width: "350px",
+            width: "100%",
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
@@ -193,7 +133,7 @@ const steps = [
           }}
         >
           <div style={{ padding: "20px" }}>Phone</div>
-          <Input style={{ width: "200px" }} placeholder="Basic usage" />
+          <Input style={{ width: "200px" }} placeholder="Enter Contact Number" onClick={this.onMobile} />
         </div>
       </div>
     )
@@ -204,7 +144,11 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 0
+      current: 0,
+      name : "" ,
+      email : "" ,
+      organization : "" ,
+      mobile : "" ,
     };
     this.style = {
       pane: { overflow: "auto", height: "100%" }
@@ -219,6 +163,22 @@ export default class extends React.Component {
   prev() {
     const current = this.state.current - 1;
     this.setState({ current });
+  }
+
+  onName = (name) => {
+    this.setState({name})
+  }
+
+  onEmail = (email) => {
+    this.setState({email})
+  }
+
+  onOrganization = (organization) => {
+    this.setState({organization})
+  }
+
+  onMobile = (mobile) => {
+    this.setState({mobile})
   }
 
   render() {
